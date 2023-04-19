@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/19 19:23:49 by feralves          #+#    #+#             */
-/*   Updated: 2023/04/19 19:24:19 by feralves         ###   ########.fr       */
+/*   Created: 2023/04/19 19:20:35 by feralves          #+#    #+#             */
+/*   Updated: 2023/04/19 19:21:07 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// void	ft_cd(void)
-// {
-// 	if (g->h_token->cmd[1] == NULL)
-// 	{
-// 		chdir(get_env(g->mini_env, "HOME"));
-// 		return ;
-// 	}
-// 	chdir(g->h_token->cmd[1]);
-// }
+void	terminate(char *s)
+{
+	if (errno > 0)
+		perror(s);
+	else
+		ft_putendl_fd(s, 2);
+	exit(1);
+}
+
+void	exit_terminal(void)
+{
+	free_envp();
+	ft_free_array(g_data.path);
+	free(g_data.tml_host);
+	g_data.loop = FALSE;
+	rl_clear_history();
+}

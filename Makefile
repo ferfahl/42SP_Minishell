@@ -17,21 +17,31 @@ COMMANDS_PATH	= commands/
 INPUT_PATH		= input/
 REDIRECT_PATH	= redirects/
 ENVP_PATH		= environment/
-UTILS_PATH		= utils/
+UTILS_PATH		= mini_hell/
 
 #source codes
 SRC_DIR			=	./srcs/
 SRC_LIST		=	minishell.c							\
-					$(UTILS_PATH)minishell_utils.c		\
+					$(UTILS_PATH)initi_mini.c			\
+					$(UTILS_PATH)exit.c					\
 					$(UTILS_PATH)terminal_line.c		\
-					$(UTILS_PATH)ft_utils.c				\
+					$(UTILS_PATH)free_mini.c			\
 					$(ENVP_PATH)environment.c			\
 					$(SIGNALS_PATH)signals.c			\
 					$(COMMANDS_PATH)commands.c			\
 					$(COMMANDS_PATH)commands_list.c		\
 					$(COMMANDS_PATH)commands_utils.c	\
 					$(INPUT_PATH)input_checkers.c		\
-					$(INPUT_PATH)validate_input.c	
+					$(INPUT_PATH)validate_input.c		\
+					# $(BUILTINS_PATH)ft_cd.c				\
+					# $(BUILTINS_PATH)ft_echo.c			\
+					# $(BUILTINS_PATH)ft_env.c			\
+					# $(BUILTINS_PATH)ft_exit.c			\
+					# $(BUILTINS_PATH)ft_export_check.c		\
+					# $(BUILTINS_PATH)ft_export.c			\
+					# $(BUILTINS_PATH)ft_pwd.c			\
+					# $(BUILTINS_PATH)ft_unset.c			\
+
 
 SRCS			= $(addprefix $(SRC_DIR), $(SRC_LIST))
 
@@ -88,5 +98,11 @@ re: fclean all
 
 coffee:
 	@make -sC $(LIBFT_PATH) coffee
+
+#make git m="message" -> commit to git
+git:
+		git add .
+		git commit -m "$(m)"
+		git push
 
 .PHONY: all clean fclean re coffee run val

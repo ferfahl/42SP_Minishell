@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 23:51:14 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/03 12:36:52 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:19:45 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strjoin_free(char *s1, char *s2)
 
 	ret = ft_strjoin(s1, s2);
 	if (!ret)
-		terminate("ft_strjoin(): Falhou");
+		terminate("ft_strjoin(): Failed");
 	free(s1);
 	return (ret);
 }
