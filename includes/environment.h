@@ -1,0 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   environment.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/20 10:31:57 by joapedr2          #+#    #+#             */
+/*   Updated: 2023/04/07 01:37:43 by joapedr2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef ENVIRONMENT_H
+# define ENVIRONMENT_H
+
+# include "minishell.h"
+
+typedef struct s_envp
+{
+	char			*name;
+	char			*cont;
+	struct s_envp	*next;
+}	t_envp;
+
+// environment.c
+int	init_envp(char **envp);
+void	free_envp();
+
+#endif //ENVIRONMENT_H
