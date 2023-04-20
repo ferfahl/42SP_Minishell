@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/13 00:40:57 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/04/19 22:34:12 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include <signal.h>			//struct sigaction
 
 typedef struct s_envp		t_envp;
-typedef	struct sigaction	t_sigaction;
+typedef struct sigaction	t_sigaction;
 typedef struct s_commands	t_cmd;
 
 typedef struct s_minishell
@@ -46,7 +46,7 @@ typedef struct s_minishell
 	pid_t		pid;
 }	t_minishell;
 
-extern t_minishell	g_data;
+extern t_minishell			g_data;
 
 // utils/minishell_utils.c
 void	terminate(char *s);

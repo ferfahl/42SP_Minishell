@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:37:04 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/13 00:42:48 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/04/19 22:26:23 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,4 @@ void	signals_handler(void)
 	g_data.sa_signal.sa_sigaction = handler;
 	sigaction(SIGINT, &(g_data).sa_signal, NULL);
 	signal(SIGQUIT, SIG_IGN);
-}	
+}

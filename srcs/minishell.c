@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/13 00:26:44 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/04/19 20:08:48 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_minishell	g_data;
 
-int	terminal_loop()
+int	terminal_loop(void)
 {
 	char	*input;
 
@@ -38,7 +38,7 @@ int	terminal_loop()
 	}
 	free(input);
 	exit_terminal();
-	return(TRUE);
+	return (TRUE);
 }
 
 int	main(int argc, char **argv, char **envp)

@@ -105,4 +105,8 @@ git:
 		git commit -m "$(m)"
 		git push
 
+norm:
+		clear
+		@norminette ${addprefix ${SRC_DIR}/, ${SRC_LIST}} | grep -v "OK!" || echo "All files ok!"
+
 .PHONY: all clean fclean re coffee run val

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/19 19:28:01 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/19 22:28:47 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 
 	if (!cmd)
 		return (FALSE);
-	// if (check_builtin(*(cmd)->cmd))
-	// 	return (execute_builtin(cmd));
 	pipe(fd);
 	pid = fork();
 	if (pid == -1)
@@ -41,14 +39,20 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 	close(fd[1]);
 	return (fd[0]);
 }
+	// if (check_builtin(*(cmd)->cmd))
+	// 	return (execute_builtin(cmd));
 
 int	run_command(void)
 {
 	int	fd;
 
-	// validate_command(); descomprimir os $();
 	fd = recursive_function(g_data.cmd, FALSE);
 	(void)fd;
+	free_cmd();
+	return (TRUE);
+}
+
+	// validate_command(); descomprimir os $(); -> vai ser feito antes
 	// if (fd)
 	// {
 	// 	char *str;
@@ -58,16 +62,13 @@ int	run_command(void)
 	// 		free(str);
 	// 	}
 	// }
-	free_cmd();
-	return (TRUE);
-}
 
 // /**
 //  * @brief Function that executes the command sent by the user.
 //  * @param input Command sent by the user.
 //  * @return void
 //  */
-// void	executor(t_global *g, char *paths)
+// void	execute_builtin(t_global *g, char *paths)
 // {
 // 	char	*input;
 
@@ -87,5 +88,5 @@ int	run_command(void)
 // 	else if (!ft_strncmp(input, "exit", 5))
 // 		ft_exit(g);
 // 	else
-// 		executor_path(g, paths);
+// 		return ;
 // }
