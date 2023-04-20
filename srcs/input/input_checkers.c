@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_checkers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 00:18:18 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/13 00:37:50 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/04/19 22:30:42 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static int	check_pipe(char *input)
 	return (FALSE);
 }
 
-char *check_pipe_end(char *input)
+char	*check_pipe_end(char *input)
 {
 	char	*ret;
 	char	*temp;
 	char	*new_input;
 
 	ret = input;
-	while(check_pipe(ret))
+	while (check_pipe(ret))
 	{
 		new_input = readline("> ");
 		if (new_input == NULL)

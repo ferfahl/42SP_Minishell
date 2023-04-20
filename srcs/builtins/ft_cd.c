@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   environment.h                                      :+:      :+:    :+:   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 10:31:57 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/19 22:35:16 by feralves         ###   ########.fr       */
+/*   Created: 2023/04/19 19:23:49 by feralves          #+#    #+#             */
+/*   Updated: 2023/04/19 19:24:19 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENVIRONMENT_H
-# define ENVIRONMENT_H
+#include "minishell.h"
 
-# include "minishell.h"
-
-typedef struct s_envp
-{
-	char			*name;
-	char			*cont;
-	struct s_envp	*next;
-}	t_envp;
-
-// environment.c
-int		init_envp(char **envp);
-void	free_envp(void);
-
-#endif //ENVIRONMENT_H
+// void	ft_cd(void)
+// {
+// 	if (g->h_token->cmd[1] == NULL)
+// 	{
+// 		chdir(get_env(g->mini_env, "HOME"));
+// 		return ;
+// 	}
+// 	chdir(g->h_token->cmd[1]);
+// }

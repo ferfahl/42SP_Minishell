@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:39:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/13 01:02:55 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:21:09 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	terminate(char *s)
-{
-	if (errno > 0)
-		perror(s);
-	else
-		ft_putendl_fd(s, 2);
-	exit(1);
-}
-
-void	exit_terminal(void)
-{
-	free_envp();
-	ft_free_array(g_data.path);
-	free(g_data.tml_host);
-	g_data.loop = FALSE;
-	rl_clear_history();
-}
 
 static int	init_path(void)
 {

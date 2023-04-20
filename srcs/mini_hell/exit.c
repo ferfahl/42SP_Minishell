@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   environment.h                                      :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 10:31:57 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/19 22:35:16 by feralves         ###   ########.fr       */
+/*   Created: 2023/04/19 19:20:35 by feralves          #+#    #+#             */
+/*   Updated: 2023/04/19 19:21:07 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENVIRONMENT_H
-# define ENVIRONMENT_H
+#include "minishell.h"
 
-# include "minishell.h"
-
-typedef struct s_envp
+void	terminate(char *s)
 {
-	char			*name;
-	char			*cont;
-	struct s_envp	*next;
-}	t_envp;
+	if (errno > 0)
+		perror(s);
+	else
+		ft_putendl_fd(s, 2);
+	exit(1);
+}
 
-// environment.c
-int		init_envp(char **envp);
-void	free_envp(void);
-
-#endif //ENVIRONMENT_H
+void	exit_terminal(void)
+{
+	free_envp();
+	ft_free_array(g_data.path);
+	free(g_data.tml_host);
+	g_data.loop = FALSE;
+	rl_clear_history();
+}

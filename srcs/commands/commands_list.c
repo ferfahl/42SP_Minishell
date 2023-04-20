@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 02:28:44 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/08 00:29:13 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/04/19 22:30:16 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	free_cmd(void)
 	g_data.cmd = NULL;
 }
 
-static char *cmd_path(char *command)
+static char	*cmd_path(char *command)
 {
 	char	*path;
 	char	*temp;
@@ -61,7 +61,7 @@ int	new_node_cmd(char **cmd, t_cmd *cur)
 		terminate(ERR_CMD_ALLOC);
 	new->cmd = cmd;
 	new->path = cmd_path(*cmd);
-	if (!new->path) // Esse tratamento valida se o comando existe. devo mantê-lo aqui?
+	if (!new->path)
 	{
 		printf("bash: %s: command not found\n", *cmd);
 		return (FALSE);
@@ -72,6 +72,7 @@ int	new_node_cmd(char **cmd, t_cmd *cur)
 	g_data.cmd = new;
 	return (TRUE);
 }
+// Esse tratamento valida se o comando existe. ->falhando (Linha 64)
 
 int	create_cmd_list(char *input)
 {
