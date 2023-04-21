@@ -6,24 +6,25 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:21:15 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/19 22:33:24 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/21 12:20:57 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-int	ft_pwd(int fd_in)
+int	ft_pwd(void)
 {
-	int		fd[2];
-	char	*tml_line;
-	t_envp	*aux;
+	char	*path;
 
-	pipe(fd,)
-	fd[0] = fd_in;
-	aux = g_data.envp;
-	while (aux && ft_strncmp(aux->name, "PWD", 3) != 0)
-		aux = aux->next;
-	while (write())
-		return (FALSE);
-	return (TRUE);
+	path = getcwd(NULL, 0);
+	if (path == NULL || path[0] == '\0')
+	{
+		perror("getcwd");
+		// g->exit_status = 1;
+		return (-1);
+	}
+	ft_putendl_fd(path, 1);
+	free(path);
+	// g->exit_status = 0;
+	return (0);
 }

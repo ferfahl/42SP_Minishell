@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:34:26 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/07 01:47:15 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/04/21 12:20:40 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,21 @@
 char	*tml_get_pwd(void)
 {
 	char	*tml_line;
-	t_envp	*aux;
+	char	*path;
+	// t_envp	*aux;
 
 	tml_line = NULL;
-	aux = g_data.envp;
-	while (aux && ft_strncmp(aux->name, "PWD", 3) != 0)
-		aux = aux->next;
-	if (!aux)
-		terminate(ERR_PWD_NFOUND);
-	tml_line = ft_strjoin(g_data.tml_host, aux->cont);
+	path = getcwd(NULL, 0);
+	if (path == NULL || path[0] == '\0')
+	{
+		return (NULL);
+	}
+	// aux = g_data.envp;
+	// while (aux && ft_strncmp(aux->name, "PWD", 3) != 0)
+	// 	aux = aux->next;
+	// if (!aux)
+	// 	terminate(ERR_PWD_NFOUND);
+	tml_line = ft_strjoin(g_data.tml_host, path);
 	tml_line = ft_strjoin_free(tml_line, "$ ");
 	if (!tml_line)
 		terminate(ERR_PWD_ALLOC);
