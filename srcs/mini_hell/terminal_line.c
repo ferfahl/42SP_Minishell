@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:34:26 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/21 15:56:43 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:08:30 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	*tml_get_pwd(void)
 {
 	char	*tml_line;
+	char	*e_pwd;
 	t_envp	*aux;
 
 	tml_line = NULL;
@@ -22,8 +23,10 @@ char	*tml_get_pwd(void)
 	while (aux && ft_strncmp(aux->name, "PWD", 3) != 0)
 		aux = aux->next;
 	if (!aux)
-		terminate(ERR_PWD_NFOUND);
-	tml_line = ft_strjoin(g_data.tml_host, aux->cont);
+		e_pwd = "UNKNOWN";
+	else
+		e_pwd = aux->cont;
+	tml_line = ft_strjoin(g_data.tml_host, e_pwd);
 	tml_line = ft_strjoin_free(tml_line, "$ ");
 	if (!tml_line)
 		terminate(ERR_PWD_ALLOC);
@@ -37,7 +40,7 @@ static char	*get_hostname(void)
 
 	fd = open("/etc/hostname", O_RDONLY, 0644);
 	if (fd == -1)
-		terminate("info_create: open() falhou");
+		terminate("info_create: open() failed");
 	hostname = get_next_line(fd);
 	hostname[ft_strlen(hostname) - 1] = '\0';
 	close(fd);
@@ -48,13 +51,18 @@ char	*tml_user_and_host(void)
 {
 	char	*tml_host;
 	char	*hostname;
+	char	*user;
 	t_envp	*aux;
 
 	hostname = get_hostname();
 	aux = g_data.envp;
 	while (aux && ft_strncmp(aux->name, "USER", 4) != 0)
 		aux = aux->next;
-	tml_host = ft_strjoin_free(ft_strdup(GRN), aux->cont);
+	if (!aux)
+		user = "UNKNOWN";
+	else
+		user = aux->cont;
+	tml_host = ft_strjoin_free(ft_strdup(GRN), user);
 	tml_host = ft_strjoin_free(tml_host, "@");
 	tml_host = ft_strjoin_free(tml_host, hostname);
 	tml_host = ft_strjoin_free(tml_host, CRESET);
