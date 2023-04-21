@@ -34,7 +34,7 @@ SRC_LIST		=	minishell.c							\
 					$(INPUT_PATH)input_checkers.c		\
 					$(INPUT_PATH)validate_input.c		\
 					$(INPUT_PATH)check_symbols.c		\
-					# $(BUILTINS_PATH)ft_pwd.c			\
+					$(BUILTINS_PATH)ft_pwd.c			\
 					# $(BUILTINS_PATH)ft_cd.c				\
 					# $(BUILTINS_PATH)ft_echo.c			\
 					# $(BUILTINS_PATH)ft_env.c			\
@@ -75,6 +75,7 @@ $(OBJS_DIR):
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(SIGNALS_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(COMMANDS_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(INPUT_PATH))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(BUILTINS_PATH))
 #	@mkdir -p $(addprefix $(OBJS_DIR)/,$(REDIRECT_PATH))
 
 $(OBJS_DIR)%.o: $(SRC_DIR)%.c

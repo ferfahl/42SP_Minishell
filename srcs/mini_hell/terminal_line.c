@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:34:26 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/21 12:20:40 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:56:43 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,15 @@
 char	*tml_get_pwd(void)
 {
 	char	*tml_line;
-	char	*path;
-	// t_envp	*aux;
+	t_envp	*aux;
 
 	tml_line = NULL;
-	path = getcwd(NULL, 0);
-	if (path == NULL || path[0] == '\0')
-	{
-		return (NULL);
-	}
-	// aux = g_data.envp;
-	// while (aux && ft_strncmp(aux->name, "PWD", 3) != 0)
-	// 	aux = aux->next;
-	// if (!aux)
-	// 	terminate(ERR_PWD_NFOUND);
-	tml_line = ft_strjoin(g_data.tml_host, path);
+	aux = g_data.envp;
+	while (aux && ft_strncmp(aux->name, "PWD", 3) != 0)
+		aux = aux->next;
+	if (!aux)
+		terminate(ERR_PWD_NFOUND);
+	tml_line = ft_strjoin(g_data.tml_host, aux->cont);
 	tml_line = ft_strjoin_free(tml_line, "$ ");
 	if (!tml_line)
 		terminate(ERR_PWD_ALLOC);
@@ -60,10 +54,10 @@ char	*tml_user_and_host(void)
 	aux = g_data.envp;
 	while (aux && ft_strncmp(aux->name, "USER", 4) != 0)
 		aux = aux->next;
-	tml_host = ft_strjoin_free(ft_strdup("\033[1;32m"), aux->cont);
+	tml_host = ft_strjoin_free(ft_strdup(GRN), aux->cont);
 	tml_host = ft_strjoin_free(tml_host, "@");
 	tml_host = ft_strjoin_free(tml_host, hostname);
-	tml_host = ft_strjoin_free(tml_host, "\033[m:");
+	tml_host = ft_strjoin_free(tml_host, CRESET);
 	free(hostname);
 	return (tml_host);
 }

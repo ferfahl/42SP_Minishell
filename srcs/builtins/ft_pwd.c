@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:21:15 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/21 12:20:57 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:55:44 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ int	ft_pwd(void)
 	if (path == NULL || path[0] == '\0')
 	{
 		perror("getcwd");
-		// g->exit_status = 1;
-		return (-1);
+		return (FALSE);
 	}
 	ft_putendl_fd(path, 1);
 	free(path);
-	// g->exit_status = 0;
-	return (0);
+	return (TRUE);
 }
