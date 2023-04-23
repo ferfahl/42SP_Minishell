@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/21 11:15:24 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/23 10:59:03 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct s_commands	t_cmd;
 typedef struct s_minishell
 {
 	int			loop;
+	int			redir;
 	t_cmd		*cmd;
-	t_cmd		*redir;
 	t_envp		*envp;
 	char		**envp_cmd;
 	char		**path;
@@ -65,5 +65,6 @@ void	ft_free_array(char **arr);
 
 //dump
 int	is_whitespace(char c);
+int	is_redirect(char c);
 
 #endif //MINISHELL_H

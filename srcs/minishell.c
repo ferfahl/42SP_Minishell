@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/21 15:42:10 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/23 11:01:44 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int	terminal_loop(void)
 			add_history(input);
 			if (validate_input(input) == FALSE)
 				break ;
-			run_command();
+			if (g_data.redir == FALSE)
+				run_command();
+			else
+				ft_printf("Needs a function to redirect!\n");
 		}
 	}
 	free(input);
