@@ -15,6 +15,9 @@
 
 # include "minishell.h"
 
+# define GRN "\001\e[0;32m\002"
+# define CRESET "\001\e[0m\002"
+
 typedef struct s_envp
 {
 	char			*name;

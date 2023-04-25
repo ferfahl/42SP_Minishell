@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.h                                            :+:      :+:    :+:   */
+/*   check_symbols.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 00:35:07 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/25 02:08:32 by joapedr2         ###   ########.fr       */
+/*   Created: 2023/04/21 11:10:26 by feralves          #+#    #+#             */
+/*   Updated: 2023/04/21 11:14:35 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INPUT_H
-# define INPUT_H
+#include "minishell.h"
 
-# include "minishell.h"
-# include "commands.h"
-
-typedef struct s_quotes
+int	is_redirect(char c)
 {
-	int				pos;
-	char			*cont;
-	struct s_quotes	*next;
-}	t_quotes;
+	if (c == '<' || c == '>')
+		return (TRUE);
+	return (FALSE);
+}
 
-//input_checkers.c
-char	*check_pipe_end(char *input);
-int		is_empty(char *input);
-int		check_quotes(char *argument);
+int	is_quote(char c)
+{
+	if (c == '\'' || c == '\"')
+		return (TRUE);
+	return (FALSE);
+}
 
-//validate_input.c
-int		validate_input(char *input);
+int	is_whitespace(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\n')
+		return (TRUE);
+	return (FALSE);
+}
 
-#endif //INPUT_H
+int	is_separator(char c)
+{
+	if (c == ';')
+		return (TRUE);
+	return (FALSE);
+}

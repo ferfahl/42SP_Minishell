@@ -37,6 +37,7 @@ typedef struct s_quotes		t_quotes;
 typedef struct s_minishell
 {
 	int			loop;
+	int			redir;
 	t_cmd		*cmd;
 	t_envp		*envp;
 	char		**envp_cmd;
@@ -70,5 +71,8 @@ int		ft_istrchr(const char *str, char c);
 // quotes
 char	*compress_quotes(char *input);
 
+//dump
+int	is_whitespace(char c);
+int	is_redirect(char c);
 
 #endif //MINISHELL_H
