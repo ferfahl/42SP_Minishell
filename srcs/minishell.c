@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/19 20:08:48 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:42:10 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ int	terminal_loop(void)
 {
 	char	*input;
 
+	input = NULL;
 	while (1)
 	{
-		input = NULL;
 		signals_handler();
 		g_data.tml_line = tml_get_pwd();
+		free(input);
 		input = readline(g_data.tml_line);
 		free(g_data.tml_line);
 		if (input == NULL)
@@ -34,7 +35,6 @@ int	terminal_loop(void)
 				break ;
 			run_command();
 		}
-		free(input);
 	}
 	free(input);
 	exit_terminal();

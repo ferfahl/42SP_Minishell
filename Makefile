@@ -22,10 +22,10 @@ UTILS_PATH		= mini_hell/
 #source codes
 SRC_DIR			=	./srcs/
 SRC_LIST		=	minishell.c							\
-					$(UTILS_PATH)initi_mini.c			\
+					$(UTILS_PATH)initi_minishell.c		\
 					$(UTILS_PATH)exit.c					\
 					$(UTILS_PATH)terminal_line.c		\
-					$(UTILS_PATH)free_mini.c			\
+					$(UTILS_PATH)free_minishell.c		\
 					$(ENVP_PATH)environment.c			\
 					$(SIGNALS_PATH)signals.c			\
 					$(COMMANDS_PATH)commands.c			\
@@ -33,13 +33,14 @@ SRC_LIST		=	minishell.c							\
 					$(COMMANDS_PATH)commands_utils.c	\
 					$(INPUT_PATH)input_checkers.c		\
 					$(INPUT_PATH)validate_input.c		\
+					$(INPUT_PATH)check_symbols.c		\
+					$(BUILTINS_PATH)ft_pwd.c			\
 					# $(BUILTINS_PATH)ft_cd.c				\
 					# $(BUILTINS_PATH)ft_echo.c			\
 					# $(BUILTINS_PATH)ft_env.c			\
 					# $(BUILTINS_PATH)ft_exit.c			\
 					# $(BUILTINS_PATH)ft_export_check.c		\
 					# $(BUILTINS_PATH)ft_export.c			\
-					# $(BUILTINS_PATH)ft_pwd.c			\
 					# $(BUILTINS_PATH)ft_unset.c			\
 
 
@@ -74,6 +75,7 @@ $(OBJS_DIR):
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(SIGNALS_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(COMMANDS_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(INPUT_PATH))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(BUILTINS_PATH))
 #	@mkdir -p $(addprefix $(OBJS_DIR)/,$(REDIRECT_PATH))
 
 $(OBJS_DIR)%.o: $(SRC_DIR)%.c

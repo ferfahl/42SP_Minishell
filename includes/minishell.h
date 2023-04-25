@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/19 22:34:12 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:15:24 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_minishell
 {
 	int			loop;
 	t_cmd		*cmd;
+	t_cmd		*redir;
 	t_envp		*envp;
 	char		**envp_cmd;
 	char		**path;
@@ -61,5 +62,8 @@ char	*tml_user_and_host(void);
 // utils/ft_utils.c
 char	*ft_strjoin_free(char *s1, char *s2);
 void	ft_free_array(char **arr);
+
+//dump
+int	is_whitespace(char c);
 
 #endif //MINISHELL_H
