@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/23 11:01:44 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:47:31 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_minishell	g_data;
 int	terminal_loop(void)
 {
 	char	*input;
-	// char	teste[1024];
 
 	input = NULL;
 	while (1)

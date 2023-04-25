@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:34:26 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/21 16:08:30 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:51:39 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ char	*tml_user_and_host(void)
 		user = "UNKNOWN";
 	else
 		user = aux->cont;
-	tml_host = ft_strjoin_free(ft_strdup(GRN), user);
+	tml_host = ft_strjoin_free(ft_strdup(COLOR_GREEN), user);
 	tml_host = ft_strjoin_free(tml_host, "@");
 	tml_host = ft_strjoin_free(tml_host, hostname);
-	tml_host = ft_strjoin_free(tml_host, CRESET);
+	tml_host = ft_strjoin_free(tml_host, COLOR_RESET);
 	free(hostname);
 	return (tml_host);
 }

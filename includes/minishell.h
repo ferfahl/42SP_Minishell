@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/25 02:08:22 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:50:59 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # include <stdio.h>				//perror()
 # include <fcntl.h>				//open()
 # include <signal.h>			//struct sigaction
+
+# define COLOR_GREEN	"\001\e[1;32m\002"
+# define COLOR_RESET	"\001\e[0m\002"
 
 typedef struct s_envp		t_envp;
 typedef struct sigaction	t_sigaction;
