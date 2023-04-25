@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_minishell.c                                   :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 23:51:14 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/21 11:22:03 by joapedr2         ###   ########.fr       */
+/*   Created: 2023/04/21 11:22:07 by joapedr2          #+#    #+#             */
+/*   Updated: 2023/04/25 01:31:39 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_free_array(char **arr)
+char	*ft_strjoin_free(char *s1, char *s2)
 {
-	int	i;
+	char	*ret;
 
-	i = -1;
-	while (arr[++i])
-		free(arr[i]);
-	free(arr);
+	ret = ft_strjoin(s1, s2);
+	if (!ret)
+		terminate("ft_strjoin(): Failed");
+	free(s1);
+	return (ret);
+}
+
+int	ft_istrchr(const char *str, char c)
+{
+	int		i;
+	char	*find;
+
+	i = 0;
+	find = ft_strchr(str, c);
+	while ((str + i) && (str + i) != find)
+		i++;
+	return (i);
 }

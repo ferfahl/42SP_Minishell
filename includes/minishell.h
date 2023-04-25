@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/23 10:59:03 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:50:59 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,13 @@
 # include <fcntl.h>				//open()
 # include <signal.h>			//struct sigaction
 
+# define COLOR_GREEN	"\001\e[1;32m\002"
+# define COLOR_RESET	"\001\e[0m\002"
+
 typedef struct s_envp		t_envp;
 typedef struct sigaction	t_sigaction;
 typedef struct s_commands	t_cmd;
+typedef struct s_quotes		t_quotes;
 
 typedef struct s_minishell
 {
@@ -44,24 +48,31 @@ typedef struct s_minishell
 	char		*tml_host;
 	char		*tml_line;
 	t_sigaction	sa_signal;
+	t_quotes	*quotes;
 	pid_t		pid;
 }	t_minishell;
 
 extern t_minishell			g_data;
 
-// utils/minishell_utils.c
+// mini_hell/minishell_utils.c
 void	terminate(char *s);
 int		init_data(char **envp);
 void	free_path(void);
 void	exit_terminal(void);
 
-// utils/terminal_line.c
+// mini_hell/terminal_line.c
 char	*tml_get_pwd(void);
 char	*tml_user_and_host(void);
 
-// utils/ft_utils.c
-char	*ft_strjoin_free(char *s1, char *s2);
+// mini_hell/free_minishell
 void	ft_free_array(char **arr);
+
+// mini_hell/ft_utils.c
+char	*ft_strjoin_free(char *s1, char *s2);
+int		ft_istrchr(const char *str, char c);
+
+// quotes
+char	*compress_quotes(char *input);
 
 //dump
 int	is_whitespace(char c);

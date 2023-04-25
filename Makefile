@@ -17,15 +17,17 @@ COMMANDS_PATH	= commands/
 INPUT_PATH		= input/
 REDIRECT_PATH	= redirects/
 ENVP_PATH		= environment/
-UTILS_PATH		= mini_hell/
+MINISHELL_PATH	= mini_hell/
+QUOTES_PATH		= quotes/
 
 #source codes
 SRC_DIR			=	./srcs/
 SRC_LIST		=	minishell.c							\
-					$(UTILS_PATH)initi_minishell.c		\
-					$(UTILS_PATH)exit.c					\
-					$(UTILS_PATH)terminal_line.c		\
-					$(UTILS_PATH)free_minishell.c		\
+					$(MINISHELL_PATH)terminal_line.c	\
+					$(MINISHELL_PATH)init_minishell.c	\
+					$(MINISHELL_PATH)free_minishell.c	\
+					$(MINISHELL_PATH)ft_utils.c	\
+					$(MINISHELL_PATH)exit.c				\
 					$(ENVP_PATH)environment.c			\
 					$(SIGNALS_PATH)signals.c			\
 					$(COMMANDS_PATH)commands.c			\
@@ -33,6 +35,8 @@ SRC_LIST		=	minishell.c							\
 					$(COMMANDS_PATH)commands_utils.c	\
 					$(INPUT_PATH)input_checkers.c		\
 					$(INPUT_PATH)validate_input.c		\
+					$(QUOTES_PATH)compress_quotes.c		\
+					$(QUOTES_PATH)descompress_quotes.c	\
 					$(INPUT_PATH)check_symbols.c		\
 					$(BUILTINS_PATH)ft_pwd.c			\
 					# $(BUILTINS_PATH)ft_cd.c				\
@@ -42,7 +46,6 @@ SRC_LIST		=	minishell.c							\
 					# $(BUILTINS_PATH)ft_export_check.c		\
 					# $(BUILTINS_PATH)ft_export.c			\
 					# $(BUILTINS_PATH)ft_unset.c			\
-
 
 SRCS			= $(addprefix $(SRC_DIR), $(SRC_LIST))
 
@@ -61,6 +64,7 @@ RESET			= \033[0m
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS_DIR) $(OBJS)
+	@printf "\n"
 	@gcc $(CFLAGS) $(OBJS) $(LFLAGS) $(LIBS) -o $(NAME)
 	@echo " $(CYAN)$(NAME): $(GREEN)Done!"
 	@echo -n "$(RESET)"
@@ -71,16 +75,17 @@ $(LIBFT):
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(ENVP_PATH))
-	@mkdir -p $(addprefix $(OBJS_DIR)/,$(UTILS_PATH))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(MINISHELL_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(SIGNALS_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(COMMANDS_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(INPUT_PATH))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(QUOTES_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(BUILTINS_PATH))
 #	@mkdir -p $(addprefix $(OBJS_DIR)/,$(REDIRECT_PATH))
 
 $(OBJS_DIR)%.o: $(SRC_DIR)%.c
 	@gcc $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@printf "$(YELLOW)Generating $(CYAN)$(NAME) $(YELLOW)objects... %s\n" $@
+	@printf "$(YELLOW)Generating $(CYAN)$(NAME) $(YELLOW)objects... %-33.33s\r" $@
 
 clean:
 	@make -sC $(LIBFT_PATH) clean
