@@ -6,11 +6,25 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:28:52 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/20 20:21:21 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/23 11:03:32 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
+
+void	check_redir(char *input)
+{
+	g_data.redir = FALSE;
+	while (*input)
+	{
+		if (is_redirect(*input))
+		{
+			g_data.redir = TRUE;
+			break ;
+		}
+		input++;
+	}
+}
 
 /**
 *@brief Checks input (for errors)
@@ -31,6 +45,7 @@ int	validate_input(char *input)
 		return (FALSE);
 	// command_line = pre_processador(command_line); verifica $ para 
 	//comprimir e substituir o input
+	check_redir(input);
 	command_line = check_pipe_end(input);
 	if (!create_cmd_list(command_line))
 		return (FALSE);

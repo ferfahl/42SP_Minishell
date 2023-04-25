@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/21 15:55:01 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/23 10:54:10 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 typedef struct s_commands
 {
 	char				**cmd;
-	char				**redir;
 	char				*path;
 	struct s_commands	*next;
 }	t_cmd;
