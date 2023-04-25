@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   free_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 23:51:14 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/19 19:19:45 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:22:03 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,4 @@ void	ft_free_array(char **arr)
 	while (arr[++i])
 		free(arr[i]);
 	free(arr);
-}
-
-char	*ft_strjoin_free(char *s1, char *s2)
-{
-	char	*ret;
-
-	ret = ft_strjoin(s1, s2);
-	if (!ret)
-		terminate("ft_strjoin(): Failed");
-	free(s1);
-	return (ret);
 }

@@ -1,12 +1,12 @@
-/* ************************************************************************** */
+	/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/19 22:28:47 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/25 02:10:38 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,10 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 	close(fd[1]);
 	return (fd[0]);
 }
-	// if (check_builtin(*(cmd)->cmd))
-	// 	return (execute_builtin(cmd));
 
 int	run_command(void)
 {
 	int	fd;
-
 	fd = recursive_function(g_data.cmd, FALSE);
 	(void)fd;
 	free_cmd();

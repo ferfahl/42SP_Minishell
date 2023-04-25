@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/19 20:08:48 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/21 09:43:39 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ t_minishell	g_data;
 int	terminal_loop(void)
 {
 	char	*input;
+	// char	teste[1024];
 
 	while (1)
 	{
-		input = NULL;
 		signals_handler();
 		g_data.tml_line = tml_get_pwd();
+		// ft_strlcpy(teste, g_data.tml_line, ft_strlen(g_data.tml_line));
 		input = readline(g_data.tml_line);
 		free(g_data.tml_line);
 		if (input == NULL)

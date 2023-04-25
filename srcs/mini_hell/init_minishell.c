@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   init_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:39:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/19 19:21:09 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/21 09:48:32 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	init_data(char **envp)
 	g_data.envp_cmd = envp;
 	g_data.loop = TRUE;
 	g_data.cmd = NULL;
+	g_data.quotes = NULL;
 	g_data.tml_line = NULL;
 	g_data.tml_host = tml_user_and_host();
 	if (!g_data.tml_host)
