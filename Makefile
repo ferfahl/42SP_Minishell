@@ -30,6 +30,7 @@ SRC_LIST		=	minishell.c							\
 					$(MINISHELL_PATH)exit.c				\
 					$(ENVP_PATH)environment.c			\
 					$(SIGNALS_PATH)signals.c			\
+					$(REDIRECT_PATH)redirections.c		\
 					$(COMMANDS_PATH)commands.c			\
 					$(COMMANDS_PATH)commands_list.c		\
 					$(COMMANDS_PATH)commands_utils.c	\
@@ -81,7 +82,7 @@ $(OBJS_DIR):
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(INPUT_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(QUOTES_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(BUILTINS_PATH))
-#	@mkdir -p $(addprefix $(OBJS_DIR)/,$(REDIRECT_PATH))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(REDIRECT_PATH))
 
 $(OBJS_DIR)%.o: $(SRC_DIR)%.c
 	@gcc $(CFLAGS) $(INCLUDES) -c $< -o $@

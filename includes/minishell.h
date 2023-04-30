@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/25 15:50:59 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/04/30 17:39:21 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "input.h"
 # include "commands.h"
 # include "builtins.h"
-// # include "redirect.h"
+# include "redirect.h"
 # include "error_messages.h"
 
 # include <readline/readline.h>	//readline()
@@ -77,5 +77,6 @@ char	*compress_quotes(char *input);
 //dump
 int	is_whitespace(char c);
 int	is_redirect(char c);
+int	is_invalid(char c);
 
 #endif //MINISHELL_H

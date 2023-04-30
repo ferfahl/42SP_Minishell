@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:49:16 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/25 14:24:07 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/04/30 19:41:46 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ char	*descompress_environment(char *input, int size)
 	t_envp	*aux;
 
 	new = input;
-	while(ft_strnstr(new, "$", size))
+	while (ft_strnstr(new, "$", size))
 	{
-		init = ft_istrchr(new, '$'); 
+		init = ft_istrchr(new, '$');
 		envp = (new + init + 1);
 		aux = g_data.envp;
-		while(aux->next != NULL)
+		while (aux->next != NULL)
 		{
 			if (!ft_strncmp(aux->name, envp, ft_strlen(aux->name)))
 				break ;
@@ -34,7 +34,7 @@ char	*descompress_environment(char *input, int size)
 		new = ft_substr(new, 0, init);
 		if (aux->next != NULL)
 			new = ft_strjoin_free(new, aux->cont);
-		while(*envp && ft_isalnum(*envp))
+		while (*envp && ft_isalnum(*envp))
 			envp++;
 		new = ft_strjoin_free(new, envp);
 	}

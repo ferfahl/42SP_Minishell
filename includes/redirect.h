@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:24 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/19 22:34:49 by feralves         ###   ########.fr       */
+/*   Updated: 2023/04/30 17:31:36 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 # define REDIRECT_H
 
 # include "minishell.h"
+
+char	**redirections_handle(char **gross_cmd);
 
 #endif //REDIRECT_H
