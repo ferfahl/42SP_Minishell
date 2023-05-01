@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:21:51 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/25 14:26:19 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:08:14 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,15 +103,15 @@ static char	*compress_double_quotes(char *input)
 char	*compress_quotes(char *input)
 {
 	char	*new;
-	int		simple;
-	int		duoble;
+	int		one_quotes;
+	int		two_quotes;
 
 	new = input;
 	while (ft_strchr(new, '\"') || ft_strchr(new, '\''))
 	{
-		simple = ft_istrchr(new, '\'');
-		duoble = ft_istrchr(new, '\"');
-		if (simple < duoble)
+		one_quotes = ft_istrchr(new, '\'');
+		two_quotes = ft_istrchr(new, '\"');
+		if (one_quotes && (one_quotes < two_quotes || !two_quotes))
 			new = compress_single_quote(new);
 		else
 			new = compress_double_quotes(new);
