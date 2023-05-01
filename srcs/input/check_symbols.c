@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:10:26 by feralves          #+#    #+#             */
-/*   Updated: 2023/04/30 18:23:26 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:09:18 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	is_invalid(char c)
 {
 	if (c == '&' || c == '#' || c == '(' || c == ')')
+		return (TRUE);
+	if (is_redirect(c))
 		return (TRUE);
 	return (FALSE);
 }

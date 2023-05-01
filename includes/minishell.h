@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/30 17:39:21 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:02:29 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ typedef struct s_envp		t_envp;
 typedef struct sigaction	t_sigaction;
 typedef struct s_commands	t_cmd;
 typedef struct s_quotes		t_quotes;
+typedef struct	s_redirect	t_redirect;
 
 typedef struct s_minishell
 {
 	int			loop;
-	int			redir;
+	t_redirect	*redir;
 	t_cmd		*cmd;
 	t_envp		*envp;
 	char		**envp_cmd;

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 02:28:44 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/27 16:45:58 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:04:06 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	create_cmd_list(char *input)
 		return (FALSE);
 	while (gross_cmd[++i])
 	{
-		if (g_data.redir == TRUE)
+		if (g_data.redir->has_redir == TRUE)
 			gross_cmd = redirections_handle(gross_cmd);
 		clean_cmd = ft_split(gross_cmd[i], ' ');
 		if (!clean_cmd)
