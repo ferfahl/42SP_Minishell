@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/01 15:03:28 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:50:06 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ int	terminal_loop(void)
 			add_history(input);
 			if (validate_input(input) == FALSE)
 				break ;
-			if (g_data.redir->has_redir == FALSE)
-				run_command();
-			else
-				ft_printf("Needs a function to redirect!\n");
+			run_command();
+			// dup2(g_data.redir->fd_in, STDIN_FILENO);
+			// dup2(g_data.redir->fd_out, STDOUT_FILENO);
+			// ft_printf("fd in: %d\n", g_data.redir->fd_in);
+			// ft_printf("fd out: %d\n", g_data.redir->fd_out);
+			// ft_putendl_fd("mensagem", 2);
 		}
 	}
 	free(input);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/25 02:10:38 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/01 17:17:03 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,20 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 	}
 	waitpid(pid, NULL, 0);
 	close(fd[1]);
+	dup2(g_data.redir->fd_in, STDIN_FILENO);
+	dup2(g_data.redir->fd_out, STDOUT_FILENO);
 	return (fd[0]);
 }
 
 int	run_command(void)
 {
 	int	fd;
-	fd = recursive_function(g_data.cmd, FALSE);
+	if (!g_data.redir->has_redir)
+		fd = recursive_function(g_data.cmd, FALSE);
+	else
+		ft_printf("needs a new function :(\n");
+	// dup2(g_data.redir->fd_in, STDIN_FILENO);
+	// dup2(g_data.redir->fd_out, STDOUT_FILENO);
 	(void)fd;
 	free_cmd();
 	return (TRUE);
