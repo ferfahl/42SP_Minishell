@@ -31,6 +31,8 @@ SRC_LIST		=	minishell.c							\
 					$(ENVP_PATH)environment.c			\
 					$(SIGNALS_PATH)signals.c			\
 					$(REDIRECT_PATH)redirections.c		\
+					$(REDIRECT_PATH)here_doc.c		\
+					$(REDIRECT_PATH)check_redir.c		\
 					$(COMMANDS_PATH)commands.c			\
 					$(COMMANDS_PATH)commands_list.c		\
 					$(COMMANDS_PATH)commands_utils.c	\

@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect.h                                         :+:      :+:    :+:   */
+/*   check_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 10:32:24 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/01 16:19:47 by feralves         ###   ########.fr       */
+/*   Created: 2023/05/01 16:18:32 by feralves          #+#    #+#             */
+/*   Updated: 2023/05/01 16:32:43 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REDIRECT_H
-# define REDIRECT_H
+#include "minishell.h"
 
-# include "minishell.h"
-
-typedef struct	s_redirect
+int	valid_input(char c)
 {
-	int	fd_in;
-	int	fd_out;
-	int	has_redir;
-}			t_redirect;
+	if (is_whitespace(c))
+		return (FALSE);
+	if (is_redirect(c))
+		return (FALSE);
+	return (TRUE);
+}
 
-char	**redirections_handle(char **gross_cmd);
-char	*ft_findname(char *redir);
-int		valid_input(char c);
-int		ft_here_doc(char *eof);
+char	*ft_findname(char *redir)
+{
+	int		size;
+	char	*name;
 
-#endif //REDIRECT_H
+	size = 0;
+	if (redir[size] == redir[size + 1])
+		size++;
+	size++;
+	name = ft_strtrim(ft_strdup(redir + size), " ");
+	return (name);
+}

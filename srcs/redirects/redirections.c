@@ -6,59 +6,38 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:46:40 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/01 14:51:27 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:33:38 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_findname(char *redir)
-{
-	int	size;
-
-	size = 0;
-	if (redir[size] == redir[size + 1])
-		size++;
-	size++;
-	while (redir[size] == ' ')
-		size++;
-	return (ft_strdup(redir + size));
-}
-
 void	redirect_function(char *redir)
 {
 	int		i;
+	int		fd;
 	char	*name;
 
 	i = 0;
-	(void)i;
-	ft_printf("Redirect: %s\n", redir);
 	name = ft_findname(redir);
-	(void)name;
-	// while (redir[i])
-	// {
-	// 	if (redir[i] == '>')
-	// 		if (redir[i++] == '>')
-	// 			ft_append(redir);
-	// 		else
-	// 			ft_outfile(redir + i);
-	// 	if (redir[i] == '<')
-	// 		if (redir[i++] == '<')
-	// 			ft_here_doc(redir);
-	// 		else
-	// 			ft_infile(redir + i)
-	// }
-}
-
-static int	valid_input(char c)
-{
-	if (is_whitespace(c))
-		return (FALSE);
-	if (is_redirect(c))
-		return (FALSE);
-	if (c == '\0')
-		return (FALSE);
-	return (TRUE);
+	if (redir[i] == '>')
+	{
+		if (redir[++i] == '>')
+			fd = open(name, O_CREAT | O_WRONLY | O_APPEND, 0644);
+		else
+			fd = open(name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		dup2(fd, STDOUT_FILENO);
+	}
+	if (redir[i] == '<')
+	{
+		if (redir[++i] == '<')
+			fd = ft_here_doc(name);
+		else
+			fd = open(name, O_RDONLY);
+		if (!fd)
+			fd = open("/dev/null", O_RDONLY);
+		dup2(fd, STDIN_FILENO);
+	}
 }
 
 size_t	get_redir(char *cmd_line, char *cleaner_cmd)
@@ -84,6 +63,7 @@ size_t	get_redir(char *cmd_line, char *cleaner_cmd)
 	redir = malloc(sizeof(char) * (size + 1));
 	while (++i < size)
 		redir[i] = cmd_line[i];
+	redir[i] = '\0';
 	redirect_function(redir);
 	free(redir);
 	return (size);
