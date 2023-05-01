@@ -36,7 +36,7 @@ SRC_LIST		=	minishell.c							\
 					$(INPUT_PATH)input_checkers.c		\
 					$(INPUT_PATH)validate_input.c		\
 					$(QUOTES_PATH)compress_quotes.c		\
-					$(QUOTES_PATH)descompress_quotes.c	\
+					$(QUOTES_PATH)decompress_quotes.c	\
 					$(INPUT_PATH)check_symbols.c		\
 					$(BUILTINS_PATH)ft_pwd.c			\
 					# $(BUILTINS_PATH)ft_cd.c				\

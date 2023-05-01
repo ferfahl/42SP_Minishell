@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:22:07 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/25 01:31:39 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:10:10 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	ft_istrchr(const char *str, char c)
 
 	i = 0;
 	find = ft_strchr(str, c);
+	if (!find)
+		return (FALSE);
 	while ((str + i) && (str + i) != find)
 		i++;
 	return (i);
