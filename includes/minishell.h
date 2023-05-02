@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/01 16:09:21 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:11:11 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int		ft_istrchr(const char *str, char c);
 // quotes
 char	*compress_quotes(char *input);
 int		decompress_quotes(char **cmd);
+void	free_quotes();
 
 //dump
 int	is_whitespace(char c);

@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:22:07 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/01 14:10:10 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:23:29 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	if (!ret)
 		terminate("ft_strjoin(): Failed");
 	free(s1);
+	s1 = NULL;
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/25 15:47:31 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:29:40 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@ int	terminal_loop(void)
 {
 	char	*input;
 
-	input = NULL;
 	while (1)
 	{
+		input = NULL;
 		signals_handler();
 		g_data.tml_line = tml_get_pwd();
-		free(input);
 		input = readline(g_data.tml_line);
 		free(g_data.tml_line);
 		if (input == NULL)
@@ -38,6 +37,7 @@ int	terminal_loop(void)
 			else
 				ft_printf("Needs a function to redirect!\n");
 		}
+		free(input);
 	}
 	free(input);
 	exit_terminal();

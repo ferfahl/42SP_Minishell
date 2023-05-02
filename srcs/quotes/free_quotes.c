@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   environment.h                                      :+:      :+:    :+:   */
+/*   free_quotes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 10:31:57 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/02 01:48:11 by joapedr2         ###   ########.fr       */
+/*   Created: 2023/05/02 02:09:02 by joapedr2          #+#    #+#             */
+/*   Updated: 2023/05/02 02:12:20 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENVIRONMENT_H
-# define ENVIRONMENT_H
+#include "minishell.h"
 
-# include "minishell.h"
-
-typedef struct s_envp
+void	free_quotes()
 {
-	char			*name;
-	char			*cont;
-	struct s_envp	*next;
-}	t_envp;
+	t_quotes	*aux;
+	t_quotes	*temp;
 
-// environment.c
-int		init_envp(char **envp);
-void	free_envp(void);
-char	*decompress_environment(char *input, int size);
-int		decompress_envp(char **cmd);
-
-#endif //ENVIRONMENT_H
+	aux = g_data.quotes;
+	while (aux)
+	{
+		temp = NULL;
+		if (aux->next)
+			temp = aux->next;
+		free(aux->cont);
+		free(aux);
+		aux = temp;
+	}
+	g_data.quotes = NULL;
+}

@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:21:51 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/01 16:08:14 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:33:48 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ static char	*compress_double_quotes(char *input)
 
 	init = ft_istrchr(input, '\"');
 	end = ft_istrchr(input + init + 1, '\"');
-	temp = descompress_environment(input + init, end + 1);
 	new = ft_substr(input, 0, init);
+	temp = decompress_environment(input + init, end + 1);
 	init = ft_istrchr(temp, '\"');
 	end = ft_istrchr(temp + init + 1, '\"');
 	index = new_node_quotes((temp + init), (end - init));

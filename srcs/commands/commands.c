@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/01 16:11:22 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:11:50 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ int	run_command(void)
 	aux = g_data.cmd;
 	while (aux != NULL)
 	{
+		decompress_envp(aux->cmd);
 		decompress_quotes(aux->cmd);
-		// decompress_envp();
 		aux = aux->next;
 	}
 	fd = recursive_function(g_data.cmd, FALSE);
 	(void)fd;
+	free_quotes();
 	free_cmd();
 	return (TRUE);
 }
