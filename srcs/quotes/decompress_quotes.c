@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 02:05:58 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/01 21:05:43 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:45:06 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	check_compression(const char *str)
 	return (TRUE);
 }
 
-static char	*insert_compressed_quotes(char *cmd, char *insert)
+static char	*insert_compressed_txt(char *cmd, char *insert)
 {
 	char		*new;
 	char		*after;
@@ -62,8 +62,8 @@ int	decompress_quotes(char **cmd)
 			{
 				if (ft_atoi(cmd[index] + init + 2) == quots->pos)
 				{
-					cmd[index] = insert_compressed_quotes(cmd[index], quots->cont);
-					break ;					
+					cmd[index] = insert_compressed_txt(cmd[index], quots->cont);
+					break ;
 				}
 				quots = quots->next;
 			}
