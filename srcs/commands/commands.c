@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/25 02:10:38 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:11:50 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,18 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 int	run_command(void)
 {
 	int	fd;
+	t_cmd *aux;
+
+	aux = g_data.cmd;
+	while (aux != NULL)
+	{
+		decompress_envp(aux->cmd);
+		decompress_quotes(aux->cmd);
+		aux = aux->next;
+	}
 	fd = recursive_function(g_data.cmd, FALSE);
 	(void)fd;
+	free_quotes();
 	free_cmd();
 	return (TRUE);
 }

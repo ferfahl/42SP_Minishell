@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/25 15:50:59 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:46:10 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,13 @@
 typedef struct s_envp		t_envp;
 typedef struct sigaction	t_sigaction;
 typedef struct s_commands	t_cmd;
-typedef struct s_quotes		t_quotes;
+
+typedef struct s_quotes
+{
+	int				pos;
+	char			*cont;
+	struct s_quotes	*next;
+}	t_quotes;
 
 typedef struct s_minishell
 {
@@ -73,9 +79,11 @@ int		ft_istrchr(const char *str, char c);
 
 // quotes
 char	*compress_quotes(char *input);
+int		decompress_quotes(char **cmd);
+void	free_quotes(void);
 
 //dump
-int	is_whitespace(char c);
-int	is_redirect(char c);
+int		is_whitespace(char c);
+int		is_redirect(char c);
 
 #endif //MINISHELL_H

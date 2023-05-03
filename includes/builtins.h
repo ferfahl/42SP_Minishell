@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:21:38 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/21 15:55:14 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:46:23 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "minishell.h"
 
 //builtins
-
 int	ft_pwd(void);
-
 
 #endif //BUILTINS_H
