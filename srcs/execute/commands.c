@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 11:08:53 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:25:35 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 		return (FALSE);
 	pipe(fd);
 	pid = fork();
+	signal_handler_child();
 	if (pid == -1)
 		terminate(ERR_FORK);
 	if (pid == 0)
