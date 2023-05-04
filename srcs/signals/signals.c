@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:37:04 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 12:13:17 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/04 12:39:00 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	handler_child(int signal)
 {
 	(void)signal;
 	ft_putstr_fd("\n", STDOUT_FILENO);
-    rl_replace_line("", 0);
+	rl_replace_line("", 0);
 }
 
 void	signal_handler_child(void)
