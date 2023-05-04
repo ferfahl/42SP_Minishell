@@ -3,22 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:37:04 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/19 22:26:23 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 12:39:00 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
 
-void	handler_child(int signal)
+static void	handler_child(int signal)
 {
-	if (signal == SIGINT)
-	{
-		printf("===========Entrou======\n");
-		exit(1);
-	}
+	(void)signal;
+	ft_putstr_fd("\n", STDOUT_FILENO);
+	rl_replace_line("", 0);
+}
+
+void	signal_handler_child(void)
+{
+	signal(SIGINT, &handler_child);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 static void	handler(int signal, siginfo_t *info, void *ucontext)
