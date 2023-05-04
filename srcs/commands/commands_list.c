@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 02:28:44 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 12:37:27 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:43:36 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*cmd_path(char *command)
 	return (path);
 }
 
-int	new_node_cmd(char **cmd, t_cmd *cur)
+static int	new_node_cmd(char **cmd, t_cmd *cur)
 {
 	t_cmd	*new;
 
