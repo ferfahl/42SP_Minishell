@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 12:15:28 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:25:35 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
+
+void	exeggcute(char *path, char **cmd, t_envp *mini_env)
+{
+	int		check;
+	char	**envp;
+
+	envp = ft_mini_to_envp(mini_env);
+	check = execve(path, cmd, envp);
+	ft_printf("Error: execve failed\n");
+	exit(check);
+}
 
 static int	recursive_function(t_cmd *cmd, int redirect)
 {
@@ -34,7 +45,7 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 			dup2(fd[1], STDOUT_FILENO);
 		else
 			close(fd[1]);
-		execve(cmd->path, cmd->cmd, g_data.envp_cmd);
+		exeggcute(cmd->path, cmd->cmd, g_data.envp);
 	}
 	waitpid(pid, NULL, 0);
 	close(fd[1]);
