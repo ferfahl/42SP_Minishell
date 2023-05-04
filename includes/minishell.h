@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 14:42:05 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:57:28 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,9 @@ char	*compress_quotes(char *input);
 int		decompress_quotes(char **cmd);
 void	free_quotes(void);
 
-<<<<<<< HEAD
 //dump
 int	is_whitespace(char c);
 int	is_redirect(char c);
 int	is_invalid(char c);
-=======
-// checkers
-int		is_whitespace(char c);
-int		is_redirect(char c);
->>>>>>> master
 
 #endif //MINISHELL_H
