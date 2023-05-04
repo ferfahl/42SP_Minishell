@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:28:52 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 14:41:02 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:04:44 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	validate_input(void)
 	else if (!check_quotes(g_data.input))
 		return (FALSE);
 	if (ft_strncmp(g_data.input, "exit", ft_strlen(g_data.input)) == 0)
-		return (FALSE);
+		terminate(0);
 	check_redir(g_data.input);
-	// g_data.input = check_pipe_end(input);
+	g_data.input = check_pipe_end(g_data.input);
 	g_data.input = compress_quotes(g_data.input);
 	if (!create_cmd_list(g_data.input))
 		return (FALSE);

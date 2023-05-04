@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 14:39:19 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:44:23 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,8 @@ int	terminal_loop(void)
 		if (*g_data.input)
 		{
 			add_history(g_data.input);
-			if (validate_input() == FALSE)
-				break ;
-			run_command();
-			// dup2(g_data.redir->fd_in, STDIN_FILENO);
-			// dup2(g_data.redir->fd_out, STDOUT_FILENO);
-			// ft_printf("fd in: %d\n", g_data.redir->fd_in);
-			// ft_printf("fd out: %d\n", g_data.redir->fd_out);
-			// ft_putendl_fd("mensagem", 2);
+			if (validate_input() == TRUE)
+				run_command();
 		}
 		free_line();
 	}

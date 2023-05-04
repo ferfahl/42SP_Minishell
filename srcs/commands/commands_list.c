@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 02:28:44 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 14:50:58 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:06:20 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,13 @@ static int	new_node_cmd(char **cmd, t_cmd *cur)
 	new->cmd = cmd;
 	new->path = cmd_path(*cmd);
 	if (!new->path)
-	{
-		printf("minishell: %s: command not found\n", *cmd);
-		return (FALSE);
-	}
+		new->path = NULL;
 	new->next = NULL;
 	if (cur)
 		new->next = cur;
 	g_data.cmd = new;
 	return (TRUE);
 }
-// Esse tratamento valida se o comando existe. ->falhando (Linha 64)
 
 int	create_cmd_list(char *input)
 {
@@ -64,14 +60,14 @@ int	create_cmd_list(char *input)
 	i = -1;
 	gross_cmd = ft_split(input, '|');
 	if (!gross_cmd)
-		return (FALSE);
+		terminate(ERR_CMD_ALLOC);
 	while (gross_cmd[++i])
 	{
-		if (g_data.redir->has_redir == TRUE)
-			gross_cmd = redirections_handle(gross_cmd);
+		// if (g_data.redir->has_redir == TRUE)
+		// 	gross_cmd = redirections_handle(gross_cmd);
 		clean_cmd = ft_split(gross_cmd[i], ' ');
 		if (!clean_cmd)
-			return (FALSE);
+			terminate(ERR_CMD_ALLOC);
 		if (!new_node_cmd(clean_cmd, g_data.cmd))
 		{
 			free_cmd();
