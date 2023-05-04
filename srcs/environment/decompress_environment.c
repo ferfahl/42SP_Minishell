@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   decompress_environment.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:27:42 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/02 02:05:29 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:52:15 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*decompress_environment(char *input, int size)
 // 	return (new);
 // }
 
-int decompress_envp(char **cmd)
+int	decompress_envp(char **cmd)
 {
 	int		index;
 

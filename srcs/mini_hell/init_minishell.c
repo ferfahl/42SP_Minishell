@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:39:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 15:56:43 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:51:37 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	init_path(void)
 void	ft_start_fds(void)
 {
 	t_redirect	*new;
-	
+
 	new = (t_redirect *)malloc(sizeof(t_redirect));
 	new->fd_in = dup(STDIN_FILENO);
 	new->fd_out = dup(STDOUT_FILENO);

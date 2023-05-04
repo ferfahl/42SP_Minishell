@@ -44,6 +44,7 @@ SRC_LIST		=	minishell.c								\
 					$(QUOTES_PATH)compress_quotes.c			\
 					$(QUOTES_PATH)decompress_quotes.c		\
 					$(QUOTES_PATH)free_quotes.c				\
+					$(REDIRECT_PATH)check_redir.c			\
 					$(BUILTINS_PATH)ft_pwd.c				\
 					# $(BUILTINS_PATH)ft_cd.c				\
 					# $(BUILTINS_PATH)ft_echo.c				\

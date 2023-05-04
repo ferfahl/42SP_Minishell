@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 16:12:10 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:52:57 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,15 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 	}
 	waitpid(pid, NULL, 0);
 	close(fd[1]);
-	// dup2(g_data.redir->fd_in, STDIN_FILENO);
-	// dup2(g_data.redir->fd_out, STDOUT_FILENO);
 	return (fd[0]);
 }
+	// dup2(g_data.redir->fd_in, STDIN_FILENO);
+	// dup2(g_data.redir->fd_out, STDOUT_FILENO);
 
 int	run_command(void)
 {
-	int	fd;
-	t_cmd *aux;
+	int		fd;
+	t_cmd	*aux;
 
 	aux = g_data.cmd;
 	while (aux != NULL)
