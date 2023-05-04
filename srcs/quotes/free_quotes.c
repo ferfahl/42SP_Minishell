@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_minishell.c                                   :+:      :+:    :+:   */
+/*   free_quotes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 23:51:14 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 12:26:11 by feralves         ###   ########.fr       */
+/*   Created: 2023/05/02 02:09:02 by joapedr2          #+#    #+#             */
+/*   Updated: 2023/05/02 02:42:50 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_free_array(char **arr)
+void	free_quotes(void)
 {
-	int	i;
+	t_quotes	*aux;
+	t_quotes	*temp;
 
-	i = -1;
-	while (arr[++i])
-		free(arr[i]);
-	free(arr);
-}
-
-void	free_line(void)
-{
-	free(g_data.input);
-	ft_free_array(g_data.path);
-	free_cmd();
-	free_quotes();
+	aux = g_data.quotes;
+	while (aux)
+	{
+		temp = NULL;
+		if (aux->next)
+			temp = aux->next;
+		free(aux->cont);
+		free(aux);
+		aux = temp;
+	}
+	g_data.quotes = NULL;
 }

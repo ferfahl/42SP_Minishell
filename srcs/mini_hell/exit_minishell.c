@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_minishell.c                                   :+:      :+:    :+:   */
+/*   exit_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 23:51:14 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 12:26:11 by feralves         ###   ########.fr       */
+/*   Created: 2023/04/19 19:20:35 by feralves          #+#    #+#             */
+/*   Updated: 2023/05/04 14:40:25 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_free_array(char **arr)
+void	exit_line(char *s, int n)
 {
-	int	i;
-
-	i = -1;
-	while (arr[++i])
-		free(arr[i]);
-	free(arr);
+	free_line();
+	ft_putendl_fd(s, 2);
+	g_data.exit_code = n;
 }
 
-void	free_line(void)
+void	terminate(char *s)
 {
-	free(g_data.input);
-	ft_free_array(g_data.path);
-	free_cmd();
-	free_quotes();
+	if (errno > 0)
+		perror(s);
+	else
+		ft_putendl_fd(s, 2);
+	exit(1);
 }
+
+void	exit_terminal(void)
+{
+	free_line();
+	free_envp();
+	free(g_data.tml_host);
+	rl_clear_history();
+}
+

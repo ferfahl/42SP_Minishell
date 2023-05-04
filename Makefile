@@ -14,6 +14,7 @@ LIBFT			= $(LIBFT_PATH)/libft.a
 BUILTINS_PATH	= builtins/
 SIGNALS_PATH	= signals/
 COMMANDS_PATH	= commands/
+EXECUTE_PATH	= execute/
 INPUT_PATH		= input/
 REDIRECT_PATH	= redirects/
 ENVP_PATH		= environment/
@@ -22,6 +23,7 @@ QUOTES_PATH		= quotes/
 
 #source codes
 SRC_DIR			=	./srcs/
+<<<<<<< HEAD
 SRC_LIST		=	minishell.c							\
 					$(MINISHELL_PATH)terminal_line.c	\
 					$(MINISHELL_PATH)init_minishell.c	\
@@ -42,10 +44,34 @@ SRC_LIST		=	minishell.c							\
 					$(QUOTES_PATH)descompress_quotes.c	\
 					$(INPUT_PATH)check_symbols.c		\
 					$(BUILTINS_PATH)ft_pwd.c			\
+=======
+SRC_LIST		=	minishell.c								\
+					$(MINISHELL_PATH)terminal_line.c		\
+					$(MINISHELL_PATH)init_minishell.c		\
+					$(MINISHELL_PATH)free_minishell.c		\
+					$(MINISHELL_PATH)ft_utils.c				\
+					$(MINISHELL_PATH)exit_minishell.c		\
+					$(ENVP_PATH)environment.c				\
+					$(ENVP_PATH)free_environment.c			\
+					$(ENVP_PATH)envp_for_execve.c			\
+					$(ENVP_PATH)decompress_environment.c	\
+					$(SIGNALS_PATH)signals.c				\
+					$(EXECUTE_PATH)commands.c				\
+					$(EXECUTE_PATH)commands_utils.c		\
+					$(COMMANDS_PATH)commands_list.c			\
+					$(COMMANDS_PATH)free_commands.c			\
+					$(INPUT_PATH)input_checkers.c			\
+					$(INPUT_PATH)validate_input.c			\
+					$(INPUT_PATH)check_symbols.c			\
+					$(QUOTES_PATH)compress_quotes.c			\
+					$(QUOTES_PATH)decompress_quotes.c		\
+					$(QUOTES_PATH)free_quotes.c				\
+					$(BUILTINS_PATH)ft_pwd.c				\
+>>>>>>> master
 					# $(BUILTINS_PATH)ft_cd.c				\
-					# $(BUILTINS_PATH)ft_echo.c			\
-					# $(BUILTINS_PATH)ft_env.c			\
-					# $(BUILTINS_PATH)ft_exit.c			\
+					# $(BUILTINS_PATH)ft_echo.c				\
+					# $(BUILTINS_PATH)ft_env.c				\
+					# $(BUILTINS_PATH)ft_exit.c				\
 					# $(BUILTINS_PATH)ft_export_check.c		\
 					# $(BUILTINS_PATH)ft_export.c			\
 					# $(BUILTINS_PATH)ft_unset.c			\
@@ -81,6 +107,7 @@ $(OBJS_DIR):
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(MINISHELL_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(SIGNALS_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(COMMANDS_PATH))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(EXECUTE_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(INPUT_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(QUOTES_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(BUILTINS_PATH))

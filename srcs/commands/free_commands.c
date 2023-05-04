@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   free_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/19 19:20:35 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/01 16:01:03 by feralves         ###   ########.fr       */
+/*   Created: 2023/05/04 11:40:46 by feralves          #+#    #+#             */
+/*   Updated: 2023/05/04 11:43:20 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	line_break(char *s)
+void	free_cmd(void)
 {
-	if (errno > 0)
-		perror(s);
-	else
-		ft_putendl_fd(s, 2);
-	exit(1);
-}
+	t_cmd	*aux;
+	t_cmd	*temp;
 
-void	terminate(char *s)
-{
-	if (errno > 0)
-		perror(s);
-	else
-		ft_putendl_fd(s, 2);
-	exit(1);
-}
-
-void	exit_terminal(void)
-{
-	free_envp();
-	ft_free_array(g_data.path);
-	free(g_data.tml_host);
-	g_data.loop = FALSE;
-	rl_clear_history();
+	aux = g_data.cmd;
+	while (aux)
+	{
+		temp = NULL;
+		if (aux->next)
+			temp = aux->next;
+		ft_free_array(aux->cmd);
+		free(aux->path);
+		free(aux);
+		aux = temp;
+	}
+	g_data.cmd = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:36:53 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/22 13:52:47 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:47:00 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@
 # define ERR_ENVP_ALLOC		"ENVIRONMENT: Erro ao alocar memória"
 
 # define ERR_INPUT_QUOTES	"INPUT: Erro ao comprimir aspas"
-# define ERR_QUOTES_ALLOC	"INPUT: Erro ao alocar memória no compressor de aspas"
-	
+# define ERR_QUOTES_ALLOC	"INPUT: Erro ao alocar memória no compressor"
+
 #endif //ERROR_MESSAGES_H

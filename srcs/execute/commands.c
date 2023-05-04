@@ -6,11 +6,22 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/01 17:17:03 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:41:23 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
+
+void	exeggcute(char *path, char **cmd, t_envp *mini_env)
+{
+	int		check;
+	char	**envp;
+
+	envp = ft_mini_to_envp(mini_env);
+	check = execve(path, cmd, envp);
+	ft_printf("Error: execve failed\n");
+	exit(check);
+}
 
 static int	recursive_function(t_cmd *cmd, int redirect)
 {
@@ -21,6 +32,7 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 		return (FALSE);
 	pipe(fd);
 	pid = fork();
+	signal_handler_child();
 	if (pid == -1)
 		terminate(ERR_FORK);
 	if (pid == 0)
@@ -33,7 +45,7 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 			dup2(fd[1], STDOUT_FILENO);
 		else
 			close(fd[1]);
-		execve(cmd->path, cmd->cmd, g_data.envp_cmd);
+		exeggcute(cmd->path, cmd->cmd, g_data.envp);
 	}
 	waitpid(pid, NULL, 0);
 	close(fd[1]);
@@ -45,13 +57,18 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 int	run_command(void)
 {
 	int	fd;
-	if (!g_data.redir->has_redir)
-		fd = recursive_function(g_data.cmd, FALSE);
-	else
-		ft_printf("needs a new function :(\n");
-	// dup2(g_data.redir->fd_in, STDIN_FILENO);
-	// dup2(g_data.redir->fd_out, STDOUT_FILENO);
+	t_cmd *aux;
+
+	aux = g_data.cmd;
+	while (aux != NULL)
+	{
+		decompress_envp(aux->cmd);
+		decompress_quotes(aux->cmd);
+		aux = aux->next;
+	}
+	fd = recursive_function(g_data.cmd, FALSE);
 	(void)fd;
+	free_quotes();
 	free_cmd();
 	return (TRUE);
 }

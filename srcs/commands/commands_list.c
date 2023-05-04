@@ -6,30 +6,11 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 02:28:44 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/01 15:04:06 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:41:47 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
-
-void	free_cmd(void)
-{
-	t_cmd	*aux;
-	t_cmd	*temp;
-
-	aux = g_data.cmd;
-	while (aux)
-	{
-		temp = NULL;
-		if (aux->next)
-			temp = aux->next;
-		ft_free_array(aux->cmd);
-		free(aux->path);
-		free(aux);
-		aux = temp;
-	}
-	g_data.cmd = NULL;
-}
 
 static char	*cmd_path(char *command)
 {
@@ -63,7 +44,7 @@ int	new_node_cmd(char **cmd, t_cmd *cur)
 	new->path = cmd_path(*cmd);
 	if (!new->path)
 	{
-		printf("bash: %s: command not found\n", *cmd);
+		printf("minishell: %s: command not found\n", *cmd);
 		return (FALSE);
 	}
 	new->next = NULL;
