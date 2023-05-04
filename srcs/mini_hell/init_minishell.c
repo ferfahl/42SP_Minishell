@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:39:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/21 09:48:32 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/04 12:28:34 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	init_path(void)
 {
 	t_envp	*temp;
 
+	g_data.path = NULL;
 	temp = g_data.envp;
 	while (temp->next && ft_strncmp(temp->name, "PATH", 4))
 		temp = temp->next;
@@ -27,18 +28,20 @@ static int	init_path(void)
 	return (TRUE);
 }
 
+void	init_data_line(void)
+{
+	g_data.exit_code = 0;
+	g_data.tml_line = NULL;
+	g_data.input = NULL;
+	g_data.cmd = NULL;
+	g_data.quotes = NULL;
+	init_path();
+}
+
 int	init_data(char **envp)
 {
 	if (!init_envp(envp))
 		terminate(ERR_ENVP_ALLOC);
-	g_data.path = NULL;
-	if (!init_path())
-		terminate(ERR_PATH_NFOUND);
-	g_data.envp_cmd = envp;
-	g_data.loop = TRUE;
-	g_data.cmd = NULL;
-	g_data.quotes = NULL;
-	g_data.tml_line = NULL;
 	g_data.tml_host = tml_user_and_host();
 	if (!g_data.tml_host)
 		terminate(ERR_HOSTNAME_ALLOC);

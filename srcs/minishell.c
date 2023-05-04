@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/02 02:48:07 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/04 12:23:15 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,27 @@ t_minishell	g_data;
 
 int	terminal_loop(void)
 {
-	char	*input;
-
 	while (1)
 	{
-		input = NULL;
+		init_data_line();
 		signals_handler();
 		g_data.tml_line = tml_get_pwd();
-		input = readline(g_data.tml_line);
+		g_data.input = readline(g_data.tml_line);
 		free(g_data.tml_line);
-		if (input == NULL)
+		if (g_data.input == NULL)
 			break ;
-		if (*input)
+		if (*g_data.input)
 		{
-			add_history(input);
-			if (validate_input(input) == FALSE)
+			add_history(g_data.input);
+			if (validate_input() == FALSE)
 				break ;
 			if (g_data.redir == FALSE)
 				run_command();
 			else
 				ft_printf("Needs a function to redirect!\n");
 		}
-		free(input);
+		free_line();
 	}
-	free(input);
 	exit_terminal();
 	return (TRUE);
 }

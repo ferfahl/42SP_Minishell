@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_minishell.c                                   :+:      :+:    :+:   */
+/*   free_enviroment.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 23:51:14 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 12:26:11 by feralves         ###   ########.fr       */
+/*   Created: 2023/05/04 10:55:19 by feralves          #+#    #+#             */
+/*   Updated: 2023/05/04 10:55:37 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_free_array(char **arr)
+void	free_envp(void)
 {
-	int	i;
+	t_envp	*aux;
+	t_envp	*temp;
 
-	i = -1;
-	while (arr[++i])
-		free(arr[i]);
-	free(arr);
-}
-
-void	free_line(void)
-{
-	free(g_data.input);
-	ft_free_array(g_data.path);
-	free_cmd();
-	free_quotes();
+	aux = g_data.envp;
+	while (aux)
+	{
+		if (aux->next)
+			temp = aux->next;
+		free(aux->name);
+		free(aux->cont);
+		free(aux);
+		aux = temp;
+		temp = NULL;
+	}
+	g_data.envp = NULL;
 }

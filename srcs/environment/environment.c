@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:49:16 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/01 16:28:18 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/04 10:55:40 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environment.h"
-
-void	free_envp(void)
-{
-	t_envp	*aux;
-	t_envp	*temp;
-
-	aux = g_data.envp;
-	while (aux)
-	{
-		if (aux->next)
-			temp = aux->next;
-		free(aux->name);
-		free(aux->cont);
-		free(aux);
-		aux = temp;
-		temp = NULL;
-	}
-	g_data.envp = NULL;
-}
 
 static int	new_node_envp(char *str)
 {
