@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   envp_for_execve.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 10:56:19 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/04 11:09:11 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:38:05 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t	minienv_size(t_envp *mini_env)
+static size_t	minienv_size(t_envp *mini_env)
 {
 	size_t	size;
 	t_envp	*aux;
@@ -27,7 +27,7 @@ size_t	minienv_size(t_envp *mini_env)
 	return (size);
 }
 
-char	*append_mini_env(char *first, char *last)
+static char	*append_mini_env(char *first, char *last)
 {
 	char	*temp;
 	char	*result;
