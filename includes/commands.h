@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/23 10:54:10 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:44:16 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,16 @@ typedef struct s_commands
 	struct s_commands	*next;
 }	t_cmd;
 
-// commands.c
-int		run_command(void);
+// commands/commands_list.c
 int		create_cmd_list(char *input);
+
+// commands/free_commands.c
+void	free_cmd(void);
+
+// commands/syntax_analysis.c
 int		syntax_analysis(char **command);
 
-// commands_list.c
-int		new_node_cmd(char **cmd, t_cmd *cur);
-void	free_cmd(void);
+// execute/commands_list.c
+int		run_command(void);
 
 #endif //COMMANDS_H

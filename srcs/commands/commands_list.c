@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 02:28:44 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 14:41:47 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:50:58 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*cmd_path(char *command)
 	return (path);
 }
 
-int	new_node_cmd(char **cmd, t_cmd *cur)
+static int	new_node_cmd(char **cmd, t_cmd *cur)
 {
 	t_cmd	*new;
 
