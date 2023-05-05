@@ -6,24 +6,34 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:28:52 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 12:04:00 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:54:53 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
 
-void	check_redir(char *input)
+
+
+int	check_redir(char *input)
 {
-	g_data.redir = FALSE;
-	while (*input)
+	int	i;
+	int	redir_size;
+
+	i = 0;
+	g_data.redir->has_redir = FALSE;
+	while (input[i])
 	{
-		if (is_redirect(*input))
+		if (is_redirect(input[i]))
 		{
-			g_data.redir = TRUE;
-			break ;
+			g_data.redir->has_redir = TRUE;
+			redir_size = check_redir_syntax(input + i);
+			if (redir_size == 0)
+				return (FALSE);
+			i += redir_size;
 		}
-		input++;
+		i++;
 	}
+	return (TRUE);
 }
 
 /**
@@ -40,9 +50,10 @@ int	validate_input(void)
 	else if (!check_quotes(g_data.input))
 		return (FALSE);
 	if (ft_strncmp(g_data.input, "exit", ft_strlen(g_data.input)) == 0)
+		terminate(0);
+	if (!check_redir(g_data.input))
 		return (FALSE);
-	check_redir(g_data.input);
-	// g_data.input = check_pipe_end(input);
+	g_data.input = check_pipe_end(g_data.input);
 	g_data.input = compress_quotes(g_data.input);
 	if (!create_cmd_list(g_data.input))
 		return (FALSE);

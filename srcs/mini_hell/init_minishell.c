@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:39:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 12:28:34 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:51:37 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@ static int	init_path(void)
 	return (TRUE);
 }
 
+void	ft_start_fds(void)
+{
+	t_redirect	*new;
+
+	new = (t_redirect *)malloc(sizeof(t_redirect));
+	new->fd_in = dup(STDIN_FILENO);
+	new->fd_out = dup(STDOUT_FILENO);
+	g_data.redir = new;
+}
+
 void	init_data_line(void)
 {
 	g_data.exit_code = 0;
@@ -42,6 +52,7 @@ int	init_data(char **envp)
 {
 	if (!init_envp(envp))
 		terminate(ERR_ENVP_ALLOC);
+	ft_start_fds();
 	g_data.tml_host = tml_user_and_host();
 	if (!g_data.tml_host)
 		terminate(ERR_HOSTNAME_ALLOC);

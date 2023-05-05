@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 14:25:35 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:52:57 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 
 	if (!cmd)
 		return (FALSE);
+	if (!cmd->path)
+	{
+		ft_printf("minishell: %s: command not found\n", cmd->cmd[0]);
+		return (FALSE);
+	}
 	pipe(fd);
 	pid = fork();
 	signal_handler_child();
@@ -51,11 +56,13 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 	close(fd[1]);
 	return (fd[0]);
 }
+	// dup2(g_data.redir->fd_in, STDIN_FILENO);
+	// dup2(g_data.redir->fd_out, STDOUT_FILENO);
 
 int	run_command(void)
 {
-	int	fd;
-	t_cmd *aux;
+	int		fd;
+	t_cmd	*aux;
 
 	aux = g_data.cmd;
 	while (aux != NULL)
