@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:57 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 14:39:40 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:51:35 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct s_envp
 
 // environment/environment.c
 int		init_envp(char **envp);
+
+// environment/free_environment.c
 void	free_envp(void);
 
 // environment/decompress_environment.c

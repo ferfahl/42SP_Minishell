@@ -6,21 +6,24 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:21:51 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/02 02:33:48 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/05 11:52:41 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	new_node_quotes(char *str, int end)
+static int	new_node_quotes(char *str, int end, char c)
 {
 	t_quotes	*new;
 	t_quotes	*last;
 
 	new = (t_quotes *)malloc(sizeof(t_quotes));
-	if (!new)
-		terminate(ERR_QUOTES_ALLOC);
 	new->cont = ft_substr(str, 1, end);
+	if (!new || !new->cont)
+		terminate(ERR_QUOTES_ALLOC);
+	new->envp = FALSE;
+	if (c == '\"')
+		new->envp = TRUE;
 	new->pos = 1;
 	new->next = NULL;
 	if (g_data.quotes)
@@ -56,20 +59,6 @@ static char	*add_quote_identifier(char *input, int init, int end, char *nb)
 	return (aux);
 }
 
-static char	*compress_single_quote(char *input)
-{
-	char	*new;
-	int		index;
-	int		init;
-	int		end;
-
-	init = ft_istrchr(input, '\'');
-	end = ft_istrchr(input + init + 1, '\'');
-	index = new_node_quotes((input + init), end);
-	new = add_quote_identifier(input, init, end + init + 1, ft_itoa(index));
-	return (new);
-}
-
 	// t_quotes *aux = g_data.quotes;
 	// while (aux)
 	// {
@@ -79,42 +68,43 @@ static char	*compress_single_quote(char *input)
 	// exit(0);
 // echo 'teste "$USER $USER" $USER' hi
 
-static char	*compress_double_quotes(char *input)
+// static char	*compress_(char *input, char c)
+// {
+// 	char	*new;
+// 	int		index;
+// 	int		init;
+// 	int		end;
+
+// 	init = ft_istrchr(input, c);
+// 	end = ft_istrchr(input + init + 1, c);
+// 	index = new_node_quotes((input + init), end, TRUE);
+// 	new = add_quote_identifier(input, init, end + init + 1, ft_itoa(index));
+// 	return (new);
+// }
+
+void	compress_quotes(void)
 {
-	char	*new;
-	char	*temp;
+	char	*aux;
 	int		index;
 	int		init;
 	int		end;
+	char	c;
 
-	init = ft_istrchr(input, '\"');
-	end = ft_istrchr(input + init + 1, '\"');
-	new = ft_substr(input, 0, init);
-	temp = decompress_environment(input + init, end + 1);
-	init = ft_istrchr(temp, '\"');
-	end = ft_istrchr(temp + init + 1, '\"');
-	index = new_node_quotes((temp + init), (end - init));
-	temp = add_quote_identifier(temp, init, end + 1, ft_itoa(index));
-	new = ft_strjoin_free(new, temp);
-	free(temp);
-	return (new);
-}
-
-char	*compress_quotes(char *input)
-{
-	char	*new;
-	int		one_quotes;
-	int		two_quotes;
-
-	new = input;
-	while (ft_strchr(new, '\"') || ft_strchr(new, '\''))
+	aux = g_data.input;
+	while (ft_strchr(aux, '\"') || ft_strchr(aux, '\''))
 	{
-		one_quotes = ft_istrchr(new, '\'');
-		two_quotes = ft_istrchr(new, '\"');
-		if (one_quotes && (one_quotes < two_quotes || !two_quotes))
-			new = compress_single_quote(new);
+		init = ft_istrchr(aux, '\'');
+		end = ft_istrchr(aux, '\"');
+		if (init && (init < end || !end))
+			c = '\'';
 		else
-			new = compress_double_quotes(new);
+			c = '\"';
+		init = ft_istrchr(aux, c);
+		end = ft_istrchr(aux + init + 1, c);
+		index = new_node_quotes((aux + init), end, c);
+		aux = add_quote_identifier(aux, init, end + init + 1, ft_itoa(index));
+		free(g_data.input);
+		g_data.input = aux;
 	}
-	return (new);
 }
+//echo $USER "$USER" '$USER' '$USER' '$USER'

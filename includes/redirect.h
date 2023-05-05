@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:24 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 16:55:47 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:19:30 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 # include "minishell.h"
 
-typedef struct	s_redirect
+typedef struct s_redirect
 {
 	int	fd_in;
 	int	fd_out;
 	int	has_redir;
-}			t_redirect;
+}	t_redirect;
 
 //redirections.c
 char	**redirections_handle(char **gross_cmd);
@@ -28,7 +28,7 @@ char	**redirections_handle(char **gross_cmd);
 //checkredir.c
 char	*ft_findname(char *redir);
 int		valid_input(char c);
-int	check_redir_syntax(char *input);
+int		check_redir_syntax(char *input);
 
 //here_doc.c
 int		ft_here_doc(char *eof);

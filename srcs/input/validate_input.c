@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validate_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:28:52 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 16:54:53 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:09:08 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
-
-
 
 int	check_redir(char *input)
 {
@@ -43,9 +41,7 @@ int	check_redir(char *input)
 */
 int	validate_input(void)
 {
-	if (!g_data.input || ft_strlen(g_data.input) == 0)
-		return (FALSE);
-	else if (!is_empty(g_data.input))
+	if (!is_empty(g_data.input))
 		return (FALSE);
 	else if (!check_quotes(g_data.input))
 		return (FALSE);
@@ -53,8 +49,9 @@ int	validate_input(void)
 		terminate(0);
 	if (!check_redir(g_data.input))
 		return (FALSE);
-	g_data.input = check_pipe_end(g_data.input);
-	g_data.input = compress_quotes(g_data.input);
+	check_redir(g_data.input);
+	// g_data.input = check_pipe_end(input);
+	compress_quotes();
 	if (!create_cmd_list(g_data.input))
 		return (FALSE);
 	return (TRUE);
