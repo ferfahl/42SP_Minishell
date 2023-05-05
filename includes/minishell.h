@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 12:34:45 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/05 11:49:30 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ typedef struct s_quotes
 {
 	int				pos;
 	char			*cont;
+	int				envp;
 	struct s_quotes	*next;
 }	t_quotes;
 
 typedef struct s_minishell
 {
-	int			redir; //mudar
+	int			redir;
 	int			exit_code;
 	char		*input;
 	char		*tml_host;
@@ -81,8 +82,8 @@ char	*ft_strjoin_free(char *s1, char *s2);
 int		ft_istrchr(const char *str, char c);
 
 // quotes
-char	*compress_quotes(char *input);
-int		decompress_quotes(char **cmd);
+void	compress_quotes(void);
+void	decompress_quotes(char **cmd);
 void	free_quotes(void);
 
 // checkers

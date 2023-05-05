@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 14:25:35 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/05 11:01:36 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 
 int	run_command(void)
 {
-	int	fd;
-	t_cmd *aux;
+	int		fd;
+	t_cmd	*aux;
 
 	aux = g_data.cmd;
 	while (aux != NULL)

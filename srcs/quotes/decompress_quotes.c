@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 02:05:58 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/02 02:45:06 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/05 11:38:55 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*insert_compressed_txt(char *cmd, char *insert)
 	return (new);
 }
 
-int	decompress_quotes(char **cmd)
+void	decompress_quotes(char **cmd)
 {
 	t_quotes	*quots;
 	int			index;
@@ -62,6 +62,9 @@ int	decompress_quotes(char **cmd)
 			{
 				if (ft_atoi(cmd[index] + init + 2) == quots->pos)
 				{
+					if (quots->envp)
+						quots->cont = decompress_environment(
+								quots->cont, ft_strlen(quots->cont));
 					cmd[index] = insert_compressed_txt(cmd[index], quots->cont);
 					break ;
 				}
@@ -69,5 +72,4 @@ int	decompress_quotes(char **cmd)
 			}
 		}
 	}
-	return (FALSE);
 }
