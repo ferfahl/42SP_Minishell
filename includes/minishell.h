@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 11:49:30 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:16:32 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "input.h"
 # include "commands.h"
 # include "builtins.h"
-// # include "redirect.h"
+# include "redirect.h"
 # include "error_messages.h"
 
 # include <readline/readline.h>	//readline()
@@ -35,6 +35,7 @@
 typedef struct s_envp		t_envp;
 typedef struct sigaction	t_sigaction;
 typedef struct s_commands	t_cmd;
+typedef struct s_redirect	t_redirect;
 
 typedef struct s_quotes
 {
@@ -46,7 +47,6 @@ typedef struct s_quotes
 
 typedef struct s_minishell
 {
-	int			redir;
 	int			exit_code;
 	char		*input;
 	char		*tml_host;
@@ -55,6 +55,7 @@ typedef struct s_minishell
 	t_cmd		*cmd;
 	t_envp		*envp;
 	t_quotes	*quotes;
+	t_redirect	*redir;
 	t_sigaction	sa_signal;
 	pid_t		pid;
 }	t_minishell;
@@ -69,6 +70,7 @@ void	free_path(void);
 void	exit_terminal(void);
 void	free_line(void);
 void	exit_line(char *s, int n);
+void	free_redir(void);
 
 // mini_hell/terminal_line
 char	*tml_get_pwd(void);
@@ -86,8 +88,9 @@ void	compress_quotes(void);
 void	decompress_quotes(char **cmd);
 void	free_quotes(void);
 
-// checkers
+//dump
 int		is_whitespace(char c);
 int		is_redirect(char c);
+int		is_invalid(char c);
 
 #endif //MINISHELL_H

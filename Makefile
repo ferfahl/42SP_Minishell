@@ -44,6 +44,7 @@ SRC_LIST		=	minishell.c								\
 					$(QUOTES_PATH)compress_quotes.c			\
 					$(QUOTES_PATH)decompress_quotes.c		\
 					$(QUOTES_PATH)free_quotes.c				\
+					$(REDIRECT_PATH)check_redir.c			\
 					$(BUILTINS_PATH)ft_pwd.c				\
 					# $(BUILTINS_PATH)ft_cd.c				\
 					# $(BUILTINS_PATH)ft_echo.c				\
@@ -88,7 +89,7 @@ $(OBJS_DIR):
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(INPUT_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(QUOTES_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(BUILTINS_PATH))
-#	@mkdir -p $(addprefix $(OBJS_DIR)/,$(REDIRECT_PATH))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(REDIRECT_PATH))
 
 $(OBJS_DIR)%.o: $(SRC_DIR)%.c
 	@gcc $(CFLAGS) $(INCLUDES) -c $< -o $@

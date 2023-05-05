@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 00:18:18 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/20 20:20:27 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:22:34 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ int	check_quotes(char *argument)
 	{
 		if (argument[index] == '\'' || argument[index] == '\"')
 		{
-			quote = argument[index];
+			quote = argument[index++];
 			while (argument[index] && argument[index] != quote)
 				index++;
 			if (argument[index] != quote)
 			{
-				ft_putendl_fd("Error: Unmatched quotes.", 2);
+				ft_putendl_fd("minishell: error: Unmatched quotes.", 2);
 				return (FALSE);
 			}
 		}

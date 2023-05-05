@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:27:42 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 11:02:53 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:08:13 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*decompress_environment(char *input, int size)
 	return (new);
 }
 
-int	decompress_envp(char **cmd)
+int decompress_envp(char **cmd)
 {
 	int		index;
 

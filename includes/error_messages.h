@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:36:53 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/02 02:47:00 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:19:14 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@
 
 # define ERR_INPUT_QUOTES	"INPUT: Erro ao comprimir aspas"
 # define ERR_QUOTES_ALLOC	"INPUT: Erro ao alocar memória no compressor"
+
+# define ERR_SYNTAX			"SYNTAX: Erro de sintaxe"
 
 #endif //ERROR_MESSAGES_H

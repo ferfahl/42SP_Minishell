@@ -6,11 +6,20 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:10:26 by feralves          #+#    #+#             */
-/*   Updated: 2023/04/21 11:14:35 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/01 14:09:18 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	is_invalid(char c)
+{
+	if (c == '&' || c == '#' || c == '(' || c == ')')
+		return (TRUE);
+	if (is_redirect(c))
+		return (TRUE);
+	return (FALSE);
+}
 
 int	is_redirect(char c)
 {
@@ -28,7 +37,7 @@ int	is_quote(char c)
 
 int	is_whitespace(char c)
 {
-	if (c == ' ' || c == '\t' || c == '\n')
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\0')
 		return (TRUE);
 	return (FALSE);
 }

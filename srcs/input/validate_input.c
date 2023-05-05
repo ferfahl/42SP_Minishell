@@ -6,24 +6,32 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:28:52 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 15:25:56 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:09:08 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input.h"
 
-void	check_redir(char *input)
+int	check_redir(char *input)
 {
-	g_data.redir = FALSE;
-	while (*input)
+	int	i;
+	int	redir_size;
+
+	i = 0;
+	g_data.redir->has_redir = FALSE;
+	while (input[i])
 	{
-		if (is_redirect(*input))
+		if (is_redirect(input[i]))
 		{
-			g_data.redir = TRUE;
-			break ;
+			g_data.redir->has_redir = TRUE;
+			redir_size = check_redir_syntax(input + i);
+			if (redir_size == 0)
+				return (FALSE);
+			i += redir_size;
 		}
-		input++;
+		i++;
 	}
+	return (TRUE);
 }
 
 /**
@@ -38,6 +46,8 @@ int	validate_input(void)
 	else if (!check_quotes(g_data.input))
 		return (FALSE);
 	if (ft_strncmp(g_data.input, "exit", ft_strlen(g_data.input)) == 0)
+		terminate(0);
+	if (!check_redir(g_data.input))
 		return (FALSE);
 	check_redir(g_data.input);
 	// g_data.input = check_pipe_end(input);
