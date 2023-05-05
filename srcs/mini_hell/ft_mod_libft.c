@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:22:07 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/02 02:23:29 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:48:23 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,42 @@ int	ft_istrchr(const char *str, char c)
 	while ((str + i) && (str + i) != find)
 		i++;
 	return (i);
+}
+
+long int	ft_atoi_mod(char *nptr)
+{
+	long int	count;
+	long int	result;
+	long int	signal;
+
+	signal = 1;
+	count = 0;
+	result = 0;
+	while ((nptr[count] >= 9 && nptr[count] <= 13) || nptr[count] == ' ')
+		count++;
+	if (nptr[count] == '+' || nptr[count] == '-')
+	{
+		if (nptr[count] == '-')
+			signal = -1;
+		count++;
+	}
+	while (count < (int)ft_strlen(nptr) && ft_isdigit(nptr[count]))
+	{
+		result = result * 10 + (nptr[count] - 48);
+		count++;
+	}
+	return (result * signal);
+}
+
+int	ft_isdigit_mod(char *string)
+{
+	int	i;
+
+	i = 0;
+	while (string[++i])
+	{
+		if (!ft_isdigit(string[i]) && string[0] != '-' && string[0] != '+')
+			return (0);
+	}
+	return (2);
 }

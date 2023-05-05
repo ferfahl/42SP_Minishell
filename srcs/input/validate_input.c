@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:28:52 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 12:09:08 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/05 13:34:32 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int	validate_input(void)
 		return (FALSE);
 	else if (!check_quotes(g_data.input))
 		return (FALSE);
-	if (ft_strncmp(g_data.input, "exit", ft_strlen(g_data.input)) == 0)
-		terminate(0);
 	if (!check_redir(g_data.input))
 		return (FALSE);
 	check_redir(g_data.input);

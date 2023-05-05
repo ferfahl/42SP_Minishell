@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 14:44:16 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/05 18:20:35 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,9 @@ int		syntax_analysis(char **command);
 
 // execute/commands_list.c
 int		run_command(void);
+
+//execute/commands_builtins.c
+int	execute_builtin(char *input);
+int	is_builtin(char *input);
 
 #endif //COMMANDS_H

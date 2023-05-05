@@ -6,36 +6,35 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:24:34 by feralves          #+#    #+#             */
-/*   Updated: 2023/04/19 19:24:45 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/05 13:52:13 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// //with -n
-// void	ft_echo(t_global *g)
-// {
-// 	int	i;
-// 	int	new_line;
+//with -n
+void	ft_echo(void)
+{
+	int	i;
+	int	new_line;
 
-// 	i = 1;
-// 	new_line = TRUE;
-// 	if (g->h_token->cmd[i])
-// 	{
-// 		if (!ft_strncmp(g->h_token->cmd[i], "-n", 3))
-// 		{
-// 			new_line = FALSE;
-// 			i++;
-// 		}
-// 		while (g->h_token->cmd[i])
-// 		{
-// 			ft_putstr_fd (g->h_token->cmd[i], 1);
-// 			i++;
-// 			if (g->h_token->cmd[i])
-// 				ft_putstr_fd (" ", 1);
-// 		}
-// 	}
-// 	if (new_line)
-// 		ft_putstr_fd("\n", 1);
-// 	g->exit_status = 0;
-// }
+	i = 1;
+	new_line = TRUE;
+	if (g_data.cmd->cmd[i])
+	{
+		if (!ft_strncmp(g_data.cmd->cmd[i], "-n", 3))
+		{
+			new_line = FALSE;
+			i++;
+		}
+		while (g_data.cmd->cmd[i])
+		{
+			ft_putstr_fd(g_data.cmd->cmd[i], 1);
+			i++;
+			if (g_data.cmd->cmd[i])
+				ft_putstr_fd(" ", 1);
+		}
+	}
+	if (new_line)
+		ft_putstr_fd("\n", 1);
+}
