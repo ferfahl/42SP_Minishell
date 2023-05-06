@@ -6,11 +6,14 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 12:04:58 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/06 09:09:09 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 void	exeggcute(char *path, char **cmd, t_envp *mini_env)
 {
