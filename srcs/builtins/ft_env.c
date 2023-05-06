@@ -6,61 +6,61 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:24:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/04/19 19:25:14 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/05 21:56:09 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// void	ft_env_error(t_token *token)
-// {
-// 	ft_putstr_fd("minishell: env: ‘", 1);
-// 	ft_putstr_fd(token->cmd[1], 1);
-// 	ft_putstr_fd("’: invalid parameter", 1);
-// 	ft_putstr_fd("\n", 1);
-// }
+static void	ft_env_error(char *nextinline)
+{
+	ft_putstr_fd("minishell: env: ‘", 1);
+	ft_putstr_fd(nextinline, 1);
+	ft_putstr_fd("’: invalid parameter", 1);
+	ft_putstr_fd("\n", 1);
+}
 
-// void	ft_env_from_export(t_token *token, t_mini_env *mini_env)
-// {
-// 	t_mini_env	*aux;
+void	ft_env_from_export(char **input)
+{
+	t_envp	*aux;
 
-// 	aux = mini_env;
-// 	if (token->cmd[1])
-// 		return (ft_env_error(token));
-// 	else
-// 	{
-// 		while (aux->next)
-// 		{
-// 			ft_putstr_fd("declare -x ", 1);
-// 			ft_putstr_fd(aux->name, 1);
-// 			ft_putstr_fd("=", 1);
-// 			ft_putstr_fd(aux->value, 1);
-// 			ft_putstr_fd("\n", 1);
-// 			aux = aux->next;
-// 		}
-// 	}
-// }
+	aux = g_data.envp;
+	if (input[1])
+		return (ft_env_error(input[1]));
+	else
+	{
+		while (aux->next)
+		{
+			ft_putstr_fd("declare -x ", 1);
+			ft_putstr_fd(aux->name, 1);
+			ft_putstr_fd("=", 1);
+			ft_putstr_fd(aux->cont, 1);
+			ft_putstr_fd("\n", 1);
+			aux = aux->next;
+		}
+	}
+}
 
-// void	ft_env(t_global *g)
-// {
-// 	t_mini_env	*aux;
+void	ft_env(char **input)
+{
+	t_envp	*aux;
 
-// 	aux = g->mini_env;
-// 	if (g->h_token->cmd[1])
-// 		return (ft_env_error(g->h_token));
-// 	else
-// 	{
-// 		while (aux->next)
-// 		{
-// 			ft_putstr_fd(aux->name, 1);
-// 			ft_putstr_fd("=", 1);
-// 			ft_putstr_fd(aux->value, 1);
-// 			ft_putstr_fd("\n", 1);
-// 			aux = aux->next;
-// 		}
-// 		ft_putstr_fd(aux->name, 1);
-// 		ft_putstr_fd("=", 1);
-// 		ft_putstr_fd(aux->value, 1);
-// 		ft_putstr_fd("\n", 1);
-// 	}
-// }
+	aux = g_data.envp;
+	if (input[1])
+		return (ft_env_error(input[1]));
+	else
+	{
+		while (aux->next)
+		{
+			ft_putstr_fd(aux->name, 1);
+			ft_putstr_fd("=", 1);
+			ft_putstr_fd(aux->cont, 1);
+			ft_putstr_fd("\n", 1);
+			aux = aux->next;
+		}
+		ft_putstr_fd(aux->name, 1);
+		ft_putstr_fd("=", 1);
+		ft_putstr_fd(aux->cont, 1);
+		ft_putstr_fd("\n", 1);
+	}
+}

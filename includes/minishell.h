@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 12:16:32 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/05 13:00:25 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,20 @@ char	*tml_user_and_host(void);
 // mini_hell/free_minishell
 void	ft_free_array(char **arr);
 
-// mini_hell/ft_utils
-char	*ft_strjoin_free(char *s1, char *s2);
-int		ft_istrchr(const char *str, char c);
+// mini_hell/ft_mod_libft
+char		*ft_strjoin_free(char *s1, char *s2);
+int			ft_istrchr(const char *str, char c);
+long int	ft_atoi_mod(char *nptr);
+int			ft_isdigit_mod(char *string);
 
 // quotes
 void	compress_quotes(void);
 void	decompress_quotes(char **cmd);
 void	free_quotes(void);
 
-//dump
-int		is_whitespace(char c);
-int		is_redirect(char c);
-int		is_invalid(char c);
+// input/check_symbols.c
+int	is_whitespace(char c);
+int	is_redirect(char c);
+int	is_invalid(char c);
 
 #endif //MINISHELL_H
