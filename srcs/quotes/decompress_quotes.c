@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   decompress_quotes.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 02:05:58 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 11:38:55 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/06 18:10:54 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	decompress_quotes(char **cmd)
 				if (ft_atoi(cmd[index] + init + 2) == quots->pos)
 				{
 					if (quots->envp)
-						quots->cont = decompress_environment(
-								quots->cont, ft_strlen(quots->cont));
+						decompress_environment(&quots->cont,
+							ft_strlen(quots->cont));
 					cmd[index] = insert_compressed_txt(cmd[index], quots->cont);
 					break ;
 				}

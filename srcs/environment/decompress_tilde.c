@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:29:55 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/06 17:57:59 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/06 18:18:30 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*tilde_with_env(char *str, char *input, char *env)
 	return (str);
 }
 
-char	*check_tilde(char *input)
+char	*decompress_tilde(char *input)
 {
 	char	*str;
 
@@ -48,4 +48,9 @@ char	*check_tilde(char *input)
 	else if (input[1] && input[1] == '-')
 		str = tilde_with_env(str, input, "OLDPWD");
 	return (str);
+}
+
+void	check_tilde(char **input)
+{
+	*input = decompress_tilde(*input);
 }
