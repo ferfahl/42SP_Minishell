@@ -6,14 +6,11 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/06 09:09:09 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/06 15:41:03 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
 
 void	exeggcute(char *path, char **cmd, t_envp *mini_env)
 {
@@ -33,7 +30,7 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 
 	if (!cmd)
 		return (FALSE);
-	if (!cmd->path)
+	if (!cmd->path && !is_builtin(cmd->cmd[0]))
 	{
 		ft_printf("minishell: %s: command not found\n", cmd->cmd[0]);
 		return (FALSE);
@@ -53,7 +50,9 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 			dup2(fd[1], STDOUT_FILENO);
 		else
 			close(fd[1]);
-		exeggcute(cmd->path, cmd->cmd, g_data.envp);
+		if (!execute_builtin(cmd->cmd))
+			exeggcute(cmd->path, cmd->cmd, g_data.envp);
+		exit(1);
 	}
 	waitpid(pid, NULL, 0);
 	close(fd[1]);
@@ -74,6 +73,8 @@ int	run_command(void)
 		decompress_quotes(aux->cmd);
 		aux = aux->next;
 	}
+	if (!g_data.cmd->next && is_builtin(g_data.cmd->cmd[0]))
+		return (execute_builtin(g_data.cmd->cmd));
 	fd = recursive_function(g_data.cmd, FALSE);
 	(void)fd;
 	free_quotes();
