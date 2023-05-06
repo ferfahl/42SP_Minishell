@@ -1,0 +1,11 @@
+□ launch the right executable (./archive) {based on the path variable/relative or absolute path}
+□ \ and ; (do not execute the line)
+□ redirections
+□ > create archive
+□ >> append archive
+□ < open archive
+□ << here_doc
+□ $? expand to the exit status of the mos recent pipeline
+□ fix leaks
+□ norminette
+□ prompt changes when the cd changed path (doesn't do it now)

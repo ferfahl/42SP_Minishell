@@ -6,32 +6,64 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:23:49 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/05 21:51:53 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/06 14:28:08 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static void	ft_cd_error(char *input, char *msg)
+{
+	ft_putstr_fd("minishell: cd: ", 1);
+	if (input)
+	{
+		ft_putstr_fd(input, 1);
+		ft_putstr_fd(": ", 1);
+	}
+	ft_putstr_fd(msg, 1);
+	ft_putstr_fd("\n", 1);
+}
+
 char	*get_env(t_envp *env, char *key)
 {
-	t_envp	*tmp;
+	t_envp	*temp;
 
-	tmp = env;
-	while (tmp)
+	temp = env;
+	while (temp)
 	{
-		if (!ft_strncmp(tmp->name, key, ft_strlen(key) + 1))
-			return (tmp->cont);
-		tmp = tmp->next;
+		if (!ft_strncmp(temp->name, key, ft_strlen(key) + 1))
+			return (temp->cont);
+		temp = temp->next;
 	}
 	return (NULL);
+}
+
+void	update_pwd(char *cont)
+{
+	char	*pwd;
+	char	*oldpwd;
+	t_envp	*temp;
+
+	temp = g_data.envp;
+	pwd = getcwd(NULL, 0);
+	oldpwd = cont;
+	while (temp->next)
+	{
+		if (!ft_strncmp(temp->name, "PWD", 4))
+			temp->cont = pwd;
+		if (!ft_strncmp(temp->name, "OLDPWD", 7))
+			temp->cont = oldpwd;
+		temp = temp->next;
+	}
 }
 
 void	ft_cd(char **input)
 {
 	if (!input[1])
-	{
 		chdir(get_env(g_data.envp, "HOME"));
-		return ;
-	}
-	chdir(input[1]);
+	if (input[1] && input[2])
+		ft_cd_error(NULL, "too many arguments");
+	if (input[1] && chdir(input[1]))
+		ft_cd_error(input[1], "No such file or directory");
+	update_pwd(get_env(g_data.envp, "PWD"));
 }
