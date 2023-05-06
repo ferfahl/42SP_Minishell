@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:27:42 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/06 18:17:12 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/06 19:16:37 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	decompress_environment(char **input, int size)
 	char	*temp;
 	char	*envp;
 
-	if (*input[0] == '~')
-		check_tilde(input);
 	while (ft_strnstr(*input, "$", size))
 	{
 		init = ft_istrchr(*input, '$');
@@ -48,6 +46,8 @@ void	decompress_environment(char **input, int size)
 		free(*input);
 		*input = temp;
 	}
+	if (*input[0] == '~')
+		check_tilde(input);
 }
 
 int	decompress_envp(char **cmd)
