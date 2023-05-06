@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:26:31 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/05 12:50:14 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/05 21:57:36 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ static void	ft_change_cont(t_envp **mini_env, char *cmd)
 }
 
 //with no options
-void	ft_export(void)
+void	ft_export(char **input)
 {
 	char	**command;
 	t_envp	*aux;
 	int		i;
 
 	i = 0;
-	if (!g_data.cmd->cmd[1])
-		return (ft_env_from_export());
+	if (!input[1])
+		return (ft_env_from_export(input));
 	aux = g_data.envp;
-	while (g_data.cmd->cmd[++i])
+	while (input[++i])
 	{
-		command = ft_var_export(g_data.cmd->cmd[i]);
+		command = ft_var_export(input[i]);
 		while (aux->next->next)
 		{
 			if (!ft_strncmp(command[0], aux->name, ft_strlen(command[0])))

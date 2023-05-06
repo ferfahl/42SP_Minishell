@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:23:49 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/05 13:52:07 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/05 21:51:53 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ char	*get_env(t_envp *env, char *key)
 	return (NULL);
 }
 
-void	ft_cd(void)
+void	ft_cd(char **input)
 {
-	if (g_data.cmd->cmd[1] == NULL)
+	if (!input[1])
 	{
 		chdir(get_env(g_data.envp, "HOME"));
 		return ;
 	}
-	chdir(g_data.cmd->cmd[1]);
+	chdir(input[1]);
 }

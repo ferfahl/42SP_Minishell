@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 18:20:12 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/05 21:56:39 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 {
 	int		fd[2];
 	pid_t	pid;
+	int i;
 
+	i = 0;
 	if (!cmd)
 		return (FALSE);
 	if (!cmd->path && !is_builtin(cmd->cmd[0]))
@@ -50,9 +52,14 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 			dup2(fd[1], STDOUT_FILENO);
 		else
 			close(fd[1]);
-		if (!execute_builtin(cmd->cmd[0]))
+		// while(cmd->cmd[i])
+		// {
+		// 	ft_printf("cmd[%d] in process %d: %s\n", i, pid, cmd->cmd[i]);
+		// 	i++;
+		// }
+		if (!execute_builtin(cmd->cmd))
 			exeggcute(cmd->path, cmd->cmd, g_data.envp);
-		exit(0);
+		exit(1);
 	}
 	waitpid(pid, NULL, 0);
 	close(fd[1]);
@@ -74,7 +81,7 @@ int	run_command(void)
 		aux = aux->next;
 	}
 	if (!g_data.cmd->next && is_builtin(g_data.cmd->cmd[0]))
-		return (execute_builtin(g_data.cmd->cmd[0]));
+		return (execute_builtin(g_data.cmd->cmd));
 	fd = recursive_function(g_data.cmd, FALSE);
 	(void)fd;
 	free_quotes();
