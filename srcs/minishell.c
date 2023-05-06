@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 21:57:52 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/06 15:58:15 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ int	main(int argc, char **argv, char **envp)
 	if (argc == 1)
 	{
 		init_data(envp);
-		ft_printf("\n\tWelcome to Minishell\n\n");
+		ft_printf("\n\t\t=================================\n");
+		ft_printf("\t\t|\tWelcome to Minishell\t|\n");
+		ft_printf("\t\t=================================\n\n");
 		terminal_loop();
 	}
 	else

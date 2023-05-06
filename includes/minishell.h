@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 13:00:25 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/06 16:01:35 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,21 +63,21 @@ typedef struct s_minishell
 extern t_minishell			g_data;
 
 // mini_hell/minishell_utils
-void	terminate(char *s);
-int		init_data(char **envp);
-void	init_data_line(void);
-void	free_path(void);
-void	exit_terminal(void);
-void	free_line(void);
-void	exit_line(char *s, int n);
-void	free_redir(void);
+void		terminate(char *s);
+int			init_data(char **envp);
+void		init_data_line(void);
+void		free_path(void);
+void		exit_terminal(void);
+void		free_line(void);
+void		exit_line(char *s, int n);
+void		free_redir(void);
 
 // mini_hell/terminal_line
-char	*tml_get_pwd(void);
-char	*tml_user_and_host(void);
+char		*tml_get_pwd(void);
+char		*tml_user_and_host(void);
 
 // mini_hell/free_minishell
-void	ft_free_array(char **arr);
+void		ft_free_array(char **arr);
 
 // mini_hell/ft_mod_libft
 char		*ft_strjoin_free(char *s1, char *s2);
@@ -86,13 +86,13 @@ long int	ft_atoi_mod(char *nptr);
 int			ft_isdigit_mod(char *string);
 
 // quotes
-void	compress_quotes(void);
-void	decompress_quotes(char **cmd);
-void	free_quotes(void);
+void		compress_quotes(void);
+void		decompress_quotes(char **cmd);
+void		free_quotes(void);
 
 // input/check_symbols.c
-int	is_whitespace(char c);
-int	is_redirect(char c);
-int	is_invalid(char c);
+int			is_whitespace(char c);
+int			is_redirect(char c);
+int			is_invalid(char c);
 
 #endif //MINISHELL_H
