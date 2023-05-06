@@ -1,4 +1,5 @@
-OK
+		OK
+
 		echo
 		echo bom dia
 		echo - bom dia
@@ -27,12 +28,12 @@ cd ~/no_ecziste
 		cd .. -L
 		cd .. .
 
-pwd
-pwd asfasdfasdf asfasf sfdsf
-pwd -LLLLLLLLLLLP
-pwd -j 
-pwd -j dsfhafsdah jklfsda
-pwd dsfhafsdah -j jklfsda fdh
+		pwd
+		pwd asfasdfasdf asfasf sfdsf
+		pwd -LLLLLLLLLLLP
+		pwd -j 
+		pwd -j dsfhafsdah jklfsda
+		pwd dsfhafsdah -j jklfsda fdh
 
 export
 export teste

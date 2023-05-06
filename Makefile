@@ -28,11 +28,12 @@ SRC_LIST		=	minishell.c								\
 					$(MINISHELL_PATH)exit_minishell.c		\
 					$(MINISHELL_PATH)init_minishell.c		\
 					$(MINISHELL_PATH)free_minishell.c		\
-					$(MINISHELL_PATH)ft_mod_libft.c				\
+					$(MINISHELL_PATH)ft_mod_libft.c			\
 					$(ENVP_PATH)environment.c				\
 					$(ENVP_PATH)free_environment.c			\
 					$(ENVP_PATH)envp_for_execve.c			\
 					$(ENVP_PATH)decompress_environment.c	\
+					$(ENVP_PATH)decompress_tilde.c			\
 					$(SIGNALS_PATH)signals.c				\
 					$(EXECUTE_PATH)commands.c				\
 					$(EXECUTE_PATH)commands_utils.c			\
@@ -47,13 +48,13 @@ SRC_LIST		=	minishell.c								\
 					$(QUOTES_PATH)free_quotes.c				\
 					$(REDIRECT_PATH)check_redir.c			\
 					$(BUILTINS_PATH)ft_pwd.c				\
-					$(BUILTINS_PATH)ft_cd.c				\
+					$(BUILTINS_PATH)ft_cd.c					\
 					$(BUILTINS_PATH)ft_echo.c				\
 					$(BUILTINS_PATH)ft_env.c				\
 					$(BUILTINS_PATH)ft_exit.c				\
 					$(BUILTINS_PATH)ft_export_check.c		\
-					$(BUILTINS_PATH)ft_export.c			\
-					$(BUILTINS_PATH)ft_unset.c			\
+					$(BUILTINS_PATH)ft_export.c				\
+					$(BUILTINS_PATH)ft_unset.c				\
 
 SRCS			= $(addprefix $(SRC_DIR), $(SRC_LIST))
 

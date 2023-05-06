@@ -3,36 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   decompress_environment.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:27:42 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 12:08:13 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/06 17:30:13 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environment.h"
+
+
 
 char	*decompress_environment(char *input, int size)
 {
 	char	*new;
 	int		init;
 	char	*str;
-	t_envp	*aux;
+	char	*aux;
 
 	new = input;
+	if (input[0] == '~')
+		return(check_tilde(input));
 	while (ft_strnstr(new, "$", size))
 	{
 		init = ft_istrchr(new, '$');
 		str = (new + init + 1);
-		aux = g_data.envp;
-		while (aux != NULL)
-		{
-			if (!ft_strncmp(aux->name, str, ft_strlen(aux->name)))
-				break ;
-			aux = aux->next;
-		}
+		aux = get_env(g_data.envp, str);
 		new = ft_substr(new, 0, init);
-		new = ft_strjoin_free(new, aux->cont);
+		new = ft_strjoin_free(new, aux);
 		while (*str && ft_isalnum(*str))
 			str++;
 		if (str)

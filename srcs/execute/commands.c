@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 21:56:39 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/06 14:52:00 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 		// }
 		if (!execute_builtin(cmd->cmd))
 			exeggcute(cmd->path, cmd->cmd, g_data.envp);
-		exit(1);
+		exit_builtin();
 	}
 	waitpid(pid, NULL, 0);
 	close(fd[1]);
