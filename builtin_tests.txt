@@ -52,21 +52,21 @@ unset -p teste1
 unset teste1 -p
 unset ISS0_E_UM4_Variavel_Valida=Bom
 
-env
-env asjkfsfjkd sajklsfa
-env -p
+		env
+		env asjkfsfjkd sajklsfa
+		env -p
 
-exit
+		exit
 exit -
-exit -3
-exit 3
-exit 00000000000000000000000000004
-exit "                                +000000009223372036854775807               "
-exit "                                -00000009223372036854775808               "
-exit "                                +000000009223372036854775808               "
-exit "                                -000000009223372036854775809               "
-exit "0000000042a"
-exit "--0000000042"
-exit kkkkk
-exit 9 8
-exit - kk
+		exit -3
+		exit 3
+		exit 00000000000000000000000000004
+exit "                                +000000009223372036854775807               "-> exit with no error echo = 255
+exit "                                -00000009223372036854775808               " -> exit with no error echo = 0
+exit "                                +000000009223372036854775808               "//numeric argument required
+exit "                                -000000009223372036854775809               " //numeric argument required
+exit "0000000042a"//numeric argument required
+exit "--0000000042" //numeric argument required
+exit kkkkk //numeric argument required
+exit 9 8 //too many arguments -> não dá exit
+exit - kk //numeric argument required

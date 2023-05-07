@@ -14,4 +14,11 @@
 
 
 erros builtin:
-cd - (não funciona ainda)
+□ cd - (não funciona ainda)
+□ export sem =
+
+falta checar:
+□ unset
+□ export
+□ exit
+□ cd
