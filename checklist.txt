@@ -9,3 +9,9 @@
 □ fix leaks
 □ norminette
 □ prompt changes when the cd changed path (doesn't do it now)
+
+
+
+
+erros builtin:
+cd - (não funciona ainda)

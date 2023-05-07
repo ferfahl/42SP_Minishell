@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:25:27 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/05 12:40:29 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/06 20:13:46 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ char	**ft_var_export(char *cmd)
 	if (!check_valid_var(command[0]))
 		return (NULL);
 	if (!command[1])
-		command[1] = ft_strdup("");
+		command[1] = NULL;
 	return (command);
 }

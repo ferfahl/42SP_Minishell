@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:29:55 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/06 19:58:54 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/06 21:07:25 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ static int	ft_istilde_exp(char c)
 char	*tilde_with_env(char *str, char *env)
 {
 	char	*aux;
-	char	*temp;
 
 	aux = ft_strdup(get_env(g_data.envp, env));
-	temp = ft_strjoin(str, aux);
-	free(aux);
-	return (temp);
+	if (aux)
+		return (aux);
+	return (str);
 }
 
 char	*decompress_tilde(char *input)
@@ -42,8 +41,11 @@ char	*decompress_tilde(char *input)
 	{
 		if (input[1] == '/')
 			temp = ft_strjoin(str, input + 1);
-		if (input[1] && input[2] && !ft_istilde_exp(input[1]))
+		if (!ft_istilde_exp(input[1]) || input[2])
+		{
+			free(str);
 			return (input);
+		}
 		if ((input[1] && input[1] == '0') || (input[1] && input[1] == '+'))
 			temp = tilde_with_env(str, "PWD");
 		if (input[1] && input[1] == '-')

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:23:49 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/06 15:35:59 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/06 20:59:12 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,26 @@ char	*get_env(t_envp *env, char *key)
 	return (NULL);
 }
 
-void	update_pwd(char *cont)
+void	update_pwd(char *oldpwd)
 {
 	char	*pwd;
-	char	*oldpwd;
 	t_envp	*temp;
 
 	temp = g_data.envp;
 	pwd = getcwd(NULL, 0);
-	oldpwd = cont;
 	while (temp->next)
 	{
 		if (!ft_strncmp(temp->name, "PWD", 4))
-			temp->cont = pwd;
+		{
+			free(temp->cont);
+			temp->cont = ft_strdup(pwd);
+			free(pwd);
+		}
 		if (!ft_strncmp(temp->name, "OLDPWD", 7))
-			temp->cont = oldpwd;
+		{
+			free(temp->cont);
+			temp->cont = ft_strdup(oldpwd);
+		}
 		temp = temp->next;
 	}
 }
