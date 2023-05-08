@@ -24,7 +24,7 @@ cd ..
 cd -L ..
 cd -LLLLLLLLL ..
 cd -------
-cd ~/no_ecziste
+		cd ~/no_ecziste
 		cd .. -L
 		cd .. .
 

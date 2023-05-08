@@ -1,19 +1,23 @@
-□ launch the right executable (./archive) {based on the path variable/relative or absolute path}
-□ \ and ; (do not execute the line)
-□ redirections
-□ > create archive
-□ >> append archive
-□ < open archive
-□ << here_doc
+□ syntax checker (João)
+	□ \ and ; (do not execute the line)
+commands (João)
+	□ launch the right executable (./archive) {based on the path variable/relative or absolute path}
+□ juntar redirections com palavra anterior e posterior (João)
+função recursiva (fern)
+	□ redirections
+		□ > create archive
+		□ >> append archive
+		□ < open archive
+		□ << here_doc
 □ $? expand to the exit status of the mos recent pipeline
 □ fix leaks
 □ norminette
-□ prompt changes when the cd changed path (doesn't do it now)
+✓ prompt changes when the cd changed path 
 
 
 
 
-erros builtin:
+erros builtin: (fern)
 □ cd - (não funciona ainda)
 □ export sem =
 
