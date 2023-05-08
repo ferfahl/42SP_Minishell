@@ -6,25 +6,11 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:27:42 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/06 19:16:37 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:20:38 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environment.h"
-
-static char	*find_envp(char *name)
-{
-	t_envp	*aux;
-
-	aux = g_data.envp;
-	while (aux != NULL)
-	{
-		if (!ft_strncmp(aux->name, name, ft_strlen(aux->name)))
-			return (aux->cont);
-		aux = aux->next;
-	}
-	return (NULL);
-}
 
 void	decompress_environment(char **input, int size)
 {

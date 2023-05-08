@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:25:27 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/06 20:13:46 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:16:07 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,20 @@ static int	check_valid_var(char *name)
 char	**ft_var_export(char *cmd)
 {
 	char	**command;
+	int		i;
 
-	command = ft_split(cmd, '=');
+	i = 0;
+	command = ft_split(cmd, '=')
 	if (!check_valid_var(command[0]))
 		return (NULL);
 	if (!command[1])
-		command[1] = NULL;
+	{
+		free(command[0]);
+		free(command);
+		command = malloc(sizeof(char *) * 3);
+		command[0] = ft_strdup(cmd);
+		command[1] = ft_strdup("");
+		command[2] = NULL;
+	}
 	return (command);
 }

@@ -19,7 +19,7 @@ cd -
 cd --
 cd --
 cd -
-cd ~
+		cd ~
 cd ..
 cd -L ..
 cd -LLLLLLLLL ..

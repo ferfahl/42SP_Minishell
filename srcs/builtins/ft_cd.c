@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:23:49 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/06 21:20:57 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:24:19 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,6 @@ static void	ft_cd_error(char *input, char *msg)
 	}
 	ft_putstr_fd(msg, 1);
 	ft_putstr_fd("\n", 1);
-}
-
-char	*get_env(t_envp *env, char *key)
-{
-	t_envp	*temp;
-
-	temp = env;
-	while (temp)
-	{
-		if (!ft_strncmp(temp->name, key, ft_strlen(key) + 1))
-			return (temp->cont);
-		temp = temp->next;
-	}
-	return (NULL);
 }
 
 void	update_pwd(char *oldpwd)
@@ -66,9 +52,9 @@ void	ft_cd(char **input)
 {
 	char	*oldpwd;
 
-	oldpwd = get_env(g_data.envp, "PWD");
+	oldpwd = get_env("PWD");
 	if (!input[1])
-		chdir(get_env(g_data.envp, "HOME"));
+		chdir(get_env("HOME"));
 	if (input[1] && input[2])
 		ft_cd_error(NULL, "too many arguments");
 	if (input[1] && chdir(input[1]))
