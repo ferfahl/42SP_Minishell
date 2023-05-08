@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:34:26 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/04/25 15:51:39 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/06 21:19:20 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,11 @@ char	*tml_get_pwd(void)
 {
 	char	*tml_line;
 	char	*e_pwd;
-	t_envp	*aux;
 
 	tml_line = NULL;
-	aux = g_data.envp;
-	while (aux && ft_strncmp(aux->name, "PWD", 3) != 0)
-		aux = aux->next;
-	if (!aux)
-		e_pwd = "UNKNOWN";
-	else
-		e_pwd = aux->cont;
+	e_pwd = getcwd(NULL, 0);
 	tml_line = ft_strjoin(g_data.tml_host, e_pwd);
+	free(e_pwd);
 	tml_line = ft_strjoin_free(tml_line, "$ ");
 	if (!tml_line)
 		terminate(ERR_PWD_ALLOC);

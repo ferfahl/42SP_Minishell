@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/06 15:41:03 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/06 18:02:30 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 			close(fd[1]);
 		if (!execute_builtin(cmd->cmd))
 			exeggcute(cmd->path, cmd->cmd, g_data.envp);
-		exit(1);
+		exit_builtin();
 	}
 	waitpid(pid, NULL, 0);
 	close(fd[1]);

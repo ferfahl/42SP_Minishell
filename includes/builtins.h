@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:21:38 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 21:56:14 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/06 15:40:14 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 # include "minishell.h"
 
+typedef struct s_envp		t_envp;
+
 //ft_cd.c
 void	ft_cd(char **input);
+char	*get_env(t_envp *env, char *key);
 
 //ft_echo.c
 void	ft_echo(char **input);
@@ -39,5 +42,8 @@ void	ft_pwd(void);
 
 //ft_unset.c
 void	ft_unset(char **input);
+
+//exit_minishell.c
+void	exit_builtin(void);
 
 #endif //BUILTINS_H

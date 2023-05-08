@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:26:31 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/05 21:57:36 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/06 20:13:00 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	ft_export(char **input)
 	while (input[++i])
 	{
 		command = ft_var_export(input[i]);
+		if (command[1] == NULL)
+			return ;
 		while (aux->next->next)
 		{
 			if (!ft_strncmp(command[0], aux->name, ft_strlen(command[0])))

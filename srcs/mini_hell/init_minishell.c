@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:39:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 16:51:37 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/06 16:07:03 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	init_data(char **envp)
 		terminate(ERR_ENVP_ALLOC);
 	ft_start_fds();
 	g_data.tml_host = tml_user_and_host();
+	g_data.home = get_env(g_data.envp, "HOME");
 	if (!g_data.tml_host)
 		terminate(ERR_HOSTNAME_ALLOC);
 	return (TRUE);
