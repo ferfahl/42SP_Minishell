@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:25:27 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/09 01:09:18 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/09 01:54:44 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,16 @@ static int	print_export_error(char *input, char *message, int code)
 int	check_export_error(char *input)
 {
 	int	i;
-	
+
 	i = 0;
 	if (input[i] == '=')
-		return (print_export_error(input,": not a valid identifier", 2));
+		return (print_export_error(input, ": not a valid identifier", 2));
 	while (input[i] && input[i] != '=')
 	{
 		if (input[0] == '-')
 			return (print_export_error(input, ": invalid option", 42));
 		if (!is_varname(input[i]) || !ft_isalpha(input[0]))
-			return (print_export_error(input,": not a valid identifier", 2));
+			return (print_export_error(input, ": not a valid identifier", 2));
 		i++;
 	}
 	return (FALSE);

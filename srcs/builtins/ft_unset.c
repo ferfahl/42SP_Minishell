@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:27:04 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/06 21:29:10 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/09 01:55:30 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ void	ft_unset(char **input)
 	i = 0;
 	if (!input[1])
 		return ;
-	while(input[i])
+	while (input[i])
 	{
 		aux = g_data.envp;
 		command = input[i];
 		while (aux->next)
 		{
 			if (!ft_strncmp(command, aux->next->name, ft_strlen(command)))
-				{
-					ft_change_env(&aux);
-					break ;
-				}
+			{
+				ft_change_env(&aux);
+				break ;
+			}
 			aux = aux->next;
 		}
 		i++;

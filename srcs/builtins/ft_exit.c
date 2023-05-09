@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:26:00 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/06 20:04:43 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/09 01:53:26 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	ft_clean_exit(int status)
 {
 	ft_printf("\n\t\t=================================\n");
-		ft_printf("\t\t|\tGoodbye, cadet!\t\t|\n");
-		ft_printf("\t\t=================================\n\n");
+	ft_printf("\t\t|\tGoodbye, cadet!\t\t|\n");
+	ft_printf("\t\t=================================\n\n");
 	exit_terminal();
 	exit(status);
 }

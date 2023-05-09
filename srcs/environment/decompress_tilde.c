@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:29:55 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/08 19:26:15 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/09 01:44:36 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,50 +17,47 @@ static int	ft_istilde_exp(char c)
 	if (c == '+' || c == '/' || c == '-' || c == '0')
 		return (TRUE);
 	return (FALSE);
-
 }
 
-char	*tilde_with_env(char *str, char *env)
+char	*tilde_with_env(char *env)
 {
 	char	*aux;
 
 	aux = ft_strdup(get_env(env));
 	if (aux)
 		return (aux);
-	return (str);
+	return (NULL);
 }
 
-char	*decompress_tilde(char *input)
+char	*decompress_tilde(char *input, char *str)
 {
-	char	*str;
 	char	*temp;
 
 	temp = NULL;
-	str = ft_strdup(g_data.home);
 	if (input[1])
 	{
 		if (input[1] == '/')
-			temp = ft_strjoin(str, input + 1);
-		if (!ft_istilde_exp(input[1]) || input[2])
+			temp = ft_strdup(input + 1);
+		if (!ft_istilde_exp(input[1]) || (!temp && input[2]))
 		{
 			free(str);
 			return (input);
 		}
 		if ((input[1] && input[1] == '0') || (input[1] && input[1] == '+'))
-			temp = tilde_with_env(str, "PWD");
+			temp = tilde_with_env("PWD");
 		if (input[1] && input[1] == '-')
-			temp = tilde_with_env(str, "OLDPWD");
+			temp = tilde_with_env("OLDPWD");
 	}
 	free(input);
 	if (temp)
 	{
-		free(str);
-		return (temp);
+		str = ft_strjoin_free(str, temp);
+		free(temp);
 	}
 	return (str);
 }
 
 void	check_tilde(char **input)
 {
-	*input = decompress_tilde(*input);
+	*input = decompress_tilde(*input, ft_strdup(g_data.home));
 }
