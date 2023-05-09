@@ -5,9 +5,9 @@ commands (João)
 □ juntar redirections com palavra anterior e posterior (João)
 função recursiva (fern)
 	□ redirections
-		□ > create archive
-		□ >> append archive
-		□ < open archive
+		✓ > create archive
+		✓ >> append archive
+		✓ < open archive
 		□ << here_doc
 □ $? expand to the exit status of the mos recent pipeline
 □ fix leaks
@@ -17,11 +17,9 @@ função recursiva (fern)
 
 
 
-erros builtin: (fern)
-□ cd - (não funciona ainda)
+builtin: (fern)
+✓ cd - 
 ✓ export sem =
-
-falta checar:
 ✓ unset
 ✓ export
 ✓ exit

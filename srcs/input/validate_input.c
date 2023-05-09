@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:28:52 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 13:34:32 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:17:02 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	check_redir(char *input)
 				return (FALSE);
 			i += redir_size;
 		}
-		i++;
+		if (input[i] != '\0')
+			i++;
 	}
 	return (TRUE);
 }
@@ -47,7 +48,6 @@ int	validate_input(void)
 		return (FALSE);
 	if (!check_redir(g_data.input))
 		return (FALSE);
-	check_redir(g_data.input);
 	// g_data.input = check_pipe_end(input);
 	compress_quotes();
 	if (!create_cmd_list(g_data.input))
