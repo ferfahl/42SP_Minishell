@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:23:49 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/08 14:24:19 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:18:22 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ static void	ft_cd_error(char *input, char *msg)
 		ft_putstr_fd(input, 1);
 		ft_putstr_fd(": ", 1);
 	}
-	ft_putstr_fd(msg, 1);
-	ft_putstr_fd("\n", 1);
+	ft_putendl_fd(msg, 1);
 }
 
 void	update_pwd(char *oldpwd)
@@ -48,6 +47,19 @@ void	update_pwd(char *oldpwd)
 	}
 }
 
+static void	ft_cd_oldpwd(void)
+{
+	char	*oldpwd;
+
+	oldpwd = get_env("OLDPWD");
+	if (!oldpwd)
+		ft_cd_error(NULL, "OLDPWD not set");
+	else
+		chdir(oldpwd);
+		// free(oldpwd);
+
+}
+
 void	ft_cd(char **input)
 {
 	char	*oldpwd;
@@ -57,7 +69,9 @@ void	ft_cd(char **input)
 		chdir(get_env("HOME"));
 	if (input[1] && input[2])
 		ft_cd_error(NULL, "too many arguments");
-	if (input[1] && chdir(input[1]))
+	if (input[1] && input[1][0] == '-')
+		ft_cd_oldpwd();
+	else if (input[1] && chdir(input[1]))
 		ft_cd_error(input[1], "No such file or directory");
 	if (oldpwd)
 		update_pwd(oldpwd);
