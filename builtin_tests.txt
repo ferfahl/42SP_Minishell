@@ -36,21 +36,21 @@ cd -------
 		pwd dsfhafsdah -j jklfsda fdh
 
 		export
-	export teste
-export teste='Bom'
-export teste="dia"
-export teste=Bom teste1=dia
-export ISS0_E_UM4_Variavel_Valida=Bom
-export -d
-export tes-te=test
-export 2var="Teste"
-export var='0' var1="1" var2 = 2 var3=3
+		export teste
+		export teste='Bom'
+		export teste="dia"
+		export teste=Bom teste1=dia
+		export ISS0_E_UM4_Variavel_Valida=Bom
+		export -d
+		export tes-te=test
+		export 2var="Teste"
+		export var='0' var1="1" var2 = 2 var3=3
 
-unset teste
-unset var var1 var3
-unset -p teste1
-unset teste1 -p
-unset ISS0_E_UM4_Variavel_Valida=Bom
+		unset teste
+		unset var var1 var3
+		unset -p teste1
+		unset teste1 -p
+		unset ISS0_E_UM4_Variavel_Valida=Bom
 
 		env
 		env asjkfsfjkd sajklsfa

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:21:38 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/08 23:22:27 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/09 00:24:57 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_exit(char **input);
 
 //ft_export_check.c
 char	**ft_var_export(char *cmd);
-int		check_valid_var(char *name);
+int		check_export_error(char *input);
 
 //ft_export.c
 void	ft_export(char **input);

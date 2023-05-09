@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:25:27 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/08 23:29:36 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/09 01:09:18 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	is_varname(char c)
 	return (ft_isalnum(c) || c == '_');
 }
 
-int	check_valid_var(char *name)
+static int	check_valid_var(char *name)
 {
 	int	i;
 
@@ -50,4 +50,34 @@ char	**ft_var_export(char *cmd)
 		command[2] = NULL;
 	}
 	return (command);
+}
+
+static int	print_export_error(char *input, char *message, int code)
+{
+	ft_putstr_fd("minishell: export: ", 2);
+	if (code == 2)
+		ft_putstr_fd("`", 2);
+	ft_putstr_fd(input, 2);
+	if (code == 2)
+		ft_putstr_fd("'", 2);
+	ft_putendl_fd(message, 2);
+	return (TRUE);
+}
+
+int	check_export_error(char *input)
+{
+	int	i;
+	
+	i = 0;
+	if (input[i] == '=')
+		return (print_export_error(input,": not a valid identifier", 2));
+	while (input[i] && input[i] != '=')
+	{
+		if (input[0] == '-')
+			return (print_export_error(input, ": invalid option", 42));
+		if (!is_varname(input[i]) || !ft_isalpha(input[0]))
+			return (print_export_error(input,": not a valid identifier", 2));
+		i++;
+	}
+	return (FALSE);
 }
