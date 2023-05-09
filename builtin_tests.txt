@@ -35,8 +35,8 @@ cd -------
 		pwd -j dsfhafsdah jklfsda
 		pwd dsfhafsdah -j jklfsda fdh
 
-export
-export teste
+		export
+	export teste
 export teste='Bom'
 export teste="dia"
 export teste=Bom teste1=dia

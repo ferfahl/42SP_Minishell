@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:25:27 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/08 14:16:07 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/08 23:29:36 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,18 @@ static int	is_varname(char c)
 	return (ft_isalnum(c) || c == '_');
 }
 
-static int	check_valid_var(char *name)
+int	check_valid_var(char *name)
 {
-	if (!ft_isalpha(*name))
+	int	i;
+
+	i = 0;
+	if (!ft_isalpha(name[i]))
 		return (FALSE);
-	while (*name)
+	while (name[i])
 	{
-		if (!is_varname(*name))
+		if (!is_varname(name[i]))
 			return (FALSE);
-		name++;
+		i++;
 	}
 	return (TRUE);
 }
@@ -33,10 +36,8 @@ static int	check_valid_var(char *name)
 char	**ft_var_export(char *cmd)
 {
 	char	**command;
-	int		i;
 
-	i = 0;
-	command = ft_split(cmd, '=')
+	command = ft_split(cmd, '=');
 	if (!check_valid_var(command[0]))
 		return (NULL);
 	if (!command[1])

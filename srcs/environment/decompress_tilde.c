@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:29:55 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/06 21:07:25 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/08 19:26:15 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*tilde_with_env(char *str, char *env)
 {
 	char	*aux;
 
-	aux = ft_strdup(get_env(g_data.envp, env));
+	aux = ft_strdup(get_env(env));
 	if (aux)
 		return (aux);
 	return (str);

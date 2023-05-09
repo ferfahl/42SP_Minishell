@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:27:42 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/08 14:20:38 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/08 19:24:55 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	decompress_environment(char **input, int size)
 		init = ft_istrchr(*input, '$');
 		envp = (*input + init + 1);
 		aux_init = ft_substr(*input, 0, init);
-		temp = ft_strjoin_free(aux_init, find_envp(envp));
+		temp = ft_strjoin_free(aux_init, get_env(envp));
 		while (*envp && ft_isalnum(*envp))
 			envp++;
 		if (envp)
