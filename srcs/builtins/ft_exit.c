@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:26:00 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/09 01:53:26 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/09 02:26:55 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_exit_invalid(char *input, int status, int errorno)
 	{
 		ft_putstr_fd("exit: ", 1);
 		ft_putstr_fd(input, 1);
-		ft_putstr_fd("exited with invalid argument\n", 1);
+		ft_putstr_fd(" exited with invalid argument\n", 1);
 	}
 	exit_terminal();
 	exit(status);

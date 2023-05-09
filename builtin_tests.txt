@@ -17,10 +17,8 @@
 		cd
 cd -
 cd --
-cd --
-cd -
 		cd ~
-cd ..
+		cd ..
 cd -L ..
 cd -LLLLLLLLL ..
 cd -------
@@ -57,16 +55,16 @@ cd -------
 		env -p
 
 		exit
-exit -
+		exit -
 		exit -3
 		exit 3
 		exit 00000000000000000000000000004
-exit "                                +000000009223372036854775807               "-> exit with no error echo = 255
-exit "                                -00000009223372036854775808               " -> exit with no error echo = 0
+		exit "                                +000000009223372036854775807               "-> exit with no error echo = 255
+		exit "                                -00000009223372036854775808               " -> exit with no error echo = 0
 exit "                                +000000009223372036854775808               "//numeric argument required
 exit "                                -000000009223372036854775809               " //numeric argument required
-exit "0000000042a"//numeric argument required
-exit "--0000000042" //numeric argument required
-exit kkkkk //numeric argument required
-exit 9 8 //too many arguments -> não dá exit
-exit - kk //numeric argument required
+		exit "0000000042a"//numeric argument required
+		exit "--0000000042" //numeric argument required
+		exit kkkkk //numeric argument required
+		exit 9 8 //too many arguments -> não dá exit
+		exit - kk //numeric argument required
