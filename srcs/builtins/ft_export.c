@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:26:31 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/06 20:13:00 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/09 01:15:07 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,49 @@ static void	append_env(t_envp **mini_env, char *name, char *cont)
 
 static void	ft_change_cont(t_envp **mini_env, char *cmd)
 {
+	free((*mini_env)->cont);
 	(*mini_env)->cont = cmd;
 }
 
-//with no options
-void	ft_export(char **input)
+void	export_valid(char *input)
 {
 	char	**command;
+	char	*cmd;
 	t_envp	*aux;
+
+	aux = g_data.envp;
+	command = ft_var_export(input);
+	if (!ft_strlen(command[1]))
+		return (ft_free_array(command));
+	while (aux)
+	{
+		if (!ft_strncmp(command[0], aux->name, ft_strlen(command[0])))
+		{
+			cmd = ft_strdup(command[1]);
+			ft_free_array(command);
+			return (ft_change_cont(&aux, cmd));
+		}
+		if (!aux->next)
+			break ;
+		aux = aux->next;
+	}
+	append_env(&aux, command[0], command[1]);
+	ft_free_array(command);
+}
+
+void	ft_export(char **input)
+{
 	int		i;
 
 	i = 0;
 	if (!input[1])
 		return (ft_env_from_export(input));
-	aux = g_data.envp;
 	while (input[++i])
 	{
-		command = ft_var_export(input[i]);
-		if (command[1] == NULL)
+		while (input[i] && check_export_error(input[i]))
+			i++;
+		if (!input[i])
 			return ;
-		while (aux->next->next)
-		{
-			if (!ft_strncmp(command[0], aux->name, ft_strlen(command[0])))
-				return (ft_change_cont(&aux, command[1]));
-			aux = aux->next;
-		}
-		if (!ft_strncmp(command[0], aux->name, ft_strlen(command[0])))
-			return (ft_change_cont(&aux, command[1]));
-		append_env(&aux, command[0], command[1]);
-		ft_free_array(command);
+		export_valid(input[i]);
 	}
 }

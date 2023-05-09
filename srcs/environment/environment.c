@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:49:16 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/04 14:41:36 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:21:08 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,18 @@ int	init_envp(char **envp)
 		}
 	}
 	return (TRUE);
+}
+
+char	*get_env(char *name)
+{
+	t_envp	*aux;
+
+	aux = g_data.envp;
+	while (aux != NULL)
+	{
+		if (!ft_strncmp(aux->name, name, ft_strlen(aux->name)))
+			return (aux->cont);
+		aux = aux->next;
+	}
+	return (NULL);
 }

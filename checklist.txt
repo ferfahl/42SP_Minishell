@@ -19,10 +19,10 @@ função recursiva (fern)
 
 erros builtin: (fern)
 □ cd - (não funciona ainda)
-□ export sem =
+✓ export sem =
 
 falta checar:
-□ unset
-□ export
-□ exit
-□ cd
+✓ unset
+✓ export
+✓ exit
+✓ cd

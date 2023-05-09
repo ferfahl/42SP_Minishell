@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:23:49 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/06 21:20:57 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:18:22 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,7 @@ static void	ft_cd_error(char *input, char *msg)
 		ft_putstr_fd(input, 1);
 		ft_putstr_fd(": ", 1);
 	}
-	ft_putstr_fd(msg, 1);
-	ft_putstr_fd("\n", 1);
-}
-
-char	*get_env(t_envp *env, char *key)
-{
-	t_envp	*temp;
-
-	temp = env;
-	while (temp)
-	{
-		if (!ft_strncmp(temp->name, key, ft_strlen(key) + 1))
-			return (temp->cont);
-		temp = temp->next;
-	}
-	return (NULL);
+	ft_putendl_fd(msg, 1);
 }
 
 void	update_pwd(char *oldpwd)
@@ -62,16 +47,31 @@ void	update_pwd(char *oldpwd)
 	}
 }
 
+static void	ft_cd_oldpwd(void)
+{
+	char	*oldpwd;
+
+	oldpwd = get_env("OLDPWD");
+	if (!oldpwd)
+		ft_cd_error(NULL, "OLDPWD not set");
+	else
+		chdir(oldpwd);
+		// free(oldpwd);
+
+}
+
 void	ft_cd(char **input)
 {
 	char	*oldpwd;
 
-	oldpwd = get_env(g_data.envp, "PWD");
+	oldpwd = get_env("PWD");
 	if (!input[1])
-		chdir(get_env(g_data.envp, "HOME"));
+		chdir(get_env("HOME"));
 	if (input[1] && input[2])
 		ft_cd_error(NULL, "too many arguments");
-	if (input[1] && chdir(input[1]))
+	if (input[1] && input[1][0] == '-')
+		ft_cd_oldpwd();
+	else if (input[1] && chdir(input[1]))
 		ft_cd_error(input[1], "No such file or directory");
 	if (oldpwd)
 		update_pwd(oldpwd);

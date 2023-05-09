@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_mod_libft.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:22:07 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 12:48:23 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/09 02:31:25 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,17 @@ int	ft_isdigit_mod(char *string)
 	int	i;
 
 	i = 0;
-	while (string[++i])
+	if (ft_isdigit(string[i]) || string[i] == '+' || string[i] == '-')
 	{
-		if (!ft_isdigit(string[i]) && string[0] != '-' && string[0] != '+')
+		if (!string[++i])
 			return (0);
+		while (string[++i])
+		{
+			if (!ft_isdigit(string[i]))
+				return (0);
+		}
+		return (2);
 	}
-	return (2);
+	else
+		return (0);
 }
