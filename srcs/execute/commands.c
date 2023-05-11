@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/11 13:51:44 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:09:14 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,37 @@ void	exeggcute(char *path, char **cmd, t_envp *mini_env)
 	exit(check);
 }
 
-int	is_empty_2(char *cmd)
-{
-	int	i;
-	int	len;
+// int	is_empty_2(char *cmd)
+// {
+// 	int	i;
+// 	int	len;
 
-	i = 0;
-	len = ft_strlen(cmd);
-	while(cmd[i])
-	{
-		if (is_whitespace(cmd[i]))
-			len--;
-		i++;
-	}
-	if (len == 0)
-		return (TRUE);
-	return (FALSE);
-}
+// 	i = 0;
+// 	len = ft_strlen(cmd);
+// 	while(cmd[i])
+// 	{
+// 		if (is_whitespace(cmd[i]))
+// 			len--;
+// 		i++;
+// 	}
+// 	if (len == 0)
+// 		return (TRUE);
+// 	return (FALSE);
+// }
 
-char	**replace_cmd(char **cmd)
-{
-	int		i;
-	char	**aux;
+// char	**replace_cmd(char **cmd)
+// {
+// 	int		i;
+// 	char	**aux;
 
-	i = 0;
-	aux = cmd;
-	while (cmd[i])
-	{
+// 	i = 0;
+// 	aux = cmd;
+// 	while (cmd[i])
+// 	{
 		
-		i++;
-	}
-}
+// 		i++;
+// 	}
+// }
 
 static int	recursive_function(t_cmd *cmd, int redirect)
 {
@@ -63,10 +63,10 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 	if (g_data.redir->has_redir)
 	{
 		redirections_handle(cmd->cmd);
-		if (is_empty_2(cmd->cmd[0]))
-		{
-			replace_cmd(cmd->cmd);
-		}
+		// if (is_empty_2(cmd->cmd[0]))
+		// {
+		// 	replace_cmd(cmd->cmd);
+		// }
 	}
 	if (!cmd)
 		return (FALSE);

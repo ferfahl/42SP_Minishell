@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:17:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/11 13:43:05 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/11 18:45:28 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_hdoc	*start_hd(void)
 	return (new);
 }
 
-void	print_list(t_hdoc *list)
+void	print_list(t_hdoc *list, int fd)
 {
 	t_hdoc	*tmp;
 
@@ -65,7 +65,19 @@ void	print_list(t_hdoc *list)
 	while (tmp != NULL)
 	{
 		if (tmp->line)
-			ft_printf("%s\n", tmp->line);
+			ft_putendl_fd(tmp->line, fd);
+		tmp = tmp->next;
+	}
+}
+
+void	free_list(t_hdoc *list)
+{
+	t_hdoc	*tmp;
+
+	tmp = list;
+	while (tmp != NULL)
+	{
+
 		tmp = tmp->next;
 	}
 }
@@ -78,8 +90,10 @@ int	ft_here_doc(char *eof)
 	char	*input;
 	int		pid;
 	t_hdoc	*list;
+	int		fd[2];
 
 	input = NULL;
+	pipe(fd);
 	pid = fork();
 	list = start_hd();
 	signal_handler_hd();
@@ -92,18 +106,19 @@ int	ft_here_doc(char *eof)
 			input = readline("> ");
 			if (input == NULL || !ft_strncmp(input, eof, ft_strlen(eof) + 1))
 			{
-				print_list(list);
+				free(input);
+				close(fd[0]);
+				print_list(list, fd[1]);
+				free_list(list);
+				close(fd[1]);
 				exit(0);
 			}
 			if (*input)
-			{
 				hd_add_history(&list, input);
-			}
 			free(input);
 		}
 	}
 	waitpid(pid, NULL, 0);
-		// dup2(g_data.redir->fd_in, STDIN_FILENO);
-	// dup2(g_data.redir->fd_out, STDOUT_FILENO);
-	return (1);
+	close(fd[1]);
+	return (fd[0]);
 }
