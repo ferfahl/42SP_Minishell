@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:17:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/09 18:33:12 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/11 13:43:05 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	print_list(t_hdoc *list)
 	tmp = list;
 	while (tmp != NULL)
 	{
-		ft_printf("%s\n", tmp->line);
+		if (tmp->line)
+			ft_printf("%s\n", tmp->line);
 		tmp = tmp->next;
 	}
 }
@@ -91,6 +92,7 @@ int	ft_here_doc(char *eof)
 			input = readline("> ");
 			if (input == NULL || !ft_strncmp(input, eof, ft_strlen(eof) + 1))
 			{
+				print_list(list);
 				exit(0);
 			}
 			if (*input)
@@ -101,8 +103,7 @@ int	ft_here_doc(char *eof)
 		}
 	}
 	waitpid(pid, NULL, 0);
-	print_list(list);
-	// dup2(g_data.redir->fd_in, STDIN_FILENO);
+		// dup2(g_data.redir->fd_in, STDIN_FILENO);
 	// dup2(g_data.redir->fd_out, STDOUT_FILENO);
 	return (1);
 }
