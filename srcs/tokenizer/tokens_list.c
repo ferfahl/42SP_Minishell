@@ -6,26 +6,28 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:07:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/12 18:29:31 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/12 18:39:15 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer.h"
 
-void	free_token(t_token *token)
+void	free_token(void)
 {
+	t_token	*aux;
 	t_token	*temp;
 
-	while (token)
+	aux = g_data.tokens;
+	while (aux)
 	{
 		temp = NULL;
-		if (token->next)
-			temp = token->next;
-		free(token->cont);
-		free(token);
-		token = temp;
+		if (aux->next)
+			temp = aux->next;
+		free(aux->cont);
+		free(aux);
+		aux = temp;
 	}
-	token = NULL;
+	g_data.tokens = NULL;
 }
 
 static t_etoken	define_token(char *str)
@@ -53,7 +55,6 @@ static void	new_node_tokens(char *str)
 	new = (t_token *)malloc(sizeof(t_token));
 	if (!new || !str)
 		terminate(ERR_LEXER_ALLOC);
-	printf("str[%s]\n", str);
 	new->cont = str;
 	new->token = define_token(str);
 	new->next = NULL;
@@ -66,12 +67,6 @@ static void	new_node_tokens(char *str)
 	}
 	else
 		g_data.tokens = new;
-}
-
-static void	make_new_node(int *init, int *end)
-{
-	new_node_tokens(ft_substr(g_data.input, *init, *end));
-	*init += *end;
 }
 
 void	make_tokens_list(void)
@@ -97,6 +92,7 @@ void	make_tokens_list(void)
 			}
 			end++;
 		}
-		make_new_node(&init, &end);
+		new_node_tokens(ft_substr(g_data.input, init, end));
+		init += end;
 	}
 }

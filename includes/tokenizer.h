@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:00:36 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/12 17:58:34 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/12 18:39:32 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		lexical_analyzer(void);
 
 // tokens_list.c
 void	make_tokens_list(void);
-void	free_token(t_token *token);
+void	free_token(void);
 
 // syntax_analysis.c
 int	syntax_analysis(const t_token *tokens);
