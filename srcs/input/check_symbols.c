@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_symbols.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:10:26 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/01 14:09:18 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:10:04 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_invalid(char c)
 {
-	if (c == '&' || c == '#' || c == '(' || c == ')')
+	if (c == '&' || c == '#' || c == '(' || c == ')' || c == ';')
 		return (TRUE);
 	if (is_redirect(c))
 		return (TRUE);
@@ -42,9 +42,9 @@ int	is_whitespace(char c)
 	return (FALSE);
 }
 
-int	is_separator(char c)
+int	is_pipe(char c)
 {
-	if (c == ';')
+	if (c == '|')
 		return (TRUE);
 	return (FALSE);
 }
