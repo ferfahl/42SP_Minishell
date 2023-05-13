@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/09 02:20:25 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:59:29 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "commands.h"
 # include "builtins.h"
 # include "redirect.h"
+# include "tokenizer.h"
 # include "error_messages.h"
 
 # include <readline/readline.h>	//readline()
@@ -36,6 +37,7 @@ typedef struct s_envp		t_envp;
 typedef struct sigaction	t_sigaction;
 typedef struct s_commands	t_cmd;
 typedef struct s_redirect	t_redirect;
+typedef struct s_tokenizer	t_token;
 
 typedef struct s_quotes
 {
@@ -53,6 +55,7 @@ typedef struct s_minishell
 	char		*tml_line;
 	char		*home;
 	char		**path;
+	t_token		*tokens;
 	t_cmd		*cmd;
 	t_envp		*envp;
 	t_quotes	*quotes;
@@ -95,5 +98,6 @@ void		free_quotes(void);
 int			is_whitespace(char c);
 int			is_redirect(char c);
 int			is_invalid(char c);
+int			is_pipe(char c);
 
 #endif //MINISHELL_H
