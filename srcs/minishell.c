@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/12 18:37:28 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:55:46 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ int	terminal_loop(void)
 		{
 			add_history(g_data.input);
 			if (lexical_analyzer() == TRUE)
+			{
+				run_all_checks();
 				run_command();
-			// if (validate_input() == TRUE)
-			// 	run_command();
+			}
 		}
 		free_line();
 	}

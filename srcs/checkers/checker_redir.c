@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validate_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:28:52 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/09 16:17:02 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:41:41 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "input.h"
+#include "checkers.h"
 
 int	check_redir(char *input)
 {
@@ -32,25 +32,5 @@ int	check_redir(char *input)
 		if (input[i] != '\0')
 			i++;
 	}
-	return (TRUE);
-}
-
-/**
-*@brief Checks input (for errors)
-*@param input the input sent after the prompt
-*@return False if no errors, True if errors.
-*/
-int	validate_input(void)
-{
-	if (!is_empty(g_data.input))
-		return (FALSE);
-	else if (!check_quotes(g_data.input))
-		return (FALSE);
-	if (!check_redir(g_data.input))
-		return (FALSE);
-	// g_data.input = check_pipe_end(input);
-	compress_quotes();
-	if (!create_cmd_list(g_data.input))
-		return (FALSE);
 	return (TRUE);
 }

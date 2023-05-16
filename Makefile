@@ -15,7 +15,7 @@ BUILTINS_PATH	= builtins/
 SIGNALS_PATH	= signals/
 COMMANDS_PATH	= commands/
 EXECUTE_PATH	= execute/
-INPUT_PATH		= input/
+CHECKER_PATH	= checkers/
 REDIRECT_PATH	= redirects/
 ENVP_PATH		= environment/
 MINISHELL_PATH	= mini_hell/
@@ -41,9 +41,10 @@ SRC_LIST		=	minishell.c								\
 					$(EXECUTE_PATH)commands_builtin.c		\
 					$(COMMANDS_PATH)commands_list.c			\
 					$(COMMANDS_PATH)free_commands.c			\
-					$(INPUT_PATH)input_checkers.c			\
-					$(INPUT_PATH)validate_input.c			\
-					$(INPUT_PATH)check_symbols.c			\
+					$(CHECKER_PATH)checker.c				\
+					$(CHECKER_PATH)checker_input.c			\
+					$(CHECKER_PATH)checker_redir.c			\
+					$(CHECKER_PATH)checker_symbols.c		\
 					$(QUOTES_PATH)compress_quotes.c			\
 					$(QUOTES_PATH)decompress_quotes.c		\
 					$(QUOTES_PATH)free_quotes.c				\
@@ -58,9 +59,9 @@ SRC_LIST		=	minishell.c								\
 					$(BUILTINS_PATH)ft_export_check.c		\
 					$(BUILTINS_PATH)ft_export.c				\
 					$(BUILTINS_PATH)ft_unset.c				\
-					$(TOKENIZER_PATH)lexical_analyzer.c			\
-					$(TOKENIZER_PATH)tokens_list.c				\
-					$(TOKENIZER_PATH)syntax_analysis.c			\
+					$(TOKENIZER_PATH)lexical_analyzer.c		\
+					$(TOKENIZER_PATH)tokens_list.c			\
+					$(TOKENIZER_PATH)syntax_analysis.c		\
 
 SRCS			= $(addprefix $(SRC_DIR), $(SRC_LIST))
 
@@ -94,7 +95,7 @@ $(OBJS_DIR):
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(SIGNALS_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(COMMANDS_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(EXECUTE_PATH))
-	@mkdir -p $(addprefix $(OBJS_DIR)/,$(INPUT_PATH))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(CHECKER_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(QUOTES_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(BUILTINS_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(REDIRECT_PATH))
