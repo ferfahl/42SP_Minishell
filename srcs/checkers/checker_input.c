@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_checkers.c                                   :+:      :+:    :+:   */
+/*   checkers_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 00:18:18 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/01 14:22:34 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:44:45 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "input.h"
+#include "checkers.h"
 
 static int	check_pipe(char *input)
 {

@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/12 17:59:29 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:45:20 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft.h"
 # include "environment.h"
 # include "signals.h"
-# include "input.h"
+# include "checkers.h"
 # include "commands.h"
 # include "builtins.h"
 # include "redirect.h"
@@ -93,11 +93,5 @@ int			ft_isdigit_mod(char *string);
 void		compress_quotes(void);
 void		decompress_quotes(char **cmd);
 void		free_quotes(void);
-
-// input/check_symbols.c
-int			is_whitespace(char c);
-int			is_redirect(char c);
-int			is_invalid(char c);
-int			is_pipe(char c);
 
 #endif //MINISHELL_H
