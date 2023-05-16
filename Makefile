@@ -24,9 +24,7 @@ TOKENIZER_PATH	= tokenizer/
 
 #source codes
 SRC_DIR			=	./srcs/
-# SRC_LIST		=	minishell.c								\
-
-SRC_LIST		=	test.c									\
+SRC_LIST		=	minishell.c								\
 					$(MINISHELL_PATH)terminal_line.c		\
 					$(MINISHELL_PATH)exit_minishell.c		\
 					$(MINISHELL_PATH)init_minishell.c		\
