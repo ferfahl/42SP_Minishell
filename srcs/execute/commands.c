@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/16 10:23:38 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:59:49 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,53 +23,15 @@ void	exeggcute(char *path, char **cmd, t_envp *mini_env)
 	exit(check);
 }
 
-// int	is_empty_2(char *cmd)
-// {
-// 	int	i;
-// 	int	len;
-
-// 	i = 0;
-// 	len = ft_strlen(cmd);
-// 	while(cmd[i])
-// 	{
-// 		if (is_whitespace(cmd[i]))
-// 			len--;
-// 		i++;
-// 	}
-// 	if (len == 0)
-// 		return (TRUE);
-// 	return (FALSE);
-// }
-
-// char	**replace_cmd(char **cmd)
-// {
-// 	int		i;
-// 	char	**aux;
-
-// 	i = 0;
-// 	aux = cmd;
-// 	while (cmd[i])
-// 	{
-		
-// 		i++;
-// 	}
-// }
-
 static int	recursive_function(t_cmd *cmd, int redirect)
 {
 	int		fd[2];
 	pid_t	pid;
 
-	if (g_data.redir->has_redir)
-	{
-		redirections_handle(cmd->cmd);
-		// if (is_empty_2(cmd->cmd[0]))
-		// {
-		// 	replace_cmd(cmd->cmd);
-		// }
-	}
 	if (!cmd)
 		return (FALSE);
+	if (g_data.redir->has_redir)
+		redirections_handle(&cmd);
 	if (!cmd->path && !is_builtin(cmd->cmd[0]))
 	{
 		ft_printf("minishell: %s: command not found\n", cmd->cmd[0]);
@@ -90,7 +52,7 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 			dup2(fd[1], STDOUT_FILENO);
 		else
 			close(fd[1]);
-		if (!execute_builtin(cmd->cmd))
+		if (!execute_builtin(cmd->cmd, 0))
 			exeggcute(cmd->path, cmd->cmd, g_data.envp);
 		exit_builtin();
 	}
@@ -114,7 +76,7 @@ int	run_command(void)
 		aux = aux->next;
 	}
 	if (!g_data.cmd->next && is_builtin(g_data.cmd->cmd[0]))
-		return (execute_builtin(g_data.cmd->cmd));
+		return (execute_builtin(g_data.cmd->cmd, 42));
 	fd = recursive_function(g_data.cmd, FALSE);
 	(void)fd;
 	free_quotes();

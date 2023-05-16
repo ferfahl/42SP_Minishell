@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 02:28:44 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/11 12:58:27 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:48:45 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,3 @@ int	create_cmd_list(char *input)
 		return (FALSE);
 	return (TRUE);
 }
-		// if (g_data.redir->has_redir == TRUE)
-		// 	gross_cmd = redirections_handle(gross_cmd);

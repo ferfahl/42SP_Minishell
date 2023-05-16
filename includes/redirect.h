@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:24 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/09 17:46:00 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:58:59 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define REDIRECT_H
 
 # include "minishell.h"
+
+typedef struct s_commands	t_cmd;
 
 typedef struct s_redirect
 {
@@ -29,10 +31,16 @@ typedef struct s_hdoc
 }			t_hdoc;
 
 //redirections.c
-char	**redirections_handle(char **cmd);
+void	redirections_handle(t_cmd **cmd);
+
+//redir_str.c
+char	**redirections_handle_str(char **cmd);
+
+//execute_redir.c
+void	redirect_function(char *redir, char *key_word);
 
 //check_redir.c
-char	*ft_findname(char *redir);
+int		check_str(char **str);
 int		valid_input(char c);
 int		check_redir_syntax(char *input);
 int		check_redirect(char *cmd_line);

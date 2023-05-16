@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/11 15:00:26 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:39:08 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	free_cmd(void);
 int		run_command(void);
 
 //execute/commands_builtins.c
-int		execute_builtin(char **input);
+int		execute_builtin(char **input, int check);
 int		is_builtin(char *input);
 
 #endif //COMMANDS_H

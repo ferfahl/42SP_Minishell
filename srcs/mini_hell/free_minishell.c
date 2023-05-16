@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 23:51:14 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/12 18:38:11 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:43:12 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_free_array(char **arr)
 	int	i;
 
 	i = -1;
-	while (arr[++i])
+	while (arr && arr[++i])
 		free(arr[i]);
 	free(arr);
 }
