@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/16 13:39:08 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:18:06 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_commands
 
 // commands/commands_list.c
 int		create_cmd_list(char *input);
+char	*cmd_path(char *command);
 
 // commands/free_commands.c
 void	free_cmd(void);

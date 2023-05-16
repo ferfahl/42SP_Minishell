@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/16 11:45:20 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/16 16:19:18 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct sigaction	t_sigaction;
 typedef struct s_commands	t_cmd;
 typedef struct s_redirect	t_redirect;
 typedef struct s_tokenizer	t_token;
+typedef struct s_redir	t_redir;
 
 typedef struct s_quotes
 {

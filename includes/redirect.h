@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:24 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/16 13:58:59 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 16:19:36 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ typedef struct s_redirect
 	int	fd_out;
 	int	has_redir;
 }			t_redirect;
+
+typedef struct	s_redir
+{
+	char		*symbol;
+	char		*key_word;
+	struct s_redir	*next;
+}		t_redir;
 
 typedef struct s_hdoc
 {

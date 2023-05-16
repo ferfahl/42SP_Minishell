@@ -6,13 +6,13 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 02:28:44 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/16 11:48:45 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:17:50 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
 
-static char	*cmd_path(char *command)
+char	*cmd_path(char *command)
 {
 	char	*path;
 	char	*temp;

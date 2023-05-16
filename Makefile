@@ -51,7 +51,6 @@ SRC_LIST		=	minishell.c								\
 					$(REDIRECT_PATH)check_redir.c			\
 					$(REDIRECT_PATH)execute_redir.c			\
 					$(REDIRECT_PATH)redirections.c			\
-					$(REDIRECT_PATH)redir_str.c				\
 					$(REDIRECT_PATH)here_doc.c				\
 					$(BUILTINS_PATH)ft_pwd.c				\
 					$(BUILTINS_PATH)ft_cd.c					\

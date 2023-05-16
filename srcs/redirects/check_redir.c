@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:18:32 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/16 13:04:08 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 16:10:08 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,19 @@ int	check_str(char **str)
 {
 	int	size;
 	int index;
+	int	redir;
 
 	size = 0;
 	index = 0;
+	redir = 0;
 	while (str[index])
 	{
-		if (!check_redirect(str[index]))
-			size++;
+		if (check_redirect(str[index]))
+		{
+			redir += 2;
+		}
 		index++;
 	}
+	size = index - redir;
 	return (size);
 }
