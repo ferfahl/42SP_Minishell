@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/06 15:57:27 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:00:26 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ int		create_cmd_list(char *input);
 
 // commands/free_commands.c
 void	free_cmd(void);
-
-// commands/syntax_analysis.c
-int		syntax_analysis(char **command);
 
 // execute/commands_list.c
 int		run_command(void);

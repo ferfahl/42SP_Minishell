@@ -20,6 +20,7 @@ REDIRECT_PATH	= redirects/
 ENVP_PATH		= environment/
 MINISHELL_PATH	= mini_hell/
 QUOTES_PATH		= quotes/
+TOKENIZER_PATH	= tokenizer/
 
 #source codes
 SRC_DIR			=	./srcs/
@@ -59,6 +60,9 @@ SRC_LIST		=	test.c									\
 					$(BUILTINS_PATH)ft_export_check.c		\
 					$(BUILTINS_PATH)ft_export.c				\
 					$(BUILTINS_PATH)ft_unset.c				\
+					$(TOKENIZER_PATH)lexical_analyzer.c			\
+					$(TOKENIZER_PATH)tokens_list.c				\
+					$(TOKENIZER_PATH)syntax_analysis.c			\
 
 SRCS			= $(addprefix $(SRC_DIR), $(SRC_LIST))
 
@@ -96,6 +100,7 @@ $(OBJS_DIR):
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(QUOTES_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(BUILTINS_PATH))
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(REDIRECT_PATH))
+	@mkdir -p $(addprefix $(OBJS_DIR)/,$(TOKENIZER_PATH))
 
 $(OBJS_DIR)%.o: $(SRC_DIR)%.c
 	@gcc $(CFLAGS) $(INCLUDES) -c $< -o $@
