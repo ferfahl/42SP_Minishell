@@ -6,11 +6,27 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:46:40 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/16 17:06:29 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:20:00 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_redirects(t_redir **redirect)
+{
+	t_redir	*aux;
+
+	while (*redirect)
+	{
+		aux = *redirect;
+		(*redirect) = (*redirect)->next;
+		free(aux->symbol);
+		free(aux->key_word);
+		free(aux);
+	}
+	free(*redirect);
+	
+}
 
 void	recursive_redirections(t_redir *redirect)
 {
@@ -20,8 +36,11 @@ void	recursive_redirections(t_redir *redirect)
 	while (aux)
 	{
 		redirect_function(aux->symbol, aux->key_word);
+		if (aux->next == NULL)
+			break ;
 		aux = aux->next;
 	}
+	free_redirects(&redirect);
 }
 
 void	start_redirection(t_redir **redirection)
@@ -70,25 +89,16 @@ char	**redirections_handle_str(char **cmd)
 		if (cmd[i] && check_redirect(cmd[i]))
 		{
 			keep_redir(&redirection, cmd[i], cmd[i + 1]);
-			i += 2;
-		}
-		else
-		{
-			aux[j++] =  ft_strdup(cmd[i]);
 			i++;
 		}
+		else
+			aux[j++] =  ft_strdup(cmd[i]);
+		i++;
 		if (cmd[i] == NULL)
 			break ;
 	}
 	aux[j] = NULL;
-	// while (j >= 0)
-	// {
-	// 	printf("%s\n", aux[j]);
-	// 	j--;
-	// }
-	
 	recursive_redirections(redirection);
-	// ft_free_array(cmd);
 	return (aux);
 }
 
@@ -98,28 +108,31 @@ void	redirections_handle(t_cmd **cmd)
 	int		i;
 	int		j;
 	int		size;
+	t_redir	*redirection;
 
 	i = 0;
 	j = 0;
 	size = check_str((*cmd)->cmd);
 	aux = malloc(sizeof(char *) * (size + 1));
+	start_redirection(&redirection);
 	while ((*cmd)->cmd && (*cmd)->cmd[i])
 	{
 		if (check_redirect((*cmd)->cmd[i]))
 		{
-			// keep_redir((*cmd)->cmd[i], (*cmd)->cmd[i + 1]);
-			j += 2;
+			keep_redir(&redirection, (*cmd)->cmd[i], (*cmd)->cmd[i + 1]);
+			i++;
 		}
-		if (!(*cmd)->cmd[i + j])
-			break ;
-		if (!check_redirect((*cmd)->cmd[i]))
-			aux[i] =  ft_strdup((*cmd)->cmd[i + j]);
+		else
+			aux[j++] =  ft_strdup((*cmd)->cmd[i]);
 		i++;
+		if (!(*cmd)->cmd[i])
+			break ;
 	}
-	aux[i] = NULL;
+	aux[j] = NULL;
 	ft_free_array((*cmd)->cmd);
 	free((*cmd)->path);
 	(*cmd)->path = NULL;
 	(*cmd)->path = cmd_path(aux[0]);
 	(*cmd)->cmd = aux;
+	recursive_redirections(redirection);
 }

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:59:13 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/16 13:44:51 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:15:02 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ int	execute_builtin(char **input, int check)
 		return (FALSE);
 	dup2(g_data.redir->fd_in, STDIN_FILENO);
 	dup2(g_data.redir->fd_out, STDOUT_FILENO);
-	free(input);
+	ft_free_array(input);
 	return (TRUE);
 }
