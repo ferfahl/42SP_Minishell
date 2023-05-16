@@ -6,23 +6,28 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:17:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/11 18:45:28 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:45:05 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	handler_hd(int signal)
+void	signal_handler_hd(int child_pid)
 {
-	(void)signal;
-	ft_putstr_fd("\n", STDOUT_FILENO);
-	rl_replace_line("", 0);
-}
+	struct sigaction	sa_sigint;
+	struct sigaction	sa_sigquit;
 
-void	signal_handler_hd(void)
-{
-	signal(SIGINT, &handler_hd);
-	signal(SIGQUIT, SIG_IGN);
+	sa_sigint.sa_flags = 0;
+	sigemptyset(&sa_sigint.sa_mask);
+	if (child_pid == 0)
+		sa_sigint.sa_handler = SIG_DFL;
+	else
+		sa_sigint.sa_handler = SIG_IGN;
+	sigaction(SIGINT, &sa_sigint, NULL);
+	sa_sigquit.sa_flags = 0;
+	sigemptyset(&sa_sigquit.sa_mask);
+	sa_sigquit.sa_handler = SIG_IGN;
+	sigaction(SIGQUIT, &sa_sigquit, NULL);
 }
 
 t_hdoc	*add_node_line(char *input)
@@ -96,11 +101,12 @@ int	ft_here_doc(char *eof)
 	pipe(fd);
 	pid = fork();
 	list = start_hd();
-	signal_handler_hd();
+	signal_handler_hd(pid);
 	if (pid == -1)
 		terminate(ERR_FORK);
 	if (pid == 0)
 	{
+		signal_handler_hd(pid);
 		while (1)
 		{
 			input = readline("> ");

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:46:40 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/16 18:20:00 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:54:50 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ char	**redirections_handle_str(char **cmd)
 		}
 		else
 			aux[j++] =  ft_strdup(cmd[i]);
-		i++;
 		if (cmd[i] == NULL)
 			break ;
+		i++;
 	}
 	aux[j] = NULL;
 	recursive_redirections(redirection);
@@ -124,9 +124,9 @@ void	redirections_handle(t_cmd **cmd)
 		}
 		else
 			aux[j++] =  ft_strdup((*cmd)->cmd[i]);
-		i++;
 		if (!(*cmd)->cmd[i])
 			break ;
+		i++;
 	}
 	aux[j] = NULL;
 	ft_free_array((*cmd)->cmd);
