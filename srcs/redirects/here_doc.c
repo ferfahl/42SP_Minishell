@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:17:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/16 18:45:05 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 19:48:26 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,37 +30,31 @@ void	signal_handler_hd(int child_pid)
 	sigaction(SIGQUIT, &sa_sigquit, NULL);
 }
 
-t_hdoc	*add_node_line(char *input)
+void	start_hd(t_hdoc **list)
 {
-	t_hdoc	*new_node;
-
-	new_node = (t_hdoc *)malloc(sizeof(t_hdoc));
-	new_node->line = ft_strdup(input);
-	new_node->next = NULL;
-	return (new_node);
+	(*list) = malloc(sizeof(t_hdoc));
+	(*list)->line = NULL;
+	(*list)->next = NULL;
 }
 
 void	hd_add_history(t_hdoc **list, char *input)
 {
+	t_hdoc	*aux;
 	t_hdoc	*temp;
 
-	temp = *list;
-	while (temp->next)
+	aux = (*list);
+	if (aux->line == NULL)
 	{
-		temp = temp->next;
+		aux->line = ft_strdup(input);
+		return ;
 	}
-	temp->next = add_node_line(input);
+	start_hd(&temp);
+	while (aux->next)
+		aux = aux->next;
+	temp->line = ft_strdup(input);
+	aux->next = temp;
 }
 
-t_hdoc	*start_hd(void)
-{
-	t_hdoc	*new;
-
-	new = malloc(sizeof(t_hdoc));
-	new->line = NULL;
-	new->next = NULL;
-	return (new);
-}
 
 void	print_list(t_hdoc *list, int fd)
 {
@@ -75,16 +69,18 @@ void	print_list(t_hdoc *list, int fd)
 	}
 }
 
-void	free_list(t_hdoc *list)
+void	free_list(t_hdoc **list)
 {
-	t_hdoc	*tmp;
+	t_hdoc	*aux;
 
-	tmp = list;
-	while (tmp != NULL)
+	while (*list)
 	{
-
-		tmp = tmp->next;
+		aux = *list;
+		(*list) = (*list)->next;
+		free(aux->line);
+		free(aux);
 	}
+	free(*list);
 }
 
 int	ft_here_doc(char *eof)
@@ -100,7 +96,7 @@ int	ft_here_doc(char *eof)
 	input = NULL;
 	pipe(fd);
 	pid = fork();
-	list = start_hd();
+	start_hd(&list);
 	signal_handler_hd(pid);
 	if (pid == -1)
 		terminate(ERR_FORK);
@@ -115,7 +111,7 @@ int	ft_here_doc(char *eof)
 				free(input);
 				close(fd[0]);
 				print_list(list, fd[1]);
-				free_list(list);
+				free_list(&list);
 				close(fd[1]);
 				exit(0);
 			}
