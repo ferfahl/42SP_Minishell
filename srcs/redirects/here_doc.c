@@ -6,28 +6,42 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:17:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/17 15:15:23 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:35:56 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	signal_handler_hd(int child_pid)
+void	clear_here_doc(void)
 {
-	struct sigaction	sa_sigint;
-	struct sigaction	sa_sigquit;
+	free(g_data.input);
+	ft_free_array(g_data.path);
+	free_redirects(&g_data.redir->head_redir);
+	free_cmd();
+	free_quotes();
+	free_token();
+	free_list_hd();
+	free_envp();
+	free_redir();
+	free(g_data.tml_host);
+	rl_clear_history();
+	exit(0);
+}
 
-	sa_sigint.sa_flags = 0;
-	sigemptyset(&sa_sigint.sa_mask);
-	if (child_pid == 0)
-		sa_sigint.sa_handler = SIG_DFL;
-	else
-		sa_sigint.sa_handler = SIG_IGN;
-	sigaction(SIGINT, &sa_sigint, NULL);
-	sa_sigquit.sa_flags = 0;
-	sigemptyset(&sa_sigquit.sa_mask);
-	sa_sigquit.sa_handler = SIG_IGN;
-	sigaction(SIGQUIT, &sa_sigquit, NULL);
+static void	signint_doc(int sig)
+{
+	if (sig == SIGINT)
+	{
+		dprintf(2, "\n");
+		// rl_on_new_line();
+		clear_here_doc();
+	}
+}
+
+void	signal_handler_heredoc(void)
+{
+	signal(SIGINT, signint_doc);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 void	start_hd(t_hdoc **list)
@@ -82,24 +96,22 @@ int	ft_here_doc(char *eof)
 	pipe(fd);
 	pid = fork();
 	start_hd(&g_data.hdoc);
-	signal_handler_hd(pid);
+	signal_handler_child();
 	if (pid == -1)
 		terminate(ERR_FORK);
 	if (pid == 0)
 	{
-		signal_handler_hd(pid);
+		signal_handler_heredoc();
 		while (1)
 		{
 			input = readline("> ");
 			if (input == NULL || !ft_strncmp(input, eof, ft_strlen(eof) + 1))
 			{
-				free_redirects(&g_data.redir->head_redir);
 				free(input);
 				close(fd[0]);
 				print_list(fd[1]);
-				free_list_hd();
 				close(fd[1]);
-				exit_builtin();
+				clear_here_doc();
 			}
 			if (*input)
 				hd_add_history(input);
@@ -107,6 +119,7 @@ int	ft_here_doc(char *eof)
 		}
 	}
 	waitpid(pid, NULL, 0);
+	signals_handler();
 	free_list_hd();
 	close(fd[1]);
 	return (fd[0]);
