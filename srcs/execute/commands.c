@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/11 12:58:02 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:24:34 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	run_command(void)
 		decompress_quotes(aux->cmd);
 		aux = aux->next;
 	}
+	executables_files();
 	if (!g_data.cmd->next && is_builtin(g_data.cmd->cmd[0]))
 		return (execute_builtin(g_data.cmd->cmd));
 	fd = recursive_function(g_data.cmd, FALSE);

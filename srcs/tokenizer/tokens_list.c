@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:07:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/12 18:39:15 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:17:20 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	make_tokens_list(void)
 	int		end;
 
 	init = 0;
-	while (g_data.input[init] != '\0')
+	while (g_data.input[init] && g_data.input[init + 1])
 	{
 		end = 0;
 		while (is_whitespace(g_data.input[init]))
