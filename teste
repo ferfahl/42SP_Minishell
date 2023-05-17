@@ -1,14 +1,1 @@
-total 156
-drwxr-xr-x  7 feralves candidate   4096 May 16 19:38 .
-drwxr-xr-x  8 feralves candidate   4096 May  9 18:22 ..
--rw-r--r--  1 feralves candidate   1359 May 16 14:09 checklist.txt
-drwxr-xr-x  8 feralves candidate   4096 May 16 18:37 .git
--rw-r--r--  1 feralves candidate     27 Apr 21 16:13 .gitignore
-drwxr-xr-x  2 feralves candidate   4096 May 16 14:09 includes
-drwxr-xr-x  3 feralves candidate   4096 Apr 21 15:32 libs
--rw-r--r--  1 feralves candidate   3837 May 16 15:02 Makefile
--rwxr-xr-x  1 feralves candidate 109296 May 16 19:38 minishell
-drwxr-xr-x 12 feralves candidate   4096 May 16 19:08 objects
--rw-r--r--  1 feralves candidate    197 Apr 21 15:32 readline.supp
-drwxr-xr-x 12 feralves candidate   4096 May 16 14:09 srcs
--rw-r--r--  1 feralves candidate      0 May 16 19:39 teste
+hi

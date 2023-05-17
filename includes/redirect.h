@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:24 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/16 16:19:36 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:11:45 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,20 @@
 
 typedef struct s_commands	t_cmd;
 
-typedef struct s_redirect
-{
-	int	fd_in;
-	int	fd_out;
-	int	has_redir;
-}			t_redirect;
-
 typedef struct	s_redir
 {
 	char		*symbol;
 	char		*key_word;
 	struct s_redir	*next;
 }		t_redir;
+
+typedef struct s_redirect
+{
+	int				fd_in;
+	int				fd_out;
+	int				has_redir;
+	struct s_redir	*head_redir;
+}			t_redirect;
 
 typedef struct s_hdoc
 {
@@ -54,5 +55,8 @@ int		check_redirect(char *cmd_line);
 
 //here_doc.c
 int		ft_here_doc(char *eof);
+
+
+void	free_redirects(t_redir **redirect);
 
 #endif //REDIRECT_H

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:17:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/16 19:48:26 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:15:23 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	start_hd(t_hdoc **list)
 	(*list)->next = NULL;
 }
 
-void	hd_add_history(t_hdoc **list, char *input)
+void	hd_add_history(char *input)
 {
 	t_hdoc	*aux;
 	t_hdoc	*temp;
 
-	aux = (*list);
+	aux = g_data.hdoc;
 	if (aux->line == NULL)
 	{
 		aux->line = ft_strdup(input);
@@ -56,31 +56,17 @@ void	hd_add_history(t_hdoc **list, char *input)
 }
 
 
-void	print_list(t_hdoc *list, int fd)
+void	print_list(int fd)
 {
 	t_hdoc	*tmp;
 
-	tmp = list;
+	tmp = g_data.hdoc;
 	while (tmp != NULL)
 	{
 		if (tmp->line)
 			ft_putendl_fd(tmp->line, fd);
 		tmp = tmp->next;
 	}
-}
-
-void	free_list(t_hdoc **list)
-{
-	t_hdoc	*aux;
-
-	while (*list)
-	{
-		aux = *list;
-		(*list) = (*list)->next;
-		free(aux->line);
-		free(aux);
-	}
-	free(*list);
 }
 
 int	ft_here_doc(char *eof)
@@ -90,13 +76,12 @@ int	ft_here_doc(char *eof)
 	// return(1);
 	char	*input;
 	int		pid;
-	t_hdoc	*list;
 	int		fd[2];
 
 	input = NULL;
 	pipe(fd);
 	pid = fork();
-	start_hd(&list);
+	start_hd(&g_data.hdoc);
 	signal_handler_hd(pid);
 	if (pid == -1)
 		terminate(ERR_FORK);
@@ -108,19 +93,21 @@ int	ft_here_doc(char *eof)
 			input = readline("> ");
 			if (input == NULL || !ft_strncmp(input, eof, ft_strlen(eof) + 1))
 			{
+				free_redirects(&g_data.redir->head_redir);
 				free(input);
 				close(fd[0]);
-				print_list(list, fd[1]);
-				free_list(&list);
+				print_list(fd[1]);
+				free_list_hd();
 				close(fd[1]);
-				exit(0);
+				exit_builtin();
 			}
 			if (*input)
-				hd_add_history(&list, input);
+				hd_add_history(input);
 			free(input);
 		}
 	}
 	waitpid(pid, NULL, 0);
+	free_list_hd();
 	close(fd[1]);
 	return (fd[0]);
 }

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 12:12:07 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/16 19:23:16 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:06:23 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ void	redirect_function(char *redir, char *key_word)
 	if (redir[i] == '<')
 	{
 		if (redir[++i] == '<')
-		{
 			fd = ft_here_doc(key_word);
-			
-		}
 		else
 			fd = open(key_word, O_RDONLY);
 		if (!fd)

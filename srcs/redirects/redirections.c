@@ -6,33 +6,17 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:46:40 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/16 18:54:50 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:19:48 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_redirects(t_redir **redirect)
+void	recursive_redirections(void)
 {
 	t_redir	*aux;
 
-	while (*redirect)
-	{
-		aux = *redirect;
-		(*redirect) = (*redirect)->next;
-		free(aux->symbol);
-		free(aux->key_word);
-		free(aux);
-	}
-	free(*redirect);
-	
-}
-
-void	recursive_redirections(t_redir *redirect)
-{
-	t_redir	*aux;
-
-	aux = redirect;
+	aux = g_data.redir->head_redir;
 	while (aux)
 	{
 		redirect_function(aux->symbol, aux->key_word);
@@ -40,7 +24,7 @@ void	recursive_redirections(t_redir *redirect)
 			break ;
 		aux = aux->next;
 	}
-	free_redirects(&redirect);
+	free_redirects(&g_data.redir->head_redir);
 }
 
 void	start_redirection(t_redir **redirection)
@@ -51,12 +35,12 @@ void	start_redirection(t_redir **redirection)
 	(*redirection)->next = NULL;
 }
 
-void	keep_redir(t_redir **redirection, char *symbol, char *key_word)
+void	keep_redir(char *symbol, char *key_word)
 {
 	t_redir	*aux;
 	t_redir	*temp;
 
-	aux = (*redirection);
+	aux = g_data.redir->head_redir;
 	if (aux->symbol == NULL)
 	{
 		aux->symbol = ft_strdup(symbol);
@@ -77,18 +61,17 @@ char	**redirections_handle_str(char **cmd)
 	int		i;
 	int		j;
 	int		size;
-	t_redir	*redirection;
 
 	i = 0;
 	j = 0;
 	size = check_str(cmd);
 	aux = malloc(sizeof(char *) * (size + 1));
-	start_redirection(&redirection);
+	start_redirection(&g_data.redir->head_redir);
 	while (cmd && cmd[i])
 	{
 		if (cmd[i] && check_redirect(cmd[i]))
 		{
-			keep_redir(&redirection, cmd[i], cmd[i + 1]);
+			keep_redir(cmd[i], cmd[i + 1]);
 			i++;
 		}
 		else
@@ -98,7 +81,7 @@ char	**redirections_handle_str(char **cmd)
 		i++;
 	}
 	aux[j] = NULL;
-	recursive_redirections(redirection);
+	recursive_redirections();
 	return (aux);
 }
 
@@ -108,18 +91,17 @@ void	redirections_handle(t_cmd **cmd)
 	int		i;
 	int		j;
 	int		size;
-	t_redir	*redirection;
 
 	i = 0;
 	j = 0;
 	size = check_str((*cmd)->cmd);
 	aux = malloc(sizeof(char *) * (size + 1));
-	start_redirection(&redirection);
+	start_redirection(&g_data.redir->head_redir);
 	while ((*cmd)->cmd && (*cmd)->cmd[i])
 	{
 		if (check_redirect((*cmd)->cmd[i]))
 		{
-			keep_redir(&redirection, (*cmd)->cmd[i], (*cmd)->cmd[i + 1]);
+			keep_redir((*cmd)->cmd[i], (*cmd)->cmd[i + 1]);
 			i++;
 		}
 		else
@@ -134,5 +116,5 @@ void	redirections_handle(t_cmd **cmd)
 	(*cmd)->path = NULL;
 	(*cmd)->path = cmd_path(aux[0]);
 	(*cmd)->cmd = aux;
-	recursive_redirections(redirection);
+	recursive_redirections();
 }

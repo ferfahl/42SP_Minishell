@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 23:51:14 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/16 17:25:09 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/17 14:54:52 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,35 @@ void	ft_free_array(char **arr)
 	while (arr && arr[++i])
 		free(arr[i]);
 	free(arr);
+}
+
+void	free_list_hd(void)
+{
+	t_hdoc	*aux;
+
+	while (g_data.hdoc)
+	{
+		aux = g_data.hdoc;
+		(g_data.hdoc) = (g_data.hdoc)->next;
+		free(aux->line);
+		free(aux);
+	}
+	free(g_data.hdoc);
+}
+
+void	free_redirects(t_redir **redirect)
+{
+	t_redir	*aux;
+
+	while (*redirect)
+	{
+		aux = *redirect;
+		(*redirect) = (*redirect)->next;
+		free(aux->symbol);
+		free(aux->key_word);
+		free(aux);
+	}
+	free(*redirect);
 }
 
 void	free_redir(void)
