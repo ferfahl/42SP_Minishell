@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/16 11:55:46 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/17 13:39:43 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	terminal_loop(void)
 
 int	main(int argc, char **argv, char **envp)
 {
-	(void)argv;
 	errno = 0;
+	(void)argv;
 	if (argc == 1)
 	{
 		init_data(envp);
