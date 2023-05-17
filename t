@@ -1,3 +1,0 @@
-lala
-teste
-banana

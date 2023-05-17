@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checkers_input.c                                   :+:      :+:    :+:   */
+/*   checker_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 00:18:18 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/16 11:44:45 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:12:42 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*check_pipe_end(char *input)
 		{
 			add_history(new_input);
 			temp = ret;
-			ret = ft_strjoin(temp, new_input);
+			ret = ft_strjoin_mod(temp, new_input);
 			if (temp != input)
 				free(temp);
 		}

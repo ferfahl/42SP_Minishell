@@ -1,15 +1,17 @@
 commands (João)
-	□ launch the right executable (./archive) {based on the path variable/relative or absolute path}
+	✓ launch the right executable (./archive) {based on the path variable/relative or absolute path}
 função recursiva (fern)
 	□ redirections
 		✓ > create archive
 		✓ >> append archive
 		✓ < open archive
 		✓ << here_doc
-□ $? expand to the exit status of the mos recent pipeline
+□ $? expand to the exit status of the mos recent pipeline (João)
 □ fix leaks
 □ norminette
 
+
+ideias sobre pipe && redir
 pipe(pipe_3) (jogando a entrada padrão pra saída do pipe 2, sem alterar saída padrão)
 entrada do pipe 2 chama o code_2
 pipe(pipe_2) (jogando a entrada padrão pra saída do pipe 1, jogando a saída padrão pra entrada do pipe 3) -> esse é o return

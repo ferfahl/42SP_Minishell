@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 02:28:44 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/16 15:17:50 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:12:58 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*cmd_path(char *command)
 	i = -1;
 	while (g_data.path[++i] != NULL)
 	{
-		temp = ft_strjoin(g_data.path[i], "/");
+		temp = ft_strjoin_mod(g_data.path[i], "/");
 		if (!temp)
 			terminate(ERR_CMD_ALLOC);
 		path = ft_strjoin_free(temp, command);

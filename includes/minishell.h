@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/17 14:54:36 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:10:33 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ char		*ft_strjoin_free(char *s1, char *s2);
 int			ft_istrchr(const char *str, char c);
 long int	ft_atoi_mod(char *nptr);
 int			ft_isdigit_mod(char *string);
+char		*ft_strjoin_mod(const char *s1, const char *s2);
 
 // quotes
 void		compress_quotes(void);
