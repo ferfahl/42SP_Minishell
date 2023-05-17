@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:39:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/12 17:56:51 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:17:23 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	ft_start_fds(void)
 	new = (t_redirect *)malloc(sizeof(t_redirect));
 	new->fd_in = dup(STDIN_FILENO);
 	new->fd_out = dup(STDOUT_FILENO);
+	new->head_redir = NULL;
+	// new->head_redir->symbol = NULL;
+	// new->head_redir->key_word = NULL;
+	// new->head_redir->next = NULL;
 	g_data.redir = new;
 }
 
@@ -43,9 +47,10 @@ void	init_data_line(void)
 	g_data.exit_code = 0;
 	g_data.tml_line = NULL;
 	g_data.input = NULL;
+	g_data.tokens = NULL;
 	g_data.cmd = NULL;
 	g_data.quotes = NULL;
-	g_data.tokens = NULL;
+	g_data.hdoc = NULL;
 	init_path();
 }
 

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:59:13 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/09 15:29:36 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 19:38:29 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	is_builtin(char *input)
 	return (FALSE);
 }
 
-int	execute_builtin(char **input)
+int	execute_builtin(char **input, int check)
 {
-	if (g_data.redir->has_redir)
-		redirections_handle(input);
+	if (g_data.redir->has_redir && check)
+		input = redirections_handle_str(input);
 	if (!ft_strncmp(input[0], "echo", 5))
 		ft_echo(input);
 	else if (!ft_strncmp(input[0], "cd", 3))
@@ -51,7 +51,11 @@ int	execute_builtin(char **input)
 		ft_exit(input);
 	else
 		return (FALSE);
-	dup2(g_data.redir->fd_in, STDIN_FILENO);
-	dup2(g_data.redir->fd_out, STDOUT_FILENO);
+	if (g_data.redir->has_redir && check)
+	{
+		ft_free_array(input);
+		dup2(g_data.redir->fd_in, STDIN_FILENO);
+		dup2(g_data.redir->fd_out, STDOUT_FILENO);
+	}
 	return (TRUE);
 }

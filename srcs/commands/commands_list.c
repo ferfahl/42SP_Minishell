@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   commands_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 02:28:44 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/11 12:58:27 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:12:58 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
 
-static char	*cmd_path(char *command)
+char	*cmd_path(char *command)
 {
 	char	*path;
 	char	*temp;
@@ -21,7 +21,7 @@ static char	*cmd_path(char *command)
 	i = -1;
 	while (g_data.path[++i] != NULL)
 	{
-		temp = ft_strjoin(g_data.path[i], "/");
+		temp = ft_strjoin_mod(g_data.path[i], "/");
 		if (!temp)
 			terminate(ERR_CMD_ALLOC);
 		path = ft_strjoin_free(temp, command);
@@ -76,5 +76,3 @@ int	create_cmd_list(char *input)
 		return (FALSE);
 	return (TRUE);
 }
-		// if (g_data.redir->has_redir == TRUE)
-		// 	gross_cmd = redirections_handle(gross_cmd);

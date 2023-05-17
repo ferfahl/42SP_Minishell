@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:34:26 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/06 21:19:20 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:13:45 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*tml_get_pwd(void)
 
 	tml_line = NULL;
 	e_pwd = getcwd(NULL, 0);
-	tml_line = ft_strjoin(g_data.tml_host, e_pwd);
+	tml_line = ft_strjoin_mod(g_data.tml_host, e_pwd);
 	free(e_pwd);
 	tml_line = ft_strjoin_free(tml_line, "$ ");
 	if (!tml_line)

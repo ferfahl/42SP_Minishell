@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_for_execve.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 10:56:19 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/04 14:38:05 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:13:17 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static char	*append_mini_env(char *first, char *last)
 	char	*temp;
 	char	*result;
 
-	temp = ft_strjoin(first, "=");
-	result = ft_strjoin(temp, last);
+	temp = ft_strjoin_mod(first, "=");
+	result = ft_strjoin_mod(temp, last);
 	free(temp);
 	return (result);
 }

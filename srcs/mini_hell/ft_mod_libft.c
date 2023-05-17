@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:22:07 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/09 02:31:25 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:13:31 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*ret;
 
-	ret = ft_strjoin(s1, s2);
+	ret = ft_strjoin_mod(s1, s2);
 	if (!ret)
 		terminate("ft_strjoin(): Failed");
 	free(s1);
@@ -81,4 +81,23 @@ int	ft_isdigit_mod(char *string)
 	}
 	else
 		return (0);
+}
+
+char	*ft_strjoin_mod(const char *s1, const char *s2)
+{
+	size_t	i;
+	char	*str;
+
+	if (s1 == NULL && s2 == NULL)
+		return (NULL);
+	i = 0;
+	str = malloc((ft_strlen(s2) + ft_strlen(s1) + 1) * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	while (s1 && *s1)
+		str[i++] = *s1++;
+	while (s2 && *s2)
+		str[i++] = *s2++;
+	str[i] = '\0';
+	return (str);
 }

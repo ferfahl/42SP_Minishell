@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/17 15:24:34 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:54:02 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 
 	if (!cmd)
 		return (FALSE);
+	if (g_data.redir->has_redir)
+		redirections_handle(&cmd);
+	if (!cmd->cmd[0])
+		return (FALSE);
 	if (!cmd->path && !is_builtin(cmd->cmd[0]))
 	{
 		ft_printf("minishell: %s: command not found\n", cmd->cmd[0]);
 		return (FALSE);
 	}
-	if (g_data.redir->has_redir)
-		redirections_handle(cmd->cmd);
 	pipe(fd);
 	pid = fork();
 	signal_handler_child();
@@ -52,20 +54,17 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 			dup2(fd[1], STDOUT_FILENO);
 		else
 			close(fd[1]);
-		if (!execute_builtin(cmd->cmd))
+		if (!execute_builtin(cmd->cmd, 0))
 			exeggcute(cmd->path, cmd->cmd, g_data.envp);
 		exit_builtin();
 	}
 	waitpid(pid, NULL, 0);
-	dup2(g_data.redir->fd_in, STDIN_FILENO);
-	dup2(g_data.redir->fd_out, STDOUT_FILENO);
 	close(fd[1]);
 	return (fd[0]);
 }
 
 int	run_command(void)
 {
-	int		fd;
 	t_cmd	*aux;
 
 	aux = g_data.cmd;
@@ -77,11 +76,12 @@ int	run_command(void)
 	}
 	executables_files();
 	if (!g_data.cmd->next && is_builtin(g_data.cmd->cmd[0]))
-		return (execute_builtin(g_data.cmd->cmd));
-	fd = recursive_function(g_data.cmd, FALSE);
-	(void)fd;
+		return (execute_builtin(g_data.cmd->cmd, 42));
+	recursive_function(g_data.cmd, FALSE);
+	dup2(g_data.redir->fd_in, STDIN_FILENO);
+	dup2(g_data.redir->fd_out, STDOUT_FILENO);
 	free_quotes();
-	free_cmd();
+	// free_cmd();
 	return (TRUE);
 }
 

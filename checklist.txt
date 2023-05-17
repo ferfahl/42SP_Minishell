@@ -1,26 +1,41 @@
-□ syntax checker (João)
-	□ \ and ; (do not execute the line)
 commands (João)
-	□ launch the right executable (./archive) {based on the path variable/relative or absolute path}
-□ juntar redirections com palavra anterior e posterior (João)
+	✓ launch the right executable (./archive) {based on the path variable/relative or absolute path}
 função recursiva (fern)
 	□ redirections
 		✓ > create archive
 		✓ >> append archive
 		✓ < open archive
-		□ << here_doc
-□ $? expand to the exit status of the mos recent pipeline
+		✓ << here_doc
+□ $? expand to the exit status of the mos recent pipeline (João)
 □ fix leaks
 □ norminette
-✓ prompt changes when the cd changed path 
 
 
-
-
-builtin: (fern)
-✓ cd - 
-✓ export sem =
-✓ unset
-✓ export
-✓ exit
-✓ cd
+ideias sobre pipe && redir
+pipe(pipe_3) (jogando a entrada padrão pra saída do pipe 2, sem alterar saída padrão)
+entrada do pipe 2 chama o code_2
+pipe(pipe_2) (jogando a entrada padrão pra saída do pipe 1, jogando a saída padrão pra entrada do pipe 3) -> esse é o return
+entrada do pipe 2 chama o code_1
+pipe(pipe_1) (não encontra outro pipe, então chega ao fim da árvore recursiva e executa com a entrada padrão inicialmente, jogando a saída padrão pra entrada do pipe 1)
+[
+fecha a boca de escrita do pipe 1
+roda os redir existentes em code_1
+cria o char **cmd sem os redir
+roda o char** cmd
+]
+Retorna a boca de saída do pipe 1
+[
+fecha a boca de saída do pipe 1
+fecha a boca de escrita do pipe 2
+roda os redir existentes em code_2
+cria o char **cmd sem os redir
+roda o char** cmd
+]
+Retorna a boca de saída do pipe 2
+[
+fecha a boca de saída do pipe 2
+roda os redir existentes em code_2
+cria o char **cmd sem os redir
+roda o char** cmd
+]
+Os colchetes são na ordem: execução do code_1, execução do code_2, execução do code_3)

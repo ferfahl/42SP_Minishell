@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:18:32 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/09 16:16:06 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/16 16:10:08 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,6 @@ int	valid_input(char c)
 	if (is_redirect(c))
 		return (FALSE);
 	return (TRUE);
-}
-
-char	*ft_findname(char *redir)
-{
-	int		size;
-	char	*name;
-	char	*temp;
-
-	size = 0;
-	if (redir[size] == redir[size + 1])
-		size++;
-	size++;
-	temp = ft_strdup(redir + size);
-	name = ft_strtrim(temp, " ");
-	free(temp);
-	return (name);
 }
 
 int	check_redirect(char *cmd_line)
@@ -84,4 +68,25 @@ int	check_redir_syntax(char *input)
 			i++;
 	}
 	return (i);
+}
+
+int	check_str(char **str)
+{
+	int	size;
+	int index;
+	int	redir;
+
+	size = 0;
+	index = 0;
+	redir = 0;
+	while (str[index])
+	{
+		if (check_redirect(str[index]))
+		{
+			redir += 2;
+		}
+		index++;
+	}
+	size = index - redir;
+	return (size);
 }

@@ -24,8 +24,7 @@ TOKENIZER_PATH	= tokenizer/
 
 #source codes
 SRC_DIR			=	./srcs/
-SRC_LIST		=	minishell.c								\
-					$(MINISHELL_PATH)terminal_line.c		\
+SRC_LIST		=	$(MINISHELL_PATH)terminal_line.c		\
 					$(MINISHELL_PATH)exit_minishell.c		\
 					$(MINISHELL_PATH)init_minishell.c		\
 					$(MINISHELL_PATH)free_minishell.c		\
@@ -50,6 +49,7 @@ SRC_LIST		=	minishell.c								\
 					$(QUOTES_PATH)decompress_quotes.c		\
 					$(QUOTES_PATH)free_quotes.c				\
 					$(REDIRECT_PATH)check_redir.c			\
+					$(REDIRECT_PATH)execute_redir.c			\
 					$(REDIRECT_PATH)redirections.c			\
 					$(REDIRECT_PATH)here_doc.c				\
 					$(BUILTINS_PATH)ft_pwd.c				\
@@ -63,6 +63,8 @@ SRC_LIST		=	minishell.c								\
 					$(TOKENIZER_PATH)lexical_analyzer.c		\
 					$(TOKENIZER_PATH)tokens_list.c			\
 					$(TOKENIZER_PATH)syntax_analysis.c		\
+					minishell.c								\
+					# test.c									\
 
 SRCS			= $(addprefix $(SRC_DIR), $(SRC_LIST))
 
