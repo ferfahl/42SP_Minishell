@@ -38,6 +38,7 @@ SRC_LIST		=	$(MINISHELL_PATH)terminal_line.c		\
 					$(EXECUTE_PATH)commands.c				\
 					$(EXECUTE_PATH)commands_utils.c			\
 					$(EXECUTE_PATH)commands_builtin.c		\
+					$(EXECUTE_PATH)executables.c			\
 					$(COMMANDS_PATH)commands_list.c			\
 					$(COMMANDS_PATH)free_commands.c			\
 					$(CHECKER_PATH)checker.c				\
