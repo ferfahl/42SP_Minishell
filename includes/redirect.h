@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:24 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/17 15:11:45 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 11:12:09 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,30 @@ typedef struct s_hdoc
 	struct s_hdoc	*next;
 }			t_hdoc;
 
-//redirections.c
-void	redirections_handle(t_cmd **cmd);
+// redirects/redirections_list.c
+void	redir_list(void);
+void	keep_redir(char *symbol, char *key_word);
+void	start_redirection(t_redir **redirection);
 
-//redir_str.c
+// redirects/redirections.c
+void	redirections_handle(t_cmd **cmd);
 char	**redirections_handle_str(char **cmd);
 
-//execute_redir.c
+// redirects/execute_redir.c
 void	redirect_function(char *redir, char *key_word);
 
-//check_redir.c
-int		check_str(char **str);
-int		valid_input(char c);
-int		check_redir_syntax(char *input);
+// redirects/check_redir.c
 int		check_redirect(char *cmd_line);
+int		check_redir_syntax(char *input);
+int		check_str(char **str);
 
-//here_doc.c
+// redirects/here_doc.c
 int		ft_here_doc(char *eof);
+void	clear_here_doc(void);
 
-
-void	free_redirects(t_redir **redirect);
+// redirects/here_doc_list.c
+void	start_hd(t_hdoc **list);
+void	hd_add_history(char *input);
+void	print_list(int fd);
 
 #endif //REDIRECT_H
