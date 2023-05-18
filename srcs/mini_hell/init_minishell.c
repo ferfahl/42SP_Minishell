@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:39:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/17 15:17:23 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 11:13:32 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_start_fds(void)
 
 void	init_data_line(void)
 {
-	g_data.exit_code = 0;
+	g_data.exit_status = 0;
 	g_data.tml_line = NULL;
 	g_data.input = NULL;
 	g_data.tokens = NULL;

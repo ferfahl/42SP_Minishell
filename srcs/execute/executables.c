@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 12:07:51 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/17 15:32:00 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/18 11:41:59 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ static int	check_executable(t_cmd *aux)
 	end = ft_strlen(aux->cmd[0]);
 	init = end;
 	if (access(aux->cmd[0], X_OK) != 0)
+	{
+		g_data.exit_status = 127;
 		return (FALSE);
+	}
 	while (*(aux->cmd[0] + init) != '/')
 		init--;
 	if (end != init)

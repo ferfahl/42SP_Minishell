@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:20:35 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/16 15:12:20 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:17:56 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	exit_line(char *s, int n)
-{
-	free_line();
-	ft_putendl_fd(s, 2);
-	g_data.exit_code = n;
-}
 
 void	terminate(char *s)
 {
@@ -28,7 +21,7 @@ void	terminate(char *s)
 	exit(1);
 }
 
-void	exit_builtin(void)
+void	x(void)
 {
 	dup2(g_data.redir->fd_in, STDIN_FILENO);
 	dup2(g_data.redir->fd_out, STDOUT_FILENO);
