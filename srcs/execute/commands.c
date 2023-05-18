@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/18 14:16:00 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:59:28 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,13 @@ void	exeggcute(char *path, char **cmd, t_envp *mini_env)
 	exit(check);
 }
 
-static int	check_recursive(t_cmd *cmd)
+static int	check_recursive(t_cmd *cmd, t_redir **redir)
 {
 	if (!cmd)
+		return (FALSE);
+	if (g_data.redir->has_redir)
+		redirections_handle(&cmd, redir);
+	if (!cmd->cmd[0])
 		return (FALSE);
 	if (!cmd->path && !is_builtin(cmd->cmd[0]))
 	{
@@ -35,8 +39,9 @@ static int	check_recursive(t_cmd *cmd)
 	return (TRUE);
 }
 
-void	child_process(int *fd, int recursive, int piped, t_cmd *cmd)
+void	child_process(t_redir *redir, int *fd, int recursive, int piped, t_cmd *cmd)
 {
+	// ft_printf("hello\n");
 	if (dup2(recursive, fd[0]))
 		dup2(fd[0], STDIN_FILENO);
 	else
@@ -45,11 +50,9 @@ void	child_process(int *fd, int recursive, int piped, t_cmd *cmd)
 		dup2(fd[1], STDOUT_FILENO);
 	else
 		close(fd[1]);
-	if (g_data.redir->has_redir)
-		redirections_handle(&cmd);
 	clear_fds();
-	if (!cmd->cmd[0])
-		return ;
+	if (g_data.redir->has_redir)
+		redir_list(redir);
 	if (!execute_builtin(cmd->cmd, 0))
 		exeggcute(cmd->path, cmd->cmd, g_data.envp);
 	exit_builtin();
@@ -60,8 +63,10 @@ static int	recursive_function(t_cmd *cmd, int piped)
 	int		fd[2];
 	int		recursive;
 	pid_t	pid;
+	t_redir	*redir;
 
-	if (!check_recursive(cmd))
+	redir = NULL;
+	if (!check_recursive(cmd, &redir))
 		return (FALSE);
 	pipe(fd);
 	pid = fork();
@@ -76,7 +81,7 @@ static int	recursive_function(t_cmd *cmd, int piped)
 			close(g_data.redir->fd_in);
 			close(g_data.redir->fd_out);
 		}
-		child_process(fd, recursive, piped, cmd);
+		child_process(redir, fd, recursive, piped, cmd);
 	}
 	waitpid(pid, NULL, 0);
 	close(fd[1]);
