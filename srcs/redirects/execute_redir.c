@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 12:12:07 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/17 15:06:23 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 13:50:26 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	redirect_function(char *redir, char *key_word)
 			fd = open("/dev/null", O_RDONLY);
 		dup2(fd, STDIN_FILENO);
 	}
+	close(fd);
 }

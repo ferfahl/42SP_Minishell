@@ -6,11 +6,22 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:20:35 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/16 15:12:20 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:10:20 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	clear_fds(void)
+{
+	int	fd;
+
+	fd = 100;
+	if (fd < 0)
+		return ;
+	while (fd > STDERR_FILENO)
+		close(fd--);
+}
 
 void	exit_line(char *s, int n)
 {
@@ -42,6 +53,7 @@ void	exit_builtin(void)
 
 void	exit_terminal(void)
 {
+	clear_fds();
 	free_line();
 	free_envp();
 	free_redir();

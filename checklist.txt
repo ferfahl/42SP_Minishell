@@ -38,4 +38,4 @@ roda os redir existentes em code_2
 cria o char **cmd sem os redir
 roda o char** cmd
 ]
-Os colchetes são na ordem: execução do code_1, execução do code_2, execução do code_3)
+Os colchetes são na ordem: execução do code_1, execução do code_2, execução do code_3

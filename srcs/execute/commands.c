@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/18 12:19:11 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:16:00 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ static int	check_recursive(t_cmd *cmd)
 {
 	if (!cmd)
 		return (FALSE);
-	if (g_data.redir->has_redir)
-		redirections_handle(&cmd);
-	if (!cmd->cmd[0])
-		return (FALSE);
 	if (!cmd->path && !is_builtin(cmd->cmd[0]))
 	{
 		ft_printf("minishell: %s: command not found\n", cmd->cmd[0]);
@@ -39,22 +35,27 @@ static int	check_recursive(t_cmd *cmd)
 	return (TRUE);
 }
 
-void	child_process(int *fd, int recursive, int redirect, t_cmd *cmd)
+void	child_process(int *fd, int recursive, int piped, t_cmd *cmd)
 {
 	if (dup2(recursive, fd[0]))
 		dup2(fd[0], STDIN_FILENO);
 	else
 		close(fd[0]);
-	if (redirect)
+	if (piped)
 		dup2(fd[1], STDOUT_FILENO);
 	else
 		close(fd[1]);
+	if (g_data.redir->has_redir)
+		redirections_handle(&cmd);
+	clear_fds();
+	if (!cmd->cmd[0])
+		return ;
 	if (!execute_builtin(cmd->cmd, 0))
 		exeggcute(cmd->path, cmd->cmd, g_data.envp);
 	exit_builtin();
 }
 
-static int	recursive_function(t_cmd *cmd, int redirect)
+static int	recursive_function(t_cmd *cmd, int piped)
 {
 	int		fd[2];
 	int		recursive;
@@ -70,7 +71,12 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 	if (pid == 0)
 	{
 		recursive = recursive_function(cmd->next, TRUE);
-		child_process(fd, recursive, redirect, cmd);
+		if (recursive)
+		{
+			close(g_data.redir->fd_in);
+			close(g_data.redir->fd_out);
+		}
+		child_process(fd, recursive, piped, cmd);
 	}
 	waitpid(pid, NULL, 0);
 	close(fd[1]);
