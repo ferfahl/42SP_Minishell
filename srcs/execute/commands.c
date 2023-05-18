@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/18 11:05:58 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:16:00 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,46 @@ void	exeggcute(char *path, char **cmd, t_envp *mini_env)
 	exit(check);
 }
 
-static int	recursive_function(t_cmd *cmd, int redirect)
+static int	check_recursive(t_cmd *cmd)
 {
-	int		fd[2];
-	pid_t	pid;
-
 	if (!cmd)
-		return (FALSE);
-	if (g_data.redir->has_redir)
-		redirections_handle(&cmd);
-	if (!cmd->cmd[0])
 		return (FALSE);
 	if (!cmd->path && !is_builtin(cmd->cmd[0]))
 	{
 		ft_printf("minishell: %s: command not found\n", cmd->cmd[0]);
 		return (FALSE);
 	}
+	return (TRUE);
+}
+
+void	child_process(int *fd, int recursive, int piped, t_cmd *cmd)
+{
+	if (dup2(recursive, fd[0]))
+		dup2(fd[0], STDIN_FILENO);
+	else
+		close(fd[0]);
+	if (piped)
+		dup2(fd[1], STDOUT_FILENO);
+	else
+		close(fd[1]);
+	if (g_data.redir->has_redir)
+		redirections_handle(&cmd);
+	clear_fds();
+	if (!cmd->cmd[0])
+		return ;
+	if (!execute_builtin(cmd->cmd, 0))
+		exeggcute(cmd->path, cmd->cmd, g_data.envp);
+	exit_builtin();
+}
+
+static int	recursive_function(t_cmd *cmd, int piped)
+{
+	int		fd[2];
+	int		recursive;
+	pid_t	pid;
+
+	if (!check_recursive(cmd))
+		return (FALSE);
 	pipe(fd);
 	pid = fork();
 	signal_handler_child();
@@ -46,17 +70,13 @@ static int	recursive_function(t_cmd *cmd, int redirect)
 		terminate(ERR_FORK);
 	if (pid == 0)
 	{
-		if (dup2(recursive_function(cmd->next, TRUE), fd[0]))
-			dup2(fd[0], STDIN_FILENO);
-		else
-			close(fd[0]);
-		if (redirect)
-			dup2(fd[1], STDOUT_FILENO);
-		else
-			close(fd[1]);
-		if (!execute_builtin(cmd->cmd, 0))
-			exeggcute(cmd->path, cmd->cmd, g_data.envp);
-		exit_builtin();
+		recursive = recursive_function(cmd->next, TRUE);
+		if (recursive)
+		{
+			close(g_data.redir->fd_in);
+			close(g_data.redir->fd_out);
+		}
+		child_process(fd, recursive, piped, cmd);
 	}
 	waitpid(pid, NULL, 0);
 	close(fd[1]);

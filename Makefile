@@ -124,7 +124,7 @@ run: all
 
 val:
 	valgrind --leak-check=full --show-leak-kinds=all --suppressions=./readline.supp -q ./$(NAME)
-
+# --track-fds=yes --trace-children=yes
 re: fclean all
 
 coffee:

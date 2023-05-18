@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/17 16:10:33 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:13:24 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ void		free_redir(void);
 // mini_hell/terminal_line
 char		*tml_get_pwd(void);
 char		*tml_user_and_host(void);
+
+// mini_hell/exit_minishell
+void	clear_fds(void);
 
 // mini_hell/free_minishell
 void		ft_free_array(char **arr);
