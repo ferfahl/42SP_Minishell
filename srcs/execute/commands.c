@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/17 15:54:02 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 11:05:58 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,5 @@ int	run_command(void)
 	dup2(g_data.redir->fd_in, STDIN_FILENO);
 	dup2(g_data.redir->fd_out, STDOUT_FILENO);
 	free_quotes();
-	// free_cmd();
 	return (TRUE);
 }
-
-	// validate_command(); descomprimir os $(); -> vai ser feito antes
-	// if (fd)
-	// {
-	// 	char *str;
-	// 	while((str = get_next_line(fd)) != NULL)
-	// 	{
-	// 		printf("%s", str);
-	// 		free(str);
-	// 	}
-	// }

@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.h                                          :+:      :+:    :+:   */
+/*   signals_hdoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 13:10:00 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/18 10:54:00 by feralves         ###   ########.fr       */
+/*   Created: 2023/05/18 10:47:03 by feralves          #+#    #+#             */
+/*   Updated: 2023/05/18 10:47:20 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNALS_H
-# define SIGNALS_H
+#include "minishell.h"
 
-# include "minishell.h"
-# include <signal.h>
+static void	signint_doc(int sig)
+{
+	if (sig == SIGINT)
+	{
+		dprintf(2, "\n");
+		clear_here_doc();
+	}
+}
 
-// signals/signals.c
-void	signals_handler(void);
-void	signal_handler_child(void);
-
-// signals/signals_hdoc.c
-void	signal_handler_heredoc(void);
-
-#endif // SIGNALS_H
+void	signal_handler_heredoc(void)
+{
+	signal(SIGINT, signint_doc);
+	signal(SIGQUIT, SIG_IGN);
+}
