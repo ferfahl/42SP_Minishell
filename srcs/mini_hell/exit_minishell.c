@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:20:35 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/18 14:17:56 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:38:43 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	terminate(char *s)
 	exit(1);
 }
 
-void	x(void)
+void	exit_builtin(void)
 {
 	dup2(g_data.redir->fd_in, STDIN_FILENO);
 	dup2(g_data.redir->fd_out, STDOUT_FILENO);

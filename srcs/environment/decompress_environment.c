@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   decompress_environment.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:27:42 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/09 01:20:28 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:29:15 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,18 @@ void	decompress_environment(char **input, int size)
 	char	*envp;
 	char	*cont;
 
-	while (ft_strnstr(*input, "$", size))
+	init = 0;
+	while (ft_strnstr(*(input + init), "$", size))
 	{
 		init = ft_istrchr(*input, '$');
 		envp = (*input + init + 1);
 		cont = get_env(envp);
-		if (!cont)
-			cont = "";
 		aux_init = ft_substr(*input, 0, init);
-		temp = ft_strjoin_free(aux_init, cont);
-		while (*envp && ft_isalnum(*envp))
+		if (cont)
+			temp = ft_strjoin_free(aux_init, cont);
+		if (ft_strncmp(envp, "?", 2) == 0)
+			temp = ft_itoa(g_data.exit_status);
+		while (*envp && !is_whitespace(*envp))
 			envp++;
 		if (envp)
 			temp = ft_strjoin_free(temp, envp);

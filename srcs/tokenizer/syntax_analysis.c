@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:24:17 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/18 11:07:41 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:00:38 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	syntax_analysis(const t_token *tokens)
 	is_pipe = tokens->token == PIPE;
 	if (tokens->token == WORD)
 		return (TRUE);
-	if (tokens->next == NULL)
-		return (put_error_message("newline"));
 	if (tokens->token == INVALID)
 		return (put_error_message(tokens->cont));
+	if (tokens->next == NULL)
+		return (put_error_message("newline"));
 	if (tokens->next->token == PIPE)
 		return (put_error_message(tokens->next->cont));
 	if (!is_pipe && tokens->next->token == REDIRECT)

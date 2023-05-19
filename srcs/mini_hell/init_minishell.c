@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:39:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/18 11:13:32 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:34:59 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	ft_start_fds(void)
 
 void	init_data_line(void)
 {
-	g_data.exit_status = 0;
 	g_data.tml_line = NULL;
 	g_data.input = NULL;
 	g_data.tokens = NULL;
@@ -56,6 +55,7 @@ void	init_data_line(void)
 
 int	init_data(char **envp)
 {
+	g_data.exit_status = 0;
 	if (!init_envp(envp))
 		terminate(ERR_ENVP_ALLOC);
 	ft_start_fds();

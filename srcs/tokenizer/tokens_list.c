@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:07:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/17 15:17:20 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:34:19 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ void	make_tokens_list(void)
 	int		end;
 
 	init = 0;
-	while (g_data.input[init] && g_data.input[init + 1])
+	while (g_data.input[init])
 	{
 		end = 0;
-		while (is_whitespace(g_data.input[init]))
+		while (g_data.input[init] && is_whitespace(g_data.input[init]))
 			init++;
-		while (!is_whitespace(g_data.input[init + end]))
+		while (g_data.input[init] && !is_whitespace(g_data.input[init + end]))
 		{
 			if ((is_redirect(g_data.input[init + end])
 					|| is_pipe(g_data.input[init + end])
@@ -92,7 +92,8 @@ void	make_tokens_list(void)
 			}
 			end++;
 		}
-		new_node_tokens(ft_substr(g_data.input, init, end));
+		if (end > 0)
+			new_node_tokens(ft_substr(g_data.input, init, end));
 		init += end;
 	}
 }
