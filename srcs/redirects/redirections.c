@@ -6,25 +6,33 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:46:40 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/19 00:12:32 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:09:33 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static char	**aux_malloc(char **cmd)
+{
+	int		size;
+	char	**aux;
+
+	size = check_str(cmd);
+	aux = malloc(sizeof(char *) * (size + 1));
+	return (aux);
+}
 
 char	**redirections_handle_str(char **cmd)
 {
 	char	**aux;
 	int		i;
 	int		j;
-	int		size;
 	t_redir	*redir;
 
 	i = 0;
 	j = 0;
 	redir = NULL;
-	size = check_str(cmd);
-	aux = malloc(sizeof(char *) * (size + 1));
+	aux = aux_malloc(cmd);
 	start_redirection(&redir);
 	while (cmd && cmd[i])
 	{
@@ -53,37 +61,17 @@ t_cmd	*adjust_cmd(char **aux, t_cmd *cmd)
 	return (cmd);
 }
 
-int	check_temp(char **str)
-{
-	int	index;
-	int	redir;
-
-	index = 0;
-	redir = 0;
-	while (str[index])
-	{
-		if (check_redirect(str[index]))
-		{
-			redir += 2;
-		}
-		index++;
-	}
-	return (redir);
-}
-
 void	redirections_handle(t_cmd **cmd, t_redir **redir)
 {
 	char	**aux;
 	int		i;
 	int		j;
-	int		size;
 
 	i = 0;
 	j = 0;
-	if (!check_temp((*cmd)->cmd))
+	if (!check_if_redir((*cmd)->cmd))
 		return ;
-	size = check_str((*cmd)->cmd);
-	aux = malloc(sizeof(char *) * (size + 1));
+	aux = aux_malloc((*cmd)->cmd);
 	start_redirection(redir);
 	while ((*cmd)->cmd && (*cmd)->cmd[i])
 	{
