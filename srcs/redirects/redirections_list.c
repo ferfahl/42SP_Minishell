@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:56:04 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/18 10:57:07 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:44:29 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	start_redirection(t_redir **redirection)
 	(*redirection)->next = NULL;
 }
 
-void	keep_redir(char *symbol, char *key_word)
+void	keep_redir(t_redir *redir, char *symbol, char *key_word)
 {
 	t_redir	*aux;
 	t_redir	*temp;
 
-	aux = g_data.redir->head_redir;
+	aux = redir;
 	if (aux->symbol == NULL)
 	{
 		aux->symbol = ft_strdup(symbol);
@@ -40,17 +40,33 @@ void	keep_redir(char *symbol, char *key_word)
 	aux->next = temp;
 }
 
-void	redir_list(void)
+void	redir_list(t_redir *redir)
 {
 	t_redir	*aux;
 
-	aux = g_data.redir->head_redir;
+	aux = redir;
 	while (aux)
 	{
-		redirect_function(aux->symbol, aux->key_word);
+		redirect_function(aux);
 		if (aux->next == NULL)
 			break ;
 		aux = aux->next;
 	}
-	free_redirects(&g_data.redir->head_redir);
+	free_redirects(&redir);
+}
+
+int	check_if_redir(char **str)
+{
+	int	index;
+
+	index = 0;
+	while (str[index])
+	{
+		if (check_redirect(str[index]))
+		{
+			return (TRUE);
+		}
+		index++;
+	}
+	return (FALSE);
 }

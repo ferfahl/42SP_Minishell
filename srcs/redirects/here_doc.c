@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:17:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/18 10:52:45 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:50:37 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	clear_here_doc(void)
 {
 	free(g_data.input);
 	ft_free_array(g_data.path);
-	free_redirects(&g_data.redir->head_redir);
 	free_cmd();
 	free_quotes();
 	free_token();
@@ -28,7 +27,7 @@ void	clear_here_doc(void)
 	exit(0);
 }
 
-static void	loop_here_doc(int *fd, char *eof)
+static void	loop_here_doc(t_redir *redir, int *fd, char *eof)
 {
 	char	*input;
 
@@ -42,6 +41,7 @@ static void	loop_here_doc(int *fd, char *eof)
 			close(fd[0]);
 			print_list(fd[1]);
 			close(fd[1]);
+			free_redirects(&redir);
 			clear_here_doc();
 		}
 		if (*input)
@@ -50,7 +50,7 @@ static void	loop_here_doc(int *fd, char *eof)
 	}
 }
 
-int	ft_here_doc(char *eof)
+int	ft_here_doc(t_redir *redir, char *eof)
 {
 	int		pid;
 	int		fd[2];
@@ -64,7 +64,7 @@ int	ft_here_doc(char *eof)
 	if (pid == 0)
 	{
 		signal_handler_heredoc();
-		loop_here_doc(fd, eof);
+		loop_here_doc(redir, fd, eof);
 	}
 	waitpid(pid, NULL, 0);
 	signals_handler();

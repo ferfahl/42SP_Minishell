@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:24 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/18 11:12:09 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:46:44 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_commands	t_cmd;
 
 typedef struct	s_redir
 {
+	int			fd[2];
 	char		*symbol;
 	char		*key_word;
 	struct s_redir	*next;
@@ -29,7 +30,6 @@ typedef struct s_redirect
 	int				fd_in;
 	int				fd_out;
 	int				has_redir;
-	struct s_redir	*head_redir;
 }			t_redirect;
 
 typedef struct s_hdoc
@@ -39,16 +39,17 @@ typedef struct s_hdoc
 }			t_hdoc;
 
 // redirects/redirections_list.c
-void	redir_list(void);
-void	keep_redir(char *symbol, char *key_word);
+void	redir_list(t_redir *redir);
+void	keep_redir(t_redir *redir, char *symbol, char *key_word);
 void	start_redirection(t_redir **redirection);
+int		check_if_redir(char **str);
 
 // redirects/redirections.c
-void	redirections_handle(t_cmd **cmd);
+void	redirections_handle(t_cmd **cmd, t_redir **redir);
 char	**redirections_handle_str(char **cmd);
 
 // redirects/execute_redir.c
-void	redirect_function(char *redir, char *key_word);
+void	redirect_function(t_redir *redir);
 
 // redirects/check_redir.c
 int		check_redirect(char *cmd_line);
@@ -56,7 +57,7 @@ int		check_redir_syntax(char *input);
 int		check_str(char **str);
 
 // redirects/here_doc.c
-int		ft_here_doc(char *eof);
+int		ft_here_doc(t_redir *redir, char *eof);
 void	clear_here_doc(void);
 
 // redirects/here_doc_list.c

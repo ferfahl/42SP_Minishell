@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:39:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/18 11:07:44 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 22:26:43 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	ft_start_fds(void)
 	new = (t_redirect *)malloc(sizeof(t_redirect));
 	new->fd_in = dup(STDIN_FILENO);
 	new->fd_out = dup(STDOUT_FILENO);
-	new->head_redir = NULL;
 	g_data.redir = new;
 }
 
