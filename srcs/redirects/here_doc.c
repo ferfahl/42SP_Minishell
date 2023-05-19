@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:17:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/18 10:52:45 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 22:27:31 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	clear_here_doc(void)
 {
 	free(g_data.input);
 	ft_free_array(g_data.path);
-	free_redirects(&g_data.redir->head_redir);
 	free_cmd();
 	free_quotes();
 	free_token();

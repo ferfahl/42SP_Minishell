@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/18 19:59:28 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 22:51:15 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static int	check_recursive(t_cmd *cmd, t_redir **redir)
 
 void	child_process(t_redir *redir, int *fd, int recursive, int piped, t_cmd *cmd)
 {
-	// ft_printf("hello\n");
 	if (dup2(recursive, fd[0]))
 		dup2(fd[0], STDIN_FILENO);
 	else
@@ -84,6 +83,7 @@ static int	recursive_function(t_cmd *cmd, int piped)
 		child_process(redir, fd, recursive, piped, cmd);
 	}
 	waitpid(pid, NULL, 0);
+	free_redirects(&redir);
 	close(fd[1]);
 	return (fd[0]);
 }

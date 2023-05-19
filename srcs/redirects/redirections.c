@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:46:40 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/18 18:46:53 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 00:12:32 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,24 @@ t_cmd	*adjust_cmd(char **aux, t_cmd *cmd)
 	return (cmd);
 }
 
+int	check_temp(char **str)
+{
+	int	index;
+	int	redir;
+
+	index = 0;
+	redir = 0;
+	while (str[index])
+	{
+		if (check_redirect(str[index]))
+		{
+			redir += 2;
+		}
+		index++;
+	}
+	return (redir);
+}
+
 void	redirections_handle(t_cmd **cmd, t_redir **redir)
 {
 	char	**aux;
@@ -62,6 +80,8 @@ void	redirections_handle(t_cmd **cmd, t_redir **redir)
 
 	i = 0;
 	j = 0;
+	if (!check_temp((*cmd)->cmd))
+		return ;
 	size = check_str((*cmd)->cmd);
 	aux = malloc(sizeof(char *) * (size + 1));
 	start_redirection(redir);
@@ -79,5 +99,4 @@ void	redirections_handle(t_cmd **cmd, t_redir **redir)
 	}
 	aux[j] = NULL;
 	*cmd = adjust_cmd(aux, *cmd);
-	// redir_list();
 }
