@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/19 11:31:39 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:53:12 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static int	check_recursive(t_cmd *cmd, t_redir **redir)
 	if (!cmd->cmd[0])
 	{
 		redir_list(*redir);
-		free_redirects(redir);
 		return (FALSE);
 	}
 	if (!cmd->path && !is_builtin(cmd->cmd[0]))
@@ -78,11 +77,6 @@ static int	recursive_function(t_cmd *cmd, int piped)
 	if (pid == 0)
 	{
 		cmd->recursive = recursive_function(cmd->next, TRUE);
-		if (cmd->recursive)
-		{
-			close(g_data.redir->fd_in);
-			close(g_data.redir->fd_out);
-		}
 		child_process(redir, fd, piped, cmd);
 	}
 	waitpid(pid, NULL, 0);

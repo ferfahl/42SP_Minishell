@@ -66,7 +66,6 @@ SRC_LIST		=	$(MINISHELL_PATH)terminal_line.c		\
 					$(TOKENIZER_PATH)tokens_list.c			\
 					$(TOKENIZER_PATH)syntax_analysis.c		\
 					minishell.c								\
-					# test.c									\
 
 SRCS			= $(addprefix $(SRC_DIR), $(SRC_LIST))
 
@@ -122,7 +121,7 @@ run: all
 	./$(NAME)
 
 val:
-	valgrind --leak-check=full --show-leak-kinds=all --suppressions=./readline.supp -q ./$(NAME)
+	valgrind --track-fds=yes --trace-children=yes --leak-check=full --show-leak-kinds=all --suppressions=./readline.supp -q ./$(NAME)
 # --track-fds=yes --trace-children=yes
 re: fclean all
 
