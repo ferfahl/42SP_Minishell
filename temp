@@ -1,0 +1,16 @@
+total 396
+drwxr-xr-x  7 ferfahl ferfahl   4096 May 19 11:15 .
+drwxr-xr-x  9 ferfahl ferfahl   4096 May 11 17:04 ..
+drwxr-xr-x  8 ferfahl ferfahl   4096 May 19 11:10 .git
+-rw-r--r--  1 ferfahl ferfahl     42 May  8 11:30 .gitignore
+-rw-r--r--  1 ferfahl ferfahl   4061 May 18 15:17 Makefile
+-rw-r--r--  1 ferfahl ferfahl    343 May 18 15:17 checklist.txt
+drwxr-xr-x  2 ferfahl ferfahl   4096 May 18 15:17 includes
+drwxr-xr-x  3 ferfahl ferfahl   4096 Apr 19 18:12 libs
+-rwxr-xr-x  1 ferfahl ferfahl 350920 May 19 11:09 minishell
+drwxr-xr-x 12 ferfahl ferfahl   4096 May 19 11:09 objects
+-rw-r--r--  1 ferfahl ferfahl   3213 May 19 11:10 out
+-rw-r--r--  1 ferfahl ferfahl    197 Apr 19 18:12 readline.supp
+drwxr-xr-x 12 ferfahl ferfahl   4096 May 18 10:44 srcs
+-rw-r--r--  1 ferfahl ferfahl      0 May 19 11:15 temp
+-rw-r--r--  1 ferfahl ferfahl      9 May 19 11:10 teste

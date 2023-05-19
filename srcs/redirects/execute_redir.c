@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 12:12:07 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/18 13:50:26 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:25:16 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	redirect_function(char *redir, char *key_word)
 	int		fd;
 
 	i = 0;
+
 	if (redir[i] == '>')
 	{
 		if (redir[i + 1] && redir[++i] == '>')

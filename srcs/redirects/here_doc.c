@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:17:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/18 22:27:31 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:20:19 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	ft_here_doc(char *eof)
 	int		pid;
 	int		fd[2];
 
+ft_printf("here_doc\n");
 	pipe(fd);
 	pid = fork();
 	start_hd(&g_data.hdoc);

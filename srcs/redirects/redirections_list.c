@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:56:04 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/19 11:08:14 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:29:07 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	redir_list(t_redir *redir)
 	{
 		redirect_function(aux->symbol, aux->key_word);
 		ft_putstr_fd(aux->symbol, 2);
+		ft_putstr_fd(" ", 2);
 		ft_putendl_fd(aux->key_word, 2);
 		if (aux->next == NULL)
 			break ;
@@ -60,17 +61,15 @@ void	redir_list(t_redir *redir)
 int	check_if_redir(char **str)
 {
 	int	index;
-	int	redir;
 
 	index = 0;
-	redir = 0;
 	while (str[index])
 	{
 		if (check_redirect(str[index]))
 		{
-			redir += 2;
+			return (TRUE);
 		}
 		index++;
 	}
-	return (redir);
+	return (FALSE);
 }
