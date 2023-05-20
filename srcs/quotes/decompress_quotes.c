@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   decompress_quotes.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 02:05:58 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/06 18:10:54 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/20 20:44:37 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,18 @@ static char	*insert_compressed_txt(char *cmd, char *insert)
 	return (new);
 }
 
+static int	decompress_envp_quotes(char **cmd)
+{
+	int		control;
+
+	if (*cmd[0] == '~')
+		check_tilde(cmd);
+	control = ft_istrchr(*cmd, '$');
+	while (ft_strnstr(*cmd + control, "$", ft_strlen(*cmd)))
+		control = new_decompress_environment(cmd, control);
+	return (TRUE);
+}
+
 void	decompress_quotes(char **cmd)
 {
 	t_quotes	*quots;
@@ -63,8 +75,7 @@ void	decompress_quotes(char **cmd)
 				if (ft_atoi(cmd[index] + init + 2) == quots->pos)
 				{
 					if (quots->envp)
-						decompress_environment(&quots->cont,
-							ft_strlen(quots->cont));
+						decompress_envp_quotes(&quots->cont);
 					cmd[index] = insert_compressed_txt(cmd[index], quots->cont);
 					break ;
 				}

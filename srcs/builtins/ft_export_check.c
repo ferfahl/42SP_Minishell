@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:25:27 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/09 01:54:44 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/20 17:36:36 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	is_varname(char c)
+int	is_varname(char c)
 {
 	return (ft_isalnum(c) || c == '_');
 }

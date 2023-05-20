@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:57 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/08 14:23:52 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/20 20:44:42 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	free_envp(void);
 // environment/decompress_environment.c
 void	decompress_environment(char **input, int size);
 int		decompress_envp(char **cmd);
+int	new_decompress_environment(char **input, int control);
 
 // environment/decompress_tilde.c
 void	check_tilde(char **input);

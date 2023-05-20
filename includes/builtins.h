@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 10:21:38 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/09 00:24:57 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/20 17:36:22 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int		check_export_error(char *input);
 
 //ft_export.c
 void	ft_export(char **input);
+int		is_varname(char c);
 
 //ft_pwd.c
 void	ft_pwd(void);
