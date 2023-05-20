@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 02:05:58 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/20 20:44:37 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/20 20:46:01 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	decompress_envp_quotes(char **cmd)
 		check_tilde(cmd);
 	control = ft_istrchr(*cmd, '$');
 	while (ft_strnstr(*cmd + control, "$", ft_strlen(*cmd)))
-		control = new_decompress_environment(cmd, control);
+		control = decompress_environment(cmd, control);
 	return (TRUE);
 }
 

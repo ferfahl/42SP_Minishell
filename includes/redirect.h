@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:24 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/19 11:46:44 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/20 20:50:27 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@
 
 typedef struct s_commands	t_cmd;
 
-typedef struct	s_redir
+typedef struct s_redir
 {
-	int			fd[2];
-	char		*symbol;
-	char		*key_word;
+	int				fd[2];
+	char			*symbol;
+	char			*key_word;
 	struct s_redir	*next;
-}		t_redir;
+}	t_redir;
 
 typedef struct s_redirect
 {
 	int				fd_in;
 	int				fd_out;
 	int				has_redir;
-}			t_redirect;
+}	t_redirect;
 
 typedef struct s_hdoc
 {
 	char			*line;
 	struct s_hdoc	*next;
-}			t_hdoc;
+}	t_hdoc;
 
 // redirects/redirections_list.c
 void	redir_list(t_redir *redir);

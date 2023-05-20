@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:00:36 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/20 20:05:45 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/20 20:49:05 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_tokenizer
 }	t_token;
 
 // lexical_analyzer.c
-int 	analysis_environment_token(const t_token *tokens);
 int		lexical_analyzer(void);
 
 // tokens_list.c
