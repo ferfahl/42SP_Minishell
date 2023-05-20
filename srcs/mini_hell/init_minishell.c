@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:39:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/19 11:34:59 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:04:26 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,13 @@ static int	init_path(void)
 	return (TRUE);
 }
 
-void	ft_start_fds(void)
+static void	ft_start_fds(void)
 {
 	t_redirect	*new;
 
 	new = (t_redirect *)malloc(sizeof(t_redirect));
 	new->fd_in = dup(STDIN_FILENO);
 	new->fd_out = dup(STDOUT_FILENO);
-	new->head_redir = NULL;
-	// new->head_redir->symbol = NULL;
-	// new->head_redir->key_word = NULL;
-	// new->head_redir->next = NULL;
 	g_data.redir = new;
 }
 

@@ -35,8 +35,8 @@ SRC_LIST		=	$(MINISHELL_PATH)terminal_line.c		\
 					$(ENVP_PATH)decompress_environment.c	\
 					$(ENVP_PATH)decompress_tilde.c			\
 					$(SIGNALS_PATH)signals.c				\
+					$(SIGNALS_PATH)signals_hdoc.c			\
 					$(EXECUTE_PATH)commands.c				\
-					$(EXECUTE_PATH)commands_utils.c			\
 					$(EXECUTE_PATH)commands_builtin.c		\
 					$(EXECUTE_PATH)executables.c			\
 					$(COMMANDS_PATH)commands_list.c			\
@@ -51,7 +51,9 @@ SRC_LIST		=	$(MINISHELL_PATH)terminal_line.c		\
 					$(REDIRECT_PATH)check_redir.c			\
 					$(REDIRECT_PATH)execute_redir.c			\
 					$(REDIRECT_PATH)redirections.c			\
+					$(REDIRECT_PATH)redirections_list.c		\
 					$(REDIRECT_PATH)here_doc.c				\
+					$(REDIRECT_PATH)here_doc_list.c			\
 					$(BUILTINS_PATH)ft_pwd.c				\
 					$(BUILTINS_PATH)ft_cd.c					\
 					$(BUILTINS_PATH)ft_echo.c				\
@@ -64,7 +66,6 @@ SRC_LIST		=	$(MINISHELL_PATH)terminal_line.c		\
 					$(TOKENIZER_PATH)tokens_list.c			\
 					$(TOKENIZER_PATH)syntax_analysis.c		\
 					minishell.c								\
-					# test.c									\
 
 SRCS			= $(addprefix $(SRC_DIR), $(SRC_LIST))
 
@@ -121,7 +122,7 @@ run: all
 
 val:
 	valgrind --leak-check=full --show-leak-kinds=all --suppressions=./readline.supp -q ./$(NAME)
-
+# --track-fds=yes --trace-children=yes
 re: fclean all
 
 coffee:

@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/18 11:09:47 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:45:03 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_minishell
 	t_token		*tokens;
 	t_cmd		*cmd;
 	t_envp		*envp;
+	t_envp		*special;
 	t_quotes	*quotes;
 	t_redirect	*redir;
 	t_hdoc		*hdoc;
@@ -81,6 +82,9 @@ void		free_redir(void);
 // mini_hell/terminal_line
 char		*tml_get_pwd(void);
 char		*tml_user_and_host(void);
+
+// mini_hell/exit_minishell
+void	clear_fds(void);
 
 // mini_hell/free_minishell
 void		ft_free_array(char **arr);

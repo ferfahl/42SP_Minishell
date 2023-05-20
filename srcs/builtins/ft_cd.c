@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:23:49 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/09 12:18:22 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 11:06:47 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ static void	ft_cd_oldpwd(void)
 		ft_cd_error(NULL, "OLDPWD not set");
 	else
 		chdir(oldpwd);
-		// free(oldpwd);
-
 }
 
 void	ft_cd(char **input)

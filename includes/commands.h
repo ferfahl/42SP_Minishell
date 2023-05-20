@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:11 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/17 15:54:28 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:14:21 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 typedef struct s_commands
 {
+	int					recursive;
 	char				**cmd;
 	char				*path;
 	struct s_commands	*next;

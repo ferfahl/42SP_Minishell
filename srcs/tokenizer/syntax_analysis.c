@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:24:17 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/18 15:00:38 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:59:11 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	put_error_message(char *str)
 {
+	g_data.exit_status = 2;
 	ft_putstr("minishell: syntax error near unexpected token ");
 	ft_printf("`%s\'\n", str);
 	return (FALSE);

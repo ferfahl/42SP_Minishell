@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:18:32 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/16 16:10:08 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/18 11:56:05 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	check_redir_syntax(char *input)
 int	check_str(char **str)
 {
 	int	size;
-	int index;
+	int	index;
 	int	redir;
 
 	size = 0;

@@ -1,7 +1,7 @@
 commands (João)
 	✓ launch the right executable (./archive) {based on the path variable/relative or absolute path}
 função recursiva (fern)
-	□ redirections
+	✓ redirections
 		✓ > create archive
 		✓ >> append archive
 		✓ < open archive
@@ -9,33 +9,3 @@ função recursiva (fern)
 □ $? expand to the exit status of the mos recent pipeline (João)
 □ fix leaks
 □ norminette
-
-
-ideias sobre pipe && redir
-pipe(pipe_3) (jogando a entrada padrão pra saída do pipe 2, sem alterar saída padrão)
-entrada do pipe 2 chama o code_2
-pipe(pipe_2) (jogando a entrada padrão pra saída do pipe 1, jogando a saída padrão pra entrada do pipe 3) -> esse é o return
-entrada do pipe 2 chama o code_1
-pipe(pipe_1) (não encontra outro pipe, então chega ao fim da árvore recursiva e executa com a entrada padrão inicialmente, jogando a saída padrão pra entrada do pipe 1)
-[
-fecha a boca de escrita do pipe 1
-roda os redir existentes em code_1
-cria o char **cmd sem os redir
-roda o char** cmd
-]
-Retorna a boca de saída do pipe 1
-[
-fecha a boca de saída do pipe 1
-fecha a boca de escrita do pipe 2
-roda os redir existentes em code_2
-cria o char **cmd sem os redir
-roda o char** cmd
-]
-Retorna a boca de saída do pipe 2
-[
-fecha a boca de saída do pipe 2
-roda os redir existentes em code_2
-cria o char **cmd sem os redir
-roda o char** cmd
-]
-Os colchetes são na ordem: execução do code_1, execução do code_2, execução do code_3)

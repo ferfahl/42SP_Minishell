@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:10:00 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 10:58:55 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/18 10:54:00 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,8 @@
 // signals/signals.c
 void	signals_handler(void);
 void	signal_handler_child(void);
+
+// signals/signals_hdoc.c
+void	signal_handler_heredoc(void);
 
 #endif // SIGNALS_H

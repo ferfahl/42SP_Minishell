@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:49:16 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/17 19:29:17 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:08:45 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static int	new_node_envp(char *str)
 	size_name = 0;
 	new = (t_envp *)malloc(sizeof(t_envp));
 	if (!new)
-		return (FALSE);
+		terminate(ERR_ENVP_ALLOC);
 	while (str[size_name] && str[size_name] != '=')
 		size_name++;
 	new->name = ft_substr(str, 0, size_name);
 	new->cont = ft_substr(str, size_name + 1, ft_strlen(str) - size_name - 1);
 	new->next = NULL;
 	if (!new->name || !new->cont)
-		return (FALSE);
+		terminate(ERR_ENVP_ALLOC);
 	if (g_data.envp != NULL)
 	{
 		last = g_data.envp;
@@ -43,7 +43,7 @@ static int	new_node_envp(char *str)
 
 int	init_envp(char **envp)
 {
-	int	i;
+	int		i;
 
 	i = -1;
 	g_data.envp = NULL;
