@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_messages.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:36:53 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/10 18:15:09 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:42:44 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@
 
 # define ERR_PATH_NFOUND	"MINISHELL: envp PATH not found"
 # define ERR_PWD_NFOUND		"MINISHELL: envp PWD not found"
-# define ERR_PATH_ALLOC		"MINISHELL: Erro ao alocar memória path"
-# define ERR_HOSTNAME_ALLOC	"MINISHELL: Erro ao alocar memória hostname"
-# define ERR_PWD_ALLOC		"MINISHELL: Erro ao alocar memória pwd"
+# define ERR_PATH_ALLOC		"MINISHELL: error with alloc in path"
+# define ERR_HOSTNAME_ALLOC	"MINISHELL: error with alloc in hostname"
+# define ERR_PWD_ALLOC		"MINISHELL: error with alloc in pwd"
 
-# define ERR_CMD_ALLOC		"COMMAND: Erro ao alocar memória"
-# define ERR_FORK			"COMMAND: Erro na função fork"
+# define ERR_CMD_ALLOC		"COMMAND: error with alloc in"
+# define ERR_FORK			"COMMAND: error with fork"
 
-# define ERR_ENVP_ALLOC		"ENVIRONMENT: Erro ao alocar memória"
+# define ERR_ENVP_ALLOC		"ENVIRONMENT: error with alloc"
 
-# define ERR_INPUT_QUOTES	"INPUT: Erro ao comprimir aspas"
-# define ERR_QUOTES_ALLOC	"INPUT: Erro ao alocar memória no compressor"
+# define ERR_INPUT_QUOTES	"INPUT: error while compressing quotes"
+# define ERR_QUOTES_ALLOC	"INPUT: error with alloc in compressor"
 
-# define ERR_LEXER_ALLOC	"LEXER: Erro ao alocar memória"
+# define ERR_LEXER_ALLOC	"LEXER: error with alloc"
 
-# define ERR_SYNTAX			"SYNTAX: Erro de sintaxe"
+# define ERR_SYNTAX			"SYNTAX: sintax error"
 
 #endif //ERROR_MESSAGES_H
