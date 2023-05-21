@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/19 16:45:03 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/20 20:52:06 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char		*tml_get_pwd(void);
 char		*tml_user_and_host(void);
 
 // mini_hell/exit_minishell
-void	clear_fds(void);
+void		clear_fds(void);
 
 // mini_hell/free_minishell
 void		ft_free_array(char **arr);

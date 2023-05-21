@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:07:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/18 15:34:19 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/20 20:59:40 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ void	make_tokens_list(void)
 			init++;
 		while (g_data.input[init] && !is_whitespace(g_data.input[init + end]))
 		{
-			if ((is_redirect(g_data.input[init + end])
-					|| is_pipe(g_data.input[init + end])
-					|| is_invalid(g_data.input[init + end])))
+			if (is_redirect(g_data.input[init + end])
+				|| is_pipe(g_data.input[init + end])
+				|| is_invalid(g_data.input[init + end]))
 			{
 				if (!end && is_redirect(g_data.input[init + (++end)]))
 					end++;

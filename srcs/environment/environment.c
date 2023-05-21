@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 10:49:16 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/19 17:08:45 by joapedr2         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/05/20 20:57:56 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "environment.h"
 
@@ -65,7 +66,7 @@ char	*get_env(char *name)
 	aux = g_data.envp;
 	while (aux != NULL)
 	{
-		if (!ft_strncmp(aux->name, name, ft_strlen(aux->name)))
+		if (!ft_strncmp(aux->name, name, ft_strlen(name)))
 			return (aux->cont);
 		aux = aux->next;
 	}
