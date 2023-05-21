@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:27:42 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/20 21:16:36 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/20 21:26:45 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	decompress_environment(char **input, int control)
 	while (is_varname(*(*input + control + end + 1)))
 		end++;
 	if (*(*input + control + 1) == '?')
-		return(special_decompress(input, control));
+		return (special_decompress(input, control));
 	if (end > 0)
 		return (real_decompress(input, end, control));
 	return (control + 1);
