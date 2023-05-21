@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:23:49 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/21 03:18:39 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/21 15:31:26 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,19 @@ static void	ft_cd_oldpwd(void)
 		chdir(oldpwd);
 }
 
-void	ft_cd(char **input)
+void    ft_cd(char **input)
 {
-	char	*oldpwd;
+    char    *oldpwd;
 
-	oldpwd = get_env("PWD");
-	if (!input[1])
-		chdir(get_env("HOME"));
-	if (input[1] && input[2])
-		ft_cd_error(NULL, "too many arguments");
-	if (input[1] && input[1][0] == '-')
-		ft_cd_oldpwd();
-	else if (input[1] && chdir(input[1]))
-		ft_cd_error(input[1], "No such file or directory");
-	if (oldpwd)
-		update_pwd(oldpwd);
+    oldpwd = get_env("PWD");
+    if (!input[1])
+        chdir(get_env("HOME"));
+    else if (input[1] && input[2])
+        ft_cd_error(NULL, "too many arguments");
+    else if (input[1] && input[1][0] == '-')
+        ft_cd_oldpwd();
+    else if (input[1] && chdir(input[1]))
+        ft_cd_error(input[1], "No such file or directory");
+    if (oldpwd)
+        update_pwd(oldpwd);
 }
