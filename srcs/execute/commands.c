@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/19 15:34:03 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:40:21 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ static int	check_recursive(t_cmd *cmd, t_redir **redir)
 	if (!cmd->path && !is_builtin(cmd->cmd[0]))
 	{
 		g_data.exit_status = 127;
-		ft_printf("minishell: %s: command not found\n", cmd->cmd[0]);
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(cmd->cmd[0], 2);
+		ft_putstr_fd(": command not found\n", 2);
 		return (FALSE);
 	}
 	return (TRUE);
@@ -60,7 +62,7 @@ void	child_process(t_redir *redir, int *fd, int piped, t_cmd *cmd)
 	exit_builtin();
 }
 
-static int	recursive_function(t_cmd *cmd, int piped)
+static int	recursive_function(t_redir *aux, t_cmd *cmd, int piped)
 {
 	int		fd[2];
 	pid_t	pid;
@@ -76,7 +78,9 @@ static int	recursive_function(t_cmd *cmd, int piped)
 		terminate(ERR_FORK);
 	if (pid == 0)
 	{
-		cmd->recursive = recursive_function(cmd->next, TRUE);
+		if (piped)
+			free_redirects(&aux);
+		cmd->recursive = recursive_function(redir, cmd->next, TRUE);
 		child_process(redir, fd, piped, cmd);
 	}
 	waitpid(pid, NULL, 0);
@@ -88,7 +92,9 @@ static int	recursive_function(t_cmd *cmd, int piped)
 int	run_command(void)
 {
 	t_cmd	*aux;
+	t_redir	*redir;
 
+	redir = NULL;
 	aux = g_data.cmd;
 	while (aux != NULL)
 	{
@@ -100,7 +106,7 @@ int	run_command(void)
 	g_data.exit_status = 0;
 	if (!g_data.cmd->next && is_builtin(g_data.cmd->cmd[0]))
 		return (execute_builtin(g_data.cmd->cmd, 42));
-	recursive_function(g_data.cmd, FALSE);
+	recursive_function(redir, g_data.cmd, FALSE);
 	dup2(g_data.redir->fd_in, STDIN_FILENO);
 	dup2(g_data.redir->fd_out, STDOUT_FILENO);
 	free_quotes();
