@@ -3,49 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   decompress_environment.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:27:42 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/09 01:20:28 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/20 21:26:45 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environment.h"
 
-void	decompress_environment(char **input, int size)
+static int	real_decompress(char **input, int end, int control)
 {
-	char	*aux_init;
-	int		init;
-	char	*temp;
+	char	*init;
+	char	*rest;
 	char	*envp;
 	char	*cont;
 
-	while (ft_strnstr(*input, "$", size))
-	{
-		init = ft_istrchr(*input, '$');
-		envp = (*input + init + 1);
-		cont = get_env(envp);
-		if (!cont)
-			cont = "";
-		aux_init = ft_substr(*input, 0, init);
-		temp = ft_strjoin_free(aux_init, cont);
-		while (*envp && ft_isalnum(*envp))
-			envp++;
-		if (envp)
-			temp = ft_strjoin_free(temp, envp);
-		free(*input);
-		*input = temp;
-	}
-	if (*input[0] == '~')
-		check_tilde(input);
+	if (control)
+		init = ft_substr(*input, 0, control);
+	else
+		init = ft_strdup("");
+	rest = ft_substr(*input, control + end + 1, ft_strlen(*input));
+	envp = ft_substr(*input, control + 1, end);
+	cont = get_env(envp);
+	if (!cont)
+		cont = "";
+	control += ft_strlen(cont);
+	free(*input);
+	*input = ft_strjoin_free(init, cont);
+	*input = ft_strjoin_free(*input, rest);
+	free(envp);
+	free(rest);
+	return (control);
+}
+
+static int	special_decompress(char **input, int control)
+{
+	char	*init;
+	char	*rest;
+	char	*cont;
+
+	if (control)
+		init = ft_substr(*input, 0, control);
+	else
+		init = ft_strdup("");
+	rest = ft_substr(*input, control + 2, ft_strlen(*input));
+	cont = ft_itoa(g_data.exit_status);
+	control += ft_strlen(cont);
+	free(*input);
+	*input = ft_strjoin_free(init, cont);
+	*input = ft_strjoin_free(*input, rest);
+	free(rest);
+	free(cont);
+	return (control);
+}
+
+int	decompress_environment(char **input, int control)
+{
+	int		end;
+
+	end = 0;
+	while (is_varname(*(*input + control + end + 1)))
+		end++;
+	if (*(*input + control + 1) == '?')
+		return (special_decompress(input, control));
+	if (end > 0)
+		return (real_decompress(input, end, control));
+	return (control + 1);
 }
 
 int	decompress_envp(char **cmd)
 {
 	int		index;
+	int		control;
 
 	index = -1;
 	while (cmd[++index] != NULL)
-		decompress_environment(&cmd[index], ft_strlen(cmd[index]));
+	{
+		if (cmd[index][0] == '~')
+			check_tilde(&cmd[index]);
+		control = ft_istrchr(cmd[index], '$');
+		while (ft_strnstr(cmd[index] + control, "$", ft_strlen(cmd[index])))
+			control = decompress_environment(&cmd[index], control);
+	}
 	return (TRUE);
 }

@@ -6,11 +6,12 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 12:07:51 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/17 15:32:00 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:34:49 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
+#include <sys/stat.h>
 
 static int	check_executable(t_cmd *aux)
 {
@@ -29,7 +30,7 @@ static int	check_executable(t_cmd *aux)
 	if (end != init)
 	{
 		aux->path = ft_strdup(aux->cmd[0]);
-		temp = ft_substr(aux->cmd[0], init, end);
+		temp = ft_substr(aux->cmd[0], init + 1, end);
 		free (aux->cmd[0]);
 		aux->cmd[0] = temp;
 	}

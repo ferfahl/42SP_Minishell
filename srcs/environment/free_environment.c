@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_environment.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 10:55:19 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/09 15:11:23 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:08:53 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,4 @@ void	free_envp(void)
 		aux = temp;
 		temp = NULL;
 	}
-	g_data.envp = NULL;
 }

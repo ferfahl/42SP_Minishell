@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:56:04 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/19 11:44:29 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:13:57 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

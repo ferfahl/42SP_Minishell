@@ -121,7 +121,7 @@ run: all
 	./$(NAME)
 
 val:
-	valgrind --track-fds=yes --trace-children=yes --leak-check=full --show-leak-kinds=all --suppressions=./readline.supp -q ./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --suppressions=./readline.supp -q ./$(NAME)
 # --track-fds=yes --trace-children=yes
 re: fclean all
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/19 11:53:12 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:34:03 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 void	exeggcute(char *path, char **cmd, t_envp *mini_env)
 {
-	int		check;
 	char	**envp;
 
 	envp = ft_mini_to_envp(mini_env);
-	check = execve(path, cmd, envp);
+	g_data.exit_status = execve(path, cmd, envp);
 	ft_printf("Error: execve failed\n");
-	exit(check);
+	exit(g_data.exit_status);
 }
 
 static int	check_recursive(t_cmd *cmd, t_redir **redir)
@@ -36,6 +35,7 @@ static int	check_recursive(t_cmd *cmd, t_redir **redir)
 	}
 	if (!cmd->path && !is_builtin(cmd->cmd[0]))
 	{
+		g_data.exit_status = 127;
 		ft_printf("minishell: %s: command not found\n", cmd->cmd[0]);
 		return (FALSE);
 	}
@@ -97,6 +97,7 @@ int	run_command(void)
 		aux = aux->next;
 	}
 	executables_files();
+	g_data.exit_status = 0;
 	if (!g_data.cmd->next && is_builtin(g_data.cmd->cmd[0]))
 		return (execute_builtin(g_data.cmd->cmd, 42));
 	recursive_function(g_data.cmd, FALSE);

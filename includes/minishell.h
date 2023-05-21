@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/18 14:13:24 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/20 20:52:06 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,20 @@ typedef struct s_quotes
 
 typedef struct s_minishell
 {
-	int			exit_code;
 	char		*input;
 	char		*tml_host;
 	char		*tml_line;
 	char		*home;
 	char		**path;
+	int			exit_status;
 	t_token		*tokens;
 	t_cmd		*cmd;
 	t_envp		*envp;
+	t_envp		*special;
 	t_quotes	*quotes;
 	t_redirect	*redir;
 	t_hdoc		*hdoc;
 	t_sigaction	sa_signal;
-	pid_t		pid;
 }	t_minishell;
 
 extern t_minishell			g_data;
@@ -84,7 +84,7 @@ char		*tml_get_pwd(void);
 char		*tml_user_and_host(void);
 
 // mini_hell/exit_minishell
-void	clear_fds(void);
+void		clear_fds(void);
 
 // mini_hell/free_minishell
 void		ft_free_array(char **arr);

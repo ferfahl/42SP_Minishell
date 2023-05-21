@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 10:49:16 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/08 14:21:08 by feralves         ###   ########.fr       */
+/*   Created: 2023/05/10 15:00:36 by joapedr2          #+#    #+#             */
+/*   Updated: 2023/05/20 21:27:00 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static int	new_node_envp(char *str)
 	size_name = 0;
 	new = (t_envp *)malloc(sizeof(t_envp));
 	if (!new)
-		return (FALSE);
+		terminate(ERR_ENVP_ALLOC);
 	while (str[size_name] && str[size_name] != '=')
 		size_name++;
 	new->name = ft_substr(str, 0, size_name);
 	new->cont = ft_substr(str, size_name + 1, ft_strlen(str) - size_name - 1);
 	new->next = NULL;
 	if (!new->name || !new->cont)
-		return (FALSE);
+		terminate(ERR_ENVP_ALLOC);
 	if (g_data.envp != NULL)
 	{
 		last = g_data.envp;
@@ -43,7 +43,7 @@ static int	new_node_envp(char *str)
 
 int	init_envp(char **envp)
 {
-	int	i;
+	int		i;
 
 	i = -1;
 	g_data.envp = NULL;
@@ -65,7 +65,7 @@ char	*get_env(char *name)
 	aux = g_data.envp;
 	while (aux != NULL)
 	{
-		if (!ft_strncmp(aux->name, name, ft_strlen(aux->name)))
+		if (!ft_strncmp(aux->name, name, ft_strlen(name)))
 			return (aux->cont);
 		aux = aux->next;
 	}
