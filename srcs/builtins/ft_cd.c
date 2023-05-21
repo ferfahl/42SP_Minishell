@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:23:49 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/18 11:06:47 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:18:39 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	ft_cd_error(char *input, char *msg)
 {
+	g_data.exit_status = 1;
 	ft_putstr_fd("minishell: cd: ", 1);
 	if (input)
 	{

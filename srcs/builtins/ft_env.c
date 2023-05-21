@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:24:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/19 16:43:43 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:17:18 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	ft_env_error(char *nextinline)
 {
+	g_data.exit_status = 127;
 	ft_putstr_fd("minishell: env: ‘", 1);
 	ft_putstr_fd(nextinline, 1);
 	ft_putstr_fd("’: invalid parameter", 1);

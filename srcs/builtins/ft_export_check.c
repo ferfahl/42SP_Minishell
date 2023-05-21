@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:25:27 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/20 17:36:36 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:19:27 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char	**ft_var_export(char *cmd)
 
 static int	print_export_error(char *input, char *message, int code)
 {
+	g_data.exit_status = 2;
 	ft_putstr_fd("minishell: export: ", 2);
 	if (code == 2)
 		ft_putstr_fd("`", 2);
