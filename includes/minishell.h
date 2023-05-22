@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/20 20:52:06 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/22 13:34:49 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,22 @@ typedef struct s_hdoc		t_hdoc;
 typedef struct s_quotes
 {
 	int				pos;
-	char			*cont;
 	int				envp;
+	char			*cont;
 	struct s_quotes	*next;
 }	t_quotes;
 
 typedef struct s_minishell
 {
+	int			exit_status;
+	int			cmd_count;
+	int			to_close;
 	char		*input;
 	char		*tml_host;
 	char		*tml_line;
 	char		*home;
 	char		**path;
-	int			exit_status;
+	pid_t		*pids;
 	t_token		*tokens;
 	t_cmd		*cmd;
 	t_envp		*envp;

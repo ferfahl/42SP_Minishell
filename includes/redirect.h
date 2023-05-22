@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:24 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/20 20:50:27 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:52:39 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	start_redirection(t_redir **redirection);
 int		check_if_redir(char **str);
 
 // redirects/redirections.c
-void	redirections_handle(t_cmd **cmd, t_redir **redir);
+void	redirections_handle(t_cmd **cmd);
 char	**redirections_handle_str(char **cmd);
 
 // redirects/execute_redir.c

@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:56:04 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/19 12:13:57 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:59:29 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	start_redirection(t_redir **redirection)
+void	start_redirection(t_redir **re_direct)
 {
-	(*redirection) = malloc(sizeof(t_redir));
-	(*redirection)->symbol = NULL;
-	(*redirection)->key_word = NULL;
-	(*redirection)->next = NULL;
+	(*re_direct) = malloc(sizeof(t_redir));
+	(*re_direct)->symbol = NULL;
+	(*re_direct)->key_word = NULL;
+	(*re_direct)->next = NULL;
 }
 
-void	keep_redir(t_redir *redir, char *symbol, char *key_word)
+void	keep_redir(t_redir *re_direct, char *symbol, char *key_word)
 {
 	t_redir	*aux;
 	t_redir	*temp;
 
-	aux = redir;
+	aux = re_direct;
 	if (aux->symbol == NULL)
 	{
 		aux->symbol = ft_strdup(symbol);
@@ -40,11 +40,13 @@ void	keep_redir(t_redir *redir, char *symbol, char *key_word)
 	aux->next = temp;
 }
 
-void	redir_list(t_redir *redir)
+void	redir_list(t_redir *re_direct)
 {
 	t_redir	*aux;
 
-	aux = redir;
+	if (!re_direct)
+		return ;
+	aux = re_direct;
 	while (aux)
 	{
 		redirect_function(aux);
@@ -52,7 +54,7 @@ void	redir_list(t_redir *redir)
 			break ;
 		aux = aux->next;
 	}
-	free_redirects(&redir);
+	free_redirects(&re_direct);
 }
 
 int	check_if_redir(char **str)

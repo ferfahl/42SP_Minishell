@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:46:40 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/19 11:09:33 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:00:48 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ char	**redirections_handle_str(char **cmd)
 	char	**aux;
 	int		i;
 	int		j;
-	t_redir	*redir;
+	t_redir	*re_direct;
 
 	i = 0;
 	j = 0;
-	redir = NULL;
+	re_direct = NULL;
 	aux = aux_malloc(cmd);
-	start_redirection(&redir);
+	start_redirection(&re_direct);
 	while (cmd && cmd[i])
 	{
 		if (cmd[i] && check_redirect(cmd[i]))
 		{
-			keep_redir(redir, cmd[i], cmd[i + 1]);
+			keep_redir(re_direct, cmd[i], cmd[i + 1]);
 			i++;
 		}
 		else
@@ -47,7 +47,7 @@ char	**redirections_handle_str(char **cmd)
 			break ;
 	}
 	aux[j] = NULL;
-	redir_list(redir);
+	redir_list(re_direct);
 	return (aux);
 }
 
@@ -61,7 +61,7 @@ t_cmd	*adjust_cmd(char **aux, t_cmd *cmd)
 	return (cmd);
 }
 
-void	redirections_handle(t_cmd **cmd, t_redir **redir)
+void	redirections_handle(t_cmd **cmd)
 {
 	char	**aux;
 	int		i;
@@ -72,12 +72,12 @@ void	redirections_handle(t_cmd **cmd, t_redir **redir)
 	if (!check_if_redir((*cmd)->cmd))
 		return ;
 	aux = aux_malloc((*cmd)->cmd);
-	start_redirection(redir);
+	start_redirection(&(*cmd)->re_direct);
 	while ((*cmd)->cmd && (*cmd)->cmd[i])
 	{
 		if (check_redirect((*cmd)->cmd[i]))
 		{
-			keep_redir(*redir, (*cmd)->cmd[i], (*cmd)->cmd[i + 1]);
+			keep_redir((*cmd)->re_direct, (*cmd)->cmd[i], (*cmd)->cmd[i + 1]);
 			i++;
 		}
 		else

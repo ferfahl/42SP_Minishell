@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:20:35 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/19 13:01:45 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:45:58 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	terminate(char *s)
 
 void	exit_builtin(void)
 {
-	dup2(g_data.redir->fd_in, STDIN_FILENO);
-	dup2(g_data.redir->fd_out, STDOUT_FILENO);
 	free_line();
 	free_envp();
 	free_redir();
