@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 02:06:11 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/22 16:50:33 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:28:50 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	exeggutor(t_cmd *cmd)
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(cmd->cmd[0], 2);
 		ft_putstr_fd(": command not found\n", 2);
-		//free exit_builtin();
 		return ;
 	}
 	while (g_data.pids[i] != 0)
@@ -45,6 +44,7 @@ void	exeggutor(t_cmd *cmd)
 		if (g_data.to_close > 0)
 			close(g_data.to_close);
 		clear_fds();
+		free(g_data.pids);
 		if (!execute_builtin(cmd->cmd, 0))
 			exeggcute(cmd->path, cmd->cmd, g_data.envp);
 		exit_builtin();

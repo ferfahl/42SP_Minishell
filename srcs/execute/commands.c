@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/22 16:49:08 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:28:32 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	run_cmd(t_cmd *cmd)
 
 void	run_command(t_cmd *cmd)
 {
-	// t_cmd	*aux;
 	int		status;
 	int		i;
 
@@ -33,15 +32,11 @@ void	run_command(t_cmd *cmd)
 	status = 0;
 	if (g_data.cmd_count > 0)
 		g_data.pids = (pid_t *)ft_calloc(sizeof(pid_t), g_data.cmd_count + 1);
-	// aux = cmd;
 	while (cmd)
 	{
 		run_cmd(cmd);
 		cmd = cmd->next;
-		// if (hell->here_code == 1)
-		// 	break ;
 	}
-	// free cmd
 	dup2(g_data.redir->fd_in, STDIN_FILENO);
 	dup2(g_data.redir->fd_out, STDOUT_FILENO);
 	if (g_data.cmd_count > 0)
@@ -49,7 +44,7 @@ void	run_command(t_cmd *cmd)
 			waitpid(g_data.pids[i], &status, 0);
 	if (g_data.cmd_count > 1)
 		close(g_data.to_close);
-	// ft_endline(status); //free end line
+	free (g_data.pids);
 }
 
 void	count_cmds(t_cmd **cmd)
