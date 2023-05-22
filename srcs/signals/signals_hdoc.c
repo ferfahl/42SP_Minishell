@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:47:03 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/19 12:51:38 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/21 15:42:52 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ static void	signint_doc(int sig)
 
 void	signal_handler_heredoc(void)
 {
-	signal(SIGINT, signint_doc);
+	signal(SIGINT, &signint_doc);
 	signal(SIGQUIT, SIG_IGN);
 }
