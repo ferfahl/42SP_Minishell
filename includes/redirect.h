@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:24 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/22 14:52:39 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:48:01 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int		check_if_redir(char **str);
 // redirects/redirections.c
 void	redirections_handle(t_cmd **cmd);
 char	**redirections_handle_str(char **cmd);
+void	run_pipe(t_cmd *cmd, int i);
 
 // redirects/execute_redir.c
 void	redirect_function(t_redir *redir);

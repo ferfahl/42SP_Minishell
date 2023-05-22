@@ -6,67 +6,11 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/22 16:34:05 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:49:08 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
-
-void	exeggcute(char *path, char **cmd, t_envp *mini_env)
-{
-	char	**envp;
-
-	envp = ft_mini_to_envp(mini_env);
-	g_data.exit_status = execve(path, cmd, envp);
-	ft_printf("Error: execve failed\n");
-	exit(g_data.exit_status);
-}
-
-void	exeggutor(t_cmd *cmd)
-{
-	int	i;
-
-	i = 0;
-	if (!cmd->path && !is_builtin(cmd->cmd[0]))
-	{
-		g_data.exit_status = 127;
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(cmd->cmd[0], 2);
-		ft_putstr_fd(": command not found\n", 2);
-		//free exit_builtin();
-		return ;
-	}
-	while (g_data.pids[i] != 0)
-		i++;
-	*(g_data.pids + i) = fork();
-	signal_handler_child();
-	if (g_data.pids[i] == 0)
-	{
-		if (g_data.to_close > 0)
-			close(g_data.to_close);
-		clear_fds();
-		if (!execute_builtin(cmd->cmd, 0))
-			exeggcute(cmd->path, cmd->cmd, g_data.envp);
-		exit_builtin();
-	}
-}
-
-void	run_pipe(t_cmd *cmd, int i)
-{
-	if (i == 0)
-	{
-		pipe(cmd->pipe);
-		dup2(cmd->pipe[1], STDOUT_FILENO);
-		close(cmd->pipe[1]);
-		g_data.to_close = cmd->pipe[0];
-	}
-	if (i == 1)
-	{
-		dup2(cmd->pipe[0], STDIN_FILENO);
-		dup2(g_data.redir->fd_out, STDOUT_FILENO);
-		close(cmd->pipe[0]);
-	}
-}
 
 void	run_cmd(t_cmd *cmd)
 {
@@ -79,7 +23,7 @@ void	run_cmd(t_cmd *cmd)
 		run_pipe(cmd, 1);
 }
 
-void	run_line(t_cmd *cmd)
+void	run_command(t_cmd *cmd)
 {
 	// t_cmd	*aux;
 	int		status;
@@ -128,7 +72,7 @@ void	count_cmds(t_cmd **cmd)
 	*cmd = reverse;
 }
 
-int	run_command(void)
+int	run_line(void)
 {
 	t_cmd	*aux;
 
@@ -144,7 +88,7 @@ int	run_command(void)
 	if (!g_data.cmd->next && is_builtin(g_data.cmd->cmd[0]))
 		return (execute_builtin(g_data.cmd->cmd, 42));
 	count_cmds(&g_data.cmd);
-	run_line(g_data.cmd);
+	run_command(g_data.cmd);
 	free_quotes();
 	return (TRUE);
 }

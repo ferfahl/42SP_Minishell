@@ -6,11 +6,28 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:46:40 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/22 15:00:48 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:47:45 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	run_pipe(t_cmd *cmd, int i)
+{
+	if (i == 0)
+	{
+		pipe(cmd->pipe);
+		dup2(cmd->pipe[1], STDOUT_FILENO);
+		close(cmd->pipe[1]);
+		g_data.to_close = cmd->pipe[0];
+	}
+	if (i == 1)
+	{
+		dup2(cmd->pipe[0], STDIN_FILENO);
+		dup2(g_data.redir->fd_out, STDOUT_FILENO);
+		close(cmd->pipe[0]);
+	}
+}
 
 static char	**aux_malloc(char **cmd)
 {
