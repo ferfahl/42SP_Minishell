@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 02:28:44 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/17 16:12:58 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/22 13:49:30 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static int	new_node_cmd(char **cmd, t_cmd *cur)
 	new->cmd = cmd;
 	new->path = cmd_path(*cmd);
 	new->next = NULL;
+	new->re_direct = NULL;
 	if (cur)
 		new->next = cur;
 	g_data.cmd = new;

@@ -6,95 +6,71 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/21 03:40:21 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:28:32 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "commands.h"
 
-void	exeggcute(char *path, char **cmd, t_envp *mini_env)
+void	run_cmd(t_cmd *cmd)
 {
-	char	**envp;
-
-	envp = ft_mini_to_envp(mini_env);
-	g_data.exit_status = execve(path, cmd, envp);
-	ft_printf("Error: execve failed\n");
-	exit(g_data.exit_status);
+	if (cmd->next)
+		run_pipe(cmd, 0);
+	redir_list(cmd->re_direct);
+	if (cmd->cmd[0])
+		exeggutor(cmd);
+	if (cmd->next)
+		run_pipe(cmd, 1);
 }
 
-static int	check_recursive(t_cmd *cmd, t_redir **redir)
+void	run_command(t_cmd *cmd)
 {
-	if (!cmd)
-		return (FALSE);
-	if (g_data.redir->has_redir)
-		redirections_handle(&cmd, redir);
-	if (!cmd->cmd[0])
+	int		status;
+	int		i;
+
+	i = -1;
+	status = 0;
+	if (g_data.cmd_count > 0)
+		g_data.pids = (pid_t *)ft_calloc(sizeof(pid_t), g_data.cmd_count + 1);
+	while (cmd)
 	{
-		redir_list(*redir);
-		return (FALSE);
+		run_cmd(cmd);
+		cmd = cmd->next;
 	}
-	if (!cmd->path && !is_builtin(cmd->cmd[0]))
-	{
-		g_data.exit_status = 127;
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(cmd->cmd[0], 2);
-		ft_putstr_fd(": command not found\n", 2);
-		return (FALSE);
-	}
-	return (TRUE);
+	dup2(g_data.redir->fd_in, STDIN_FILENO);
+	dup2(g_data.redir->fd_out, STDOUT_FILENO);
+	if (g_data.cmd_count > 0)
+		while (++i <= g_data.cmd_count)
+			waitpid(g_data.pids[i], &status, 0);
+	if (g_data.cmd_count > 1)
+		close(g_data.to_close);
+	free (g_data.pids);
 }
 
-void	child_process(t_redir *redir, int *fd, int piped, t_cmd *cmd)
-{
-	if (dup2(cmd->recursive, fd[0]))
-		dup2(fd[0], STDIN_FILENO);
-	else
-		close(fd[0]);
-	if (piped)
-		dup2(fd[1], STDOUT_FILENO);
-	else
-		close(fd[1]);
-	clear_fds();
-	if (g_data.redir->has_redir)
-		redir_list(redir);
-	if (!execute_builtin(cmd->cmd, 0))
-		exeggcute(cmd->path, cmd->cmd, g_data.envp);
-	exit_builtin();
-}
-
-static int	recursive_function(t_redir *aux, t_cmd *cmd, int piped)
-{
-	int		fd[2];
-	pid_t	pid;
-	t_redir	*redir;
-
-	redir = NULL;
-	if (!check_recursive(cmd, &redir))
-		return (FALSE);
-	pipe(fd);
-	pid = fork();
-	signal_handler_child();
-	if (pid == -1)
-		terminate(ERR_FORK);
-	if (pid == 0)
-	{
-		if (piped)
-			free_redirects(&aux);
-		cmd->recursive = recursive_function(redir, cmd->next, TRUE);
-		child_process(redir, fd, piped, cmd);
-	}
-	waitpid(pid, NULL, 0);
-	free_redirects(&redir);
-	close(fd[1]);
-	return (fd[0]);
-}
-
-int	run_command(void)
+void	count_cmds(t_cmd **cmd)
 {
 	t_cmd	*aux;
-	t_redir	*redir;
+	t_cmd	*reverse;
 
-	redir = NULL;
+	reverse = NULL;
+	g_data.cmd_count = 0;
+	while (*cmd)
+	{
+		redirections_handle(cmd);
+		if ((*cmd)->cmd[0])
+			g_data.cmd_count++;
+		aux = *cmd;
+		*cmd = (*cmd)->next;
+		aux->next = reverse;
+		reverse = aux;
+	}
+	*cmd = reverse;
+}
+
+int	run_line(void)
+{
+	t_cmd	*aux;
+
 	aux = g_data.cmd;
 	while (aux != NULL)
 	{
@@ -106,9 +82,8 @@ int	run_command(void)
 	g_data.exit_status = 0;
 	if (!g_data.cmd->next && is_builtin(g_data.cmd->cmd[0]))
 		return (execute_builtin(g_data.cmd->cmd, 42));
-	recursive_function(redir, g_data.cmd, FALSE);
-	dup2(g_data.redir->fd_in, STDIN_FILENO);
-	dup2(g_data.redir->fd_out, STDOUT_FILENO);
+	count_cmds(&g_data.cmd);
+	run_command(g_data.cmd);
 	free_quotes();
 	return (TRUE);
 }
