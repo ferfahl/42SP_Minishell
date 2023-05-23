@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:23:49 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/22 17:29:29 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/22 21:01:39 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ static void	ft_cd_error(char *input, char *msg)
 void	update_pwd(char *oldpwd)
 {
 	char	*pwd;
+	char	*temporary;
 	t_envp	*temp;
 
 	temp = g_data.envp;
 	pwd = getcwd(NULL, 0);
-	while (temp->next)
+	temporary = ft_strdup(oldpwd);
+	while (temp)
 	{
 		if (!ft_strncmp(temp->name, "PWD", 4))
 		{
@@ -42,8 +44,10 @@ void	update_pwd(char *oldpwd)
 		if (!ft_strncmp(temp->name, "OLDPWD", 7))
 		{
 			free(temp->cont);
-			temp->cont = ft_strdup(oldpwd);
+			temp->cont = temporary;
 		}
+		if (temp->next == NULL)
+			break ;
 		temp = temp->next;
 	}
 }

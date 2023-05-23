@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:22:07 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/17 16:13:31 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:43:51 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,15 @@ int	ft_isdigit_mod(char *string)
 {
 	int	i;
 
-	i = 0;
-	if (ft_isdigit(string[i]) || string[i] == '+' || string[i] == '-')
+	i = -1;
+	if (string[0] == '-' || string[0] == '+')
+		i++;
+	while (string[++i])
 	{
-		if (!string[++i])
+		if (!ft_isdigit(string[i]))
 			return (0);
-		while (string[++i])
-		{
-			if (!ft_isdigit(string[i]))
-				return (0);
-		}
-		return (2);
 	}
-	else
-		return (0);
+	return (2);
 }
 
 char	*ft_strjoin_mod(const char *s1, const char *s2)

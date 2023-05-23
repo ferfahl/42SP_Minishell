@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:24 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/22 16:48:01 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:20:35 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		check_redir_syntax(char *input);
 int		check_str(char **str);
 
 // redirects/here_doc.c
-int		ft_here_doc(t_redir *redir, char *eof);
+int		ft_here_doc(char *eof);
 void	clear_here_doc(void);
 
 // redirects/here_doc_list.c
