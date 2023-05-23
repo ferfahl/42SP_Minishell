@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 12:12:07 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/23 19:01:17 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:26:42 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ int	redirect_function(t_redir *redir)
 			fd = open(redir->key_word, O_RDONLY);
 		if (fd == -1)
 		{
-			
-			ft_printf("minishell: %s: No such file or directory\n", redir->key_word);
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd(redir->key_word, 2);
+			ft_putstr_fd(": No such file or directory\n", 2);
 			return (FALSE);
 		}
 		dup2(fd, STDIN_FILENO);
