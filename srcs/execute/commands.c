@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/23 11:00:35 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/23 18:49:48 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ void	run_command(t_cmd *cmd)
 		close(g_data.to_close);
 	if (g_data.cmd_count > 0)
 		free (g_data.pids);
+	if (WIFSIGNALED(status))
+		g_data.exit_status = 128 + status;
+	else if (WIFEXITED(status))
+		g_data.exit_status = WEXITSTATUS(status);
 }
 
 void	count_cmds(t_cmd **cmd)
