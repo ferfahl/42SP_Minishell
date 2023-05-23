@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   decompress_environment.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:27:42 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/23 09:25:14 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:43:43 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	decompress_envp(char **input, int control)
 	int		end;
 
 	end = 0;
-	while (is_varname(*(*input + control + end + 1)))
+	while (is_varname(*(*input + control + end + 1), 1))
 		end++;
 	if (*(*input + control + 1) == '?')
 		return (special_decompress(input, control));
