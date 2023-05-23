@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:18:32 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/18 11:56:05 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:22:43 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int	check_str(char **str)
 		}
 		index++;
 	}
+	if (redir >= index)
+		return (0);
 	size = index - redir;
 	return (size);
 }
