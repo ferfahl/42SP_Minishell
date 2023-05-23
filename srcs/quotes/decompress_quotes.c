@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 02:05:58 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/20 20:46:01 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/23 09:02:53 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ static int	decompress_envp_quotes(char **cmd)
 		check_tilde(cmd);
 	control = ft_istrchr(*cmd, '$');
 	while (ft_strnstr(*cmd + control, "$", ft_strlen(*cmd)))
-		control = decompress_environment(cmd, control);
+		control = decompress_envp(cmd, control);
 	return (TRUE);
 }
 
-void	decompress_quotes(char **cmd)
+static void	decompress_quotes_cmd(char **cmd)
 {
 	t_quotes	*quots;
 	int			index;
@@ -82,5 +82,17 @@ void	decompress_quotes(char **cmd)
 				quots = quots->next;
 			}
 		}
+	}
+}
+
+void	decompress_quotes(void)
+{
+	t_cmd	*aux;
+
+	aux = g_data.cmd;
+	while (aux)
+	{
+		decompress_quotes_cmd(aux->cmd);
+		aux = aux->next;
 	}
 }

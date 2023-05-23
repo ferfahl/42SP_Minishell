@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/22 16:48:50 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/23 09:44:50 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,11 @@ int	terminal_loop(void)
 		if (*g_data.input)
 		{
 			add_history(g_data.input);
-			if (lexical_analyzer() == TRUE)
-			{
-				run_all_checks();
+			if (lexical_analyzer() && run_all_checks())
 				run_line();
-			}
 		}
 		free_line();
 	}
-	exit_terminal();
 	return (TRUE);
 }
 
@@ -51,7 +47,9 @@ int	main(int argc, char **argv, char **envp)
 		ft_printf("\t\t|\tWelcome to Minishell\t|\n");
 		ft_printf("\t\t=================================\n\n");
 		terminal_loop();
+		exit_terminal();
 	}
 	else
 		terminate(ERR_ARG);
+	return (0);
 }
