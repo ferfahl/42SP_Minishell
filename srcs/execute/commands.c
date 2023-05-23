@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/23 09:02:41 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/23 11:00:35 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	run_command(t_cmd *cmd)
 			waitpid(g_data.pids[i], &status, 0);
 	if (g_data.cmd_count > 1)
 		close(g_data.to_close);
-	free (g_data.pids);
+	if (g_data.cmd_count > 0)
+		free (g_data.pids);
 }
 
 void	count_cmds(t_cmd **cmd)
