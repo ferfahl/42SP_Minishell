@@ -3,10 +3,10 @@ NAME			= minishell
 CFLAGS			= -g3 -g -Wall -Werror -Wextra
 LFLAGS			= -lft -lreadline
 INCLUDES		= -I./includes -I$(LIBFT_INC)
-LIBS			= -L./libs/libft
+LIBS			= -L./libft
 
 #libft
-LIBFT_PATH		= ./libs/libft
+LIBFT_PATH		= ./libft
 LIBFT_INC		= $(LIBFT_PATH)/includes
 LIBFT			= $(LIBFT_PATH)/libft.a
 
@@ -86,7 +86,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS_DIR) $(OBJS)
 	@printf "\n"
-	@gcc $(CFLAGS) $(OBJS) $(LFLAGS) $(LIBS) -o $(NAME)
+	@cc $(CFLAGS) $(OBJS) $(LFLAGS) $(LIBS) -o $(NAME)
 	@echo " $(CYAN)$(NAME): $(GREEN)Done!"
 	@echo -n "$(RESET)"
 
@@ -107,7 +107,7 @@ $(OBJS_DIR):
 	@mkdir -p $(addprefix $(OBJS_DIR)/,$(TOKENIZER_PATH))
 
 $(OBJS_DIR)%.o: $(SRC_DIR)%.c
-	@gcc $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@cc $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@printf "$(YELLOW)Generating $(CYAN)$(NAME) $(YELLOW)objects... %-33.33s\r" $@
 
 clean:
@@ -128,12 +128,6 @@ re: fclean all
 
 coffee:
 	@make -sC $(LIBFT_PATH) coffee
-
-#make git m="message" -> commit to git
-git:
-		git add .
-		git commit -m "$(m)"
-		git push
 
 norm:
 		clear
