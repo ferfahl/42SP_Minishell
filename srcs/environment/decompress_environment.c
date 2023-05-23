@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:27:42 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/20 21:26:45 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/23 09:25:14 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	special_decompress(char **input, int control)
 	return (control);
 }
 
-int	decompress_environment(char **input, int control)
+int	decompress_envp(char **input, int control)
 {
 	int		end;
 
@@ -72,19 +72,26 @@ int	decompress_environment(char **input, int control)
 	return (control + 1);
 }
 
-int	decompress_envp(char **cmd)
+int	decompress_environment(void)
 {
 	int		index;
 	int		control;
+	t_cmd	*aux;
 
-	index = -1;
-	while (cmd[++index] != NULL)
+	aux = g_data.cmd;
+	while (aux)
 	{
-		if (cmd[index][0] == '~')
-			check_tilde(&cmd[index]);
-		control = ft_istrchr(cmd[index], '$');
-		while (ft_strnstr(cmd[index] + control, "$", ft_strlen(cmd[index])))
-			control = decompress_environment(&cmd[index], control);
+		index = -1;
+		while (aux->cmd[++index] != NULL)
+		{
+			if (aux->cmd[index][0] == '~')
+				check_tilde(&aux->cmd[index]);
+			control = ft_istrchr(aux->cmd[index], '$');
+			while (ft_strnstr(aux->cmd[index] + control,
+					"$", ft_strlen(aux->cmd[index])))
+				control = decompress_envp(&(aux)->cmd[index], control);
+		}
+		aux = aux->next;
 	}
 	return (TRUE);
 }

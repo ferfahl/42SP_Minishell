@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/22 13:34:49 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/23 08:56:24 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char		*ft_strjoin_mod(const char *s1, const char *s2);
 
 // quotes
 void		compress_quotes(void);
-void		decompress_quotes(char **cmd);
+void		decompress_quotes(void);
 void		free_quotes(void);
 
 #endif //MINISHELL_H

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/22 17:28:32 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/23 09:02:41 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,8 @@ void	count_cmds(t_cmd **cmd)
 
 int	run_line(void)
 {
-	t_cmd	*aux;
-
-	aux = g_data.cmd;
-	while (aux != NULL)
-	{
-		decompress_envp(aux->cmd);
-		decompress_quotes(aux->cmd);
-		aux = aux->next;
-	}
+	decompress_environment();
+	decompress_quotes();
 	executables_files();
 	g_data.exit_status = 0;
 	if (!g_data.cmd->next && is_builtin(g_data.cmd->cmd[0]))

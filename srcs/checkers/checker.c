@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:50:25 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/21 15:29:22 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/23 09:04:47 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	run_all_checks(void)
 {
+	if (!check_quotes(g_data.input))
+		return (FALSE);
 	compress_quotes();
 	if (!check_redir(g_data.input))
 		return (FALSE);

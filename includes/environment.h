@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:57 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/20 20:45:58 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/23 09:03:06 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ char	*get_env(char *name);
 void	free_envp(void);
 
 // environment/decompress_environment.c
-int		decompress_envp(char **cmd);
-int		decompress_environment(char **input, int control);
+int		decompress_environment(void);
+int		decompress_envp(char **input, int control);
 
 // environment/decompress_tilde.c
 void	check_tilde(char **input);
