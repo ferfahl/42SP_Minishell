@@ -6,11 +6,20 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 12:12:07 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/23 19:26:42 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:53:16 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	redir_error(int fd, char *str)
+{
+	close(fd);
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(": No such file or directory\n", 2);
+	return (FALSE);
+}
 
 int	redirect_function(t_redir *redir)
 {
@@ -33,12 +42,7 @@ int	redirect_function(t_redir *redir)
 		else
 			fd = open(redir->key_word, O_RDONLY);
 		if (fd == -1)
-		{
-			ft_putstr_fd("minishell: ", 2);
-			ft_putstr_fd(redir->key_word, 2);
-			ft_putstr_fd(": No such file or directory\n", 2);
-			return (FALSE);
-		}
+			return (redir_error(fd, redir->key_word));
 		dup2(fd, STDIN_FILENO);
 	}
 	close(fd);

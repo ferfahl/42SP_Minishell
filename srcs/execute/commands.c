@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/23 19:08:49 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:53:53 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	run_cmd(t_cmd *cmd)
 {
+	int i;
 	if (cmd->next)
 		run_pipe(cmd, 0);
-	if (!redir_list(cmd->re_direct))
+	i = redir_list(cmd->re_direct);
+	if (i == 0)
 		return ;
 	if (cmd->cmd[0])
 		exeggutor(cmd);
