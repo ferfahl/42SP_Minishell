@@ -6,15 +6,25 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:25:27 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/21 03:19:27 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:47:33 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_varname(char c)
+int	is_varname(char c, int i)
 {
-	return (ft_isalnum(c) || c == '_');
+	if (i == 0)
+	{
+		if (c == '_' || ft_isalpha(c))
+			return (TRUE);
+	}
+	if (i == 1)
+	{
+		if (c == '_' || ft_isalnum(c))
+			return (TRUE);
+	}
+	return (FALSE);
 }
 
 static int	check_valid_var(char *name)
@@ -22,11 +32,11 @@ static int	check_valid_var(char *name)
 	int	i;
 
 	i = 0;
-	if (!ft_isalpha(name[i]))
+	if (!is_varname(name[i], 0))
 		return (FALSE);
 	while (name[i])
 	{
-		if (!is_varname(name[i]))
+		if (!is_varname(name[i], 1))
 			return (FALSE);
 		i++;
 	}
@@ -76,7 +86,7 @@ int	check_export_error(char *input)
 	{
 		if (input[0] == '-')
 			return (print_export_error(input, ": invalid option", 42));
-		if (!is_varname(input[i]) || !ft_isalpha(input[0]))
+		if (!is_varname(input[i], 1) || !is_varname(input[0], 0))
 			return (print_export_error(input, ": not a valid identifier", 2));
 		i++;
 	}
