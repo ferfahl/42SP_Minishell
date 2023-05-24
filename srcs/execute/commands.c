@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/23 11:00:35 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:08:49 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,26 @@ void	run_cmd(t_cmd *cmd)
 {
 	if (cmd->next)
 		run_pipe(cmd, 0);
-	redir_list(cmd->re_direct);
+	if (!redir_list(cmd->re_direct))
+		return ;
 	if (cmd->cmd[0])
 		exeggutor(cmd);
 	if (cmd->next)
 		run_pipe(cmd, 1);
+}
+
+void	exit_cmd(int status)
+{
+	if (g_data.cmd_count > 1)
+		close(g_data.to_close);
+	if (g_data.cmd_count > 0)
+		free (g_data.pids);
+	if (g_data.exit_status != 0)
+		return ;
+	if (WIFSIGNALED(status))
+		g_data.exit_status = 128 + status;
+	else if (WIFEXITED(status))
+		g_data.exit_status = WEXITSTATUS(status);
 }
 
 void	run_command(t_cmd *cmd)
@@ -42,10 +57,7 @@ void	run_command(t_cmd *cmd)
 	if (g_data.cmd_count > 0)
 		while (++i <= g_data.cmd_count)
 			waitpid(g_data.pids[i], &status, 0);
-	if (g_data.cmd_count > 1)
-		close(g_data.to_close);
-	if (g_data.cmd_count > 0)
-		free (g_data.pids);
+	exit_cmd(status);
 }
 
 void	count_cmds(t_cmd **cmd)

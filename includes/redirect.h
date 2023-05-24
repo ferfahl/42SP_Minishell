@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:32:24 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/22 20:20:35 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/23 18:57:52 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_hdoc
 }	t_hdoc;
 
 // redirects/redirections_list.c
-void	redir_list(t_redir *redir);
+int		redir_list(t_redir *redir);
 void	keep_redir(t_redir *redir, char *symbol, char *key_word);
 void	start_redirection(t_redir **redirection);
 int		check_if_redir(char **str);
@@ -50,7 +50,7 @@ char	**redirections_handle_str(char **cmd);
 void	run_pipe(t_cmd *cmd, int i);
 
 // redirects/execute_redir.c
-void	redirect_function(t_redir *redir);
+int	redirect_function(t_redir *redir);
 
 // redirects/check_redir.c
 int		check_redirect(char *cmd_line);

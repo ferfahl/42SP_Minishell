@@ -6,13 +6,13 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 12:12:07 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/22 20:20:45 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:26:42 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	redirect_function(t_redir *redir)
+int	redirect_function(t_redir *redir)
 {
 	int		i;
 	int		fd;
@@ -32,9 +32,15 @@ void	redirect_function(t_redir *redir)
 			fd = ft_here_doc(redir->key_word);
 		else
 			fd = open(redir->key_word, O_RDONLY);
-		if (!fd)
-			fd = open("/dev/null", O_RDONLY);
+		if (fd == -1)
+		{
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd(redir->key_word, 2);
+			ft_putstr_fd(": No such file or directory\n", 2);
+			return (FALSE);
+		}
 		dup2(fd, STDIN_FILENO);
 	}
 	close(fd);
+	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:46:40 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/23 10:07:24 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:24:12 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	redirections_handle(t_cmd **cmd)
 			keep_redir((*cmd)->re_direct, (*cmd)->cmd[i], (*cmd)->cmd[i + 1]);
 			i++;
 		}
-		else
+		else if ((*cmd)->cmd[i])
 			aux[j++] = ft_strdup((*cmd)->cmd[i]);
 		if (!(*cmd)->cmd[i++])
 			break ;
