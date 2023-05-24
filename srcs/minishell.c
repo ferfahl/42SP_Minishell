@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/23 23:00:39 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/24 11:54:14 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	terminal_loop(void)
 
 int	main(int argc, char **argv, char **envp)
 {
-	//remover a readline
 	errno = 0;
 	(void)argv;
 	if (argc == 1)
@@ -52,5 +51,4 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else
 		terminate(ERR_ARG);
-	return (0);
 }

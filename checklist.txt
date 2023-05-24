@@ -7,43 +7,12 @@
 (OK) <">" dá erro e dá free invalido (tem que dar erro, porém não pode crashar o minishell)
 (OK) cat | << eof
 (  ) << eof | cmd
+(OK) Erros de tokens inválidos nas aspas
 
 
 										erros tester sheela
 ---------------------------------------------------------------------------------------------------------
 
-## ASPAS
-		Test   9: ❌ echo "aspas ->'" 
-		mini output = ()
-		bash output = (aspas ->')
-		Test  10: ❌ echo "aspas -> ' " 
-		mini output = ()
-		bash output = (aspas -> ' )
-		Test  11: ❌ echo 'aspas ->"' 
-		mini output = ()
-		bash output = (aspas ->")
-		Test  12: ❌ echo 'aspas -> " ' 
-		mini output = ()
-		bash output = (aspas -> " )
-		Test  13: ❌ echo "> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<" 
-		mini output = (minishell: syntax error near unexpected token `>>')
-		bash output = (> >> < README.md a.sh bash.supp bash_outfiles bash_to_mini bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles mini_to_bash os_specific outfiles pipes redirects syntax test_files teste_bash teste_mini tester wildcards ? [ ] | ; [ ] || && ( ) & # $ <<)
-		mini exit code = 2
-		bash exit code = 0
-		Test  14: ❌ echo '> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<' 
-		mini output = (minishell: syntax error near unexpected token `>>')
-		bash output = (> >> < README.md a.sh bash.supp bash_outfiles bash_to_mini bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles mini_to_bash os_specific outfiles pipes redirects syntax test_files teste_bash teste_mini tester wildcards ? [ ] | ; [ ] || && ( ) & # $ <<)
-		mini exit code = 2
-		bash exit code = 0
-		Test  15: ❌ echo "exit_code ->$? user ->$USER home -> $HOME" 
-		mini output = ()
-		bash output = (exit_code ->0 user ->ferfahl home -> /home/ferfahl)
-		Test  16: ❌ echo 'exit_code ->$? user ->$USER home -> $HOME' 
-		mini output = ()
-		bash output = (exit_code ->$? user ->$USER home -> $HOME)
-		Test  66: ❌ echo <"./test_files/infile" "bonjour       42" 
-		mini output = (bonjour 42)
-		bash output = (bonjour       42)
 Test  85: ❌ echo <123 <456 hi | echo 42 
 mini exit code = 1
 bash exit code = 0

@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:21:51 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/05 11:52:41 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/24 11:53:20 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,29 +59,6 @@ static char	*add_quote_identifier(char *input, int init, int end, char *nb)
 	return (aux);
 }
 
-	// t_quotes *aux = g_data.quotes;
-	// while (aux)
-	// {
-	// 	printf("[%d][%s]\n", aux->pos, aux->cont);
-	// 	aux = aux->next;
-	// }
-	// exit(0);
-// echo 'teste "$USER $USER" $USER' hi
-
-// static char	*compress_(char *input, char c)
-// {
-// 	char	*new;
-// 	int		index;
-// 	int		init;
-// 	int		end;
-
-// 	init = ft_istrchr(input, c);
-// 	end = ft_istrchr(input + init + 1, c);
-// 	index = new_node_quotes((input + init), end, TRUE);
-// 	new = add_quote_identifier(input, init, end + init + 1, ft_itoa(index));
-// 	return (new);
-// }
-
 void	compress_quotes(void)
 {
 	char	*aux;
@@ -107,4 +84,3 @@ void	compress_quotes(void)
 		g_data.input = aux;
 	}
 }
-//echo $USER "$USER" '$USER' '$USER' '$USER'
