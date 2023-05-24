@@ -1,0 +1,76 @@
+(OK) Libft tem que estar na pasta libft direto
+(  ) Arquivo de supressão não pode estar na pasta do minishell -> aviso na main para remover no fim do minishell
+(OK) Compilador no Make file tem que ser o cc
+(  ) Makefile tem que dar make quando muda o header -> João
+(OK) exit_status tem que retornar o perror do execve 
+(OK) env - primeiro caractere pode ser _ 
+(OK) <">" dá erro e dá free invalido (tem que dar erro, porém não pode crashar o minishell)
+(  ) cat | << eof -> Fern
+
+
+										erros tester sheela
+---------------------------------------------------------------------------------------------------------
+
+## ASPAS
+		Test   9: ❌ echo "aspas ->'" 
+		mini output = ()
+		bash output = (aspas ->')
+		Test  10: ❌ echo "aspas -> ' " 
+		mini output = ()
+		bash output = (aspas -> ' )
+		Test  11: ❌ echo 'aspas ->"' 
+		mini output = ()
+		bash output = (aspas ->")
+		Test  12: ❌ echo 'aspas -> " ' 
+		mini output = ()
+		bash output = (aspas -> " )
+		Test  13: ❌ echo "> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<" 
+		mini output = (minishell: syntax error near unexpected token `>>')
+		bash output = (> >> < README.md a.sh bash.supp bash_outfiles bash_to_mini bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles mini_to_bash os_specific outfiles pipes redirects syntax test_files teste_bash teste_mini tester wildcards ? [ ] | ; [ ] || && ( ) & # $ <<)
+		mini exit code = 2
+		bash exit code = 0
+		Test  14: ❌ echo '> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<' 
+		mini output = (minishell: syntax error near unexpected token `>>')
+		bash output = (> >> < README.md a.sh bash.supp bash_outfiles bash_to_mini bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles mini_to_bash os_specific outfiles pipes redirects syntax test_files teste_bash teste_mini tester wildcards ? [ ] | ; [ ] || && ( ) & # $ <<)
+		mini exit code = 2
+		bash exit code = 0
+		Test  15: ❌ echo "exit_code ->$? user ->$USER home -> $HOME" 
+		mini output = ()
+		bash output = (exit_code ->0 user ->ferfahl home -> /home/ferfahl)
+		Test  16: ❌ echo 'exit_code ->$? user ->$USER home -> $HOME' 
+		mini output = ()
+		bash output = (exit_code ->$? user ->$USER home -> $HOME)
+		Test  66: ❌ echo <"./test_files/infile" "bonjour       42" 
+		mini output = (bonjour 42)
+		bash output = (bonjour       42)
+Test  85: ❌ echo <123 <456 hi | echo 42 
+mini exit code = 1
+bash exit code = 0
+Test 109: ❌ cat <missing >./outfiles/outfile01 
+mini exit code =
+bash exit code = 1
+Test 110: ❌ cat >./outfiles/outfile01 <missing 
+mini exit code =
+bash exit code = 1
+Test 124: ❌ ls <missing >>./test_files/invalid_permission >>./outfiles/outfile02 
+mini output = (README.md a.sh bash.supp bash_outfiles bash_to_mini bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles mini_to_bash os_specific outfiles pipes redirects syntax test_files teste_bash teste_mini tester wildcards)
+bash output = ()
+Test 138: ❌ $PWD 
+mini output = (Error: execve failed)
+bash output = ()
+mini exit code = 255
+bash exit code = 126
+mini error = ()
+bash error = ( Is a directory)
+Test 139: ❌ $EMPTY 
+mini exit code = 127
+bash exit code = 0
+mini error = ( command not found)
+bash error = ()
+Test 140: ❌ $EMPTY echo hi 
+mini output = ()
+bash output = (hi)
+mini exit code = 127
+bash exit code = 0
+mini error = ( command not found)
+bash error = ()

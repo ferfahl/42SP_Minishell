@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:25:27 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/23 19:47:33 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/23 22:54:06 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,12 @@ char	**ft_var_export(char *cmd)
 
 static int	print_export_error(char *input, char *message, int code)
 {
-	g_data.exit_status = 2;
 	ft_putstr_fd("minishell: export: ", 2);
 	if (code == 2)
+	{
+		g_data.exit_status = 1;
 		ft_putstr_fd("`", 2);
+	}
 	ft_putstr_fd(input, 2);
 	if (code == 2)
 		ft_putstr_fd("'", 2);
@@ -85,7 +87,10 @@ int	check_export_error(char *input)
 	while (input[i] && input[i] != '=')
 	{
 		if (input[0] == '-')
+		{
+			g_data.exit_status = 2;
 			return (print_export_error(input, ": invalid option", 42));
+		}
 		if (!is_varname(input[i], 1) || !is_varname(input[0], 0))
 			return (print_export_error(input, ": not a valid identifier", 2));
 		i++;

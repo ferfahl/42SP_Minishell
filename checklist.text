@@ -1,8 +1,0 @@
-(OK) Libft tem que estar na pasta libft direto
-(  ) Arquivo de supressão não pode estar na pasta do minishell -> aviso na main para remover no fim do minishell
-(OK) Compilador no Make file tem que ser o cc
-(  ) Makefile tem que dar make quando muda o header -> João
-(OK) exit_status tem que retornar o perror do execve -> Fern
-(OK) env - primeiro caractere pode ser _ -> Fern
-(OK) <">" dá erro e dá free invalido (tem que dar erro, porém não pode crashar o minishell)
-(  ) cat | << eof -> Fern
