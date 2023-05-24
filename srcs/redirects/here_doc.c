@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:17:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/24 12:25:12 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:37:21 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static void	loop_here_doc(int *fd, char *eof)
 	char	*input;
 
 	input = NULL;
+	if (g_data.cmd_count > 1)
+		close(g_data.to_close);
 	while (1)
 	{
 		input = readline("> ");
@@ -66,6 +68,7 @@ int	ft_here_doc(char *eof)
 		terminate(ERR_FORK);
 	if (pid == 0)
 	{
+		dup2(g_data.redir->fd_out, STDOUT_FILENO);
 		signal_handler_heredoc();
 		loop_here_doc(fd, eof);
 	}
