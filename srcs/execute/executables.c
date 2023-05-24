@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 12:07:51 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/19 15:34:49 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:50:22 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	executables_files(void)
 	t_cmd	*aux;
 
 	aux = g_data.cmd;
+	if (!aux->cmd[0])
+		return (FALSE);
 	while (aux)
 	{
 		if (*(aux)->cmd[0] == '.' || *(aux)->cmd[0] == '/')

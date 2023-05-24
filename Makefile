@@ -1,6 +1,6 @@
 NAME			= minishell
 
-CFLAGS			= -g3 -g -Wall -Werror -Wextra -MMD -MP
+CFLAGS			= -g3 -g -Wall -Werror -Wextra
 LFLAGS			= -lft -lreadline
 INCLUDES		= -I./includes -I$(LIBFT_INC)
 LIBS			= -L./libft
@@ -74,8 +74,6 @@ SRCS			= $(addprefix $(SRC_DIR), $(SRC_LIST))
 OBJS_DIR		= ./objects/
 OBJS			= $(addprefix $(OBJS_DIR),$(SRC_LIST:%.c=%.o))
 
-DEP = $(OBJ:.o=.d)
-
 #colors
 GREEN			= \033[0;32m
 YELLOW			= \033[0;33m
@@ -111,8 +109,6 @@ $(OBJS_DIR):
 $(OBJS_DIR)%.o: $(SRC_DIR)%.c
 	@cc $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@printf "$(YELLOW)Generating $(CYAN)$(NAME) $(YELLOW)objects... %-33.33s\r" $@
-
--include $(DEP)
 
 clean:
 	@make -sC $(LIBFT_PATH) clean
