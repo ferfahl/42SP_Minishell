@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:56:04 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/23 19:14:41 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:50:04 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	redir_list(t_redir *re_direct)
 		if (!redirect_function(aux))
 		{
 			g_data.exit_status = 1;
-			break ;
+			return (FALSE);
 		}
 		if (aux->next == NULL)
 			break ;

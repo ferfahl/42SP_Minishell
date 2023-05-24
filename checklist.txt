@@ -5,7 +5,8 @@
 (OK) exit_status tem que retornar o perror do execve 
 (OK) env - primeiro caractere pode ser _ 
 (OK) <">" dá erro e dá free invalido (tem que dar erro, porém não pode crashar o minishell)
-(  ) cat | << eof -> Fern
+(OK) cat | << eof
+(  ) << eof | cmd
 
 
 										erros tester sheela
@@ -46,15 +47,6 @@
 Test  85: ❌ echo <123 <456 hi | echo 42 
 mini exit code = 1
 bash exit code = 0
-Test 109: ❌ cat <missing >./outfiles/outfile01 
-mini exit code =
-bash exit code = 1
-Test 110: ❌ cat >./outfiles/outfile01 <missing 
-mini exit code =
-bash exit code = 1
-Test 124: ❌ ls <missing >>./test_files/invalid_permission >>./outfiles/outfile02 
-mini output = (README.md a.sh bash.supp bash_outfiles bash_to_mini bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles mini_to_bash os_specific outfiles pipes redirects syntax test_files teste_bash teste_mini tester wildcards)
-bash output = ()
 Test 138: ❌ $PWD 
 mini output = (Error: execve failed)
 bash output = ()
