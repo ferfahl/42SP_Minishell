@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:20:35 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/24 14:49:11 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:03:52 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	exit_terminal(void)
 	free_redir();
 	free(g_data.tml_host);
 	rl_clear_history();
-	// ft_putstr_fd("\n\t\t=================================\n", STDOUT_FILENO);
-	// ft_putstr_fd("\t\t|\tGoodbye, cadet!\t\t|\n", STDOUT_FILENO);
-	// ft_putstr_fd("\t\t=================================\n\n", STDOUT_FILENO);
+	ft_putstr_fd("\n\t\t=================================\n", STDOUT_FILENO);
+	ft_putstr_fd("\t\t|\tGoodbye, cadet!\t\t|\n", STDOUT_FILENO);
+	ft_putstr_fd("\t\t=================================\n\n", STDOUT_FILENO);
 }

@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:03 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/24 14:49:02 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:03:50 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	main(int argc, char **argv, char **envp)
 	if (argc == 1)
 	{
 		init_data(envp);
-		// ft_putstr_fd("\n\t\t=================================\n", 1);
-		// ft_putstr_fd("\t\t|\tWelcome to Minishell\t|\n", 1);
-		// ft_putstr_fd("\t\t=================================\n\n", 1);
+		ft_putstr_fd("\n\t\t=================================\n", 1);
+		ft_putstr_fd("\t\t|\tWelcome to Minishell\t|\n", 1);
+		ft_putstr_fd("\t\t=================================\n\n", 1);
 		terminal_loop();
 		exit_terminal();
 	}

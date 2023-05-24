@@ -6,7 +6,7 @@
 /*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:27:42 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/24 15:51:24 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:58:24 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void	check_empty_cmd(t_cmd **cmd)
 	int		index;
 	int		new_index;
 
-	if (check_str((*cmd)->cmd) <= 1)
+	if (*(*cmd)->cmd[0])
 		return ;
-	new = malloc(sizeof(char *) * (check_str((*cmd)->cmd) + 1));
+	new = malloc(sizeof(char *) * (check_str((*cmd)->cmd) + 2));
 	if (!new)
 		terminate(ERR_ENVP_ALLOC);
 	index = -1;
