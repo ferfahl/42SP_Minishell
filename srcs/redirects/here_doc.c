@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:17:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/24 10:37:55 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:25:12 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	ft_here_doc(char *eof)
 		terminate(ERR_FORK);
 	if (pid == 0)
 	{
-		// clear_fds();
 		signal_handler_heredoc();
 		loop_here_doc(fd, eof);
 	}

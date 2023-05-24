@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_analysis.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:24:17 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/20 20:59:25 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:21:34 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 static int	put_error_message(char *str)
 {
 	g_data.exit_status = 2;
-	ft_putstr("minishell: syntax error near unexpected token ");
-	ft_printf("`%s\'\n", str);
+	ft_putstr_fd("minishell: syntax error near ", STDERR_FILENO);
+	ft_putstr_fd("unexpected token `", STDERR_FILENO);
+	ft_putstr_fd(str, STDERR_FILENO);
+	ft_putstr_fd("'\n", STDERR_FILENO);
 	return (FALSE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:25:27 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/23 22:54:06 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:03:13 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,16 @@ char	**ft_var_export(char *cmd)
 
 static int	print_export_error(char *input, char *message, int code)
 {
-	ft_putstr_fd("minishell: export: ", 2);
+	ft_putstr_fd("minishell: export: ", STDERR_FILENO);
 	if (code == 2)
 	{
 		g_data.exit_status = 1;
-		ft_putstr_fd("`", 2);
+		ft_putstr_fd("`", STDERR_FILENO);
 	}
-	ft_putstr_fd(input, 2);
+	ft_putstr_fd(input, STDERR_FILENO);
 	if (code == 2)
-		ft_putstr_fd("'", 2);
-	ft_putendl_fd(message, 2);
+		ft_putstr_fd("'", STDERR_FILENO);
+	ft_putendl_fd(message, STDERR_FILENO);
 	return (TRUE);
 }
 
