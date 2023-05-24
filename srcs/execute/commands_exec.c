@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 02:06:11 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/22 17:28:50 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:05:37 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	exeggutor(t_cmd *cmd)
 {
 	int	i;
 
-	i = 0;
-	if (!cmd->path && !is_builtin(cmd->cmd[0]))
+	if (!cmd->path && cmd->cmd[0] && !is_builtin(cmd->cmd[0]))
 	{
 		g_data.exit_status = 127;
 		ft_putstr_fd("minishell: ", 2);
@@ -35,6 +34,7 @@ void	exeggutor(t_cmd *cmd)
 		ft_putstr_fd(": command not found\n", 2);
 		return ;
 	}
+	i = 0;
 	while (g_data.pids[i] != 0)
 		i++;
 	*(g_data.pids + i) = fork();
