@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:31:20 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/24 10:01:13 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:46:07 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,8 @@ extern t_minishell			g_data;
 void		terminate(char *s);
 int			init_data(char **envp);
 void		init_data_line(void);
-void		free_path(void);
 void		exit_terminal(void);
 void		free_line(void);
-void		exit_line(char *s, int n);
 void		free_redir(void);
 
 // mini_hell/terminal_line
@@ -102,7 +100,7 @@ int			ft_isdigit_mod(char *string);
 char		*ft_strjoin_mod(const char *s1, const char *s2);
 
 // quotes
-void		compress_quotes(void);
+int			compress_quotes(void);
 void		decompress_quotes(void);
 void		free_quotes(void);
 

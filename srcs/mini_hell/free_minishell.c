@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 23:51:14 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/19 11:49:15 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:20:52 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,22 @@ void	free_redirects(t_redir **redirect)
 
 void	free_redir(void)
 {
-	free(g_data.redir);
+	t_cmd	*aux;
+
+	aux = g_data.cmd;
+	while (aux)
+	{
+		if (aux->re_direct)
+			free_redirects(&aux->re_direct);
+		aux = aux->next;
+	}
 }
 
 void	free_line(void)
 {
 	free(g_data.input);
 	ft_free_array(g_data.path);
+	free_redir();
 	free_cmd();
 	free_quotes();
 	free_token();

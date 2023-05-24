@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_exec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 02:06:11 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/24 15:05:37 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:02:09 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,20 @@ static void	exeggcute(char *path, char **cmd, t_envp *mini_env)
 	exit(g_data.exit_status);
 }
 
+static void	exec_error(char *str)
+{
+	g_data.exit_status = 127;
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(": command not found\n", 2);
+}
+
 void	exeggutor(t_cmd *cmd)
 {
 	int	i;
 
 	if (!cmd->path && cmd->cmd[0] && !is_builtin(cmd->cmd[0]))
-	{
-		g_data.exit_status = 127;
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(cmd->cmd[0], 2);
-		ft_putstr_fd(": command not found\n", 2);
-		return ;
-	}
+		return (exec_error(cmd->cmd[0]));
 	i = 0;
 	while (g_data.pids[i] != 0)
 		i++;

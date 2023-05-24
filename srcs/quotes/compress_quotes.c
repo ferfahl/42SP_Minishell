@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   compress_quotes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 09:21:51 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/24 11:53:20 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:44:53 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static char	*add_quote_identifier(char *input, int init, int end, char *nb)
 	return (aux);
 }
 
-void	compress_quotes(void)
+int	compress_quotes(void)
 {
 	char	*aux;
 	int		index;
@@ -68,6 +68,8 @@ void	compress_quotes(void)
 	char	c;
 
 	aux = g_data.input;
+	if (check_quotes(g_data.input) == FALSE)
+		return (FALSE);
 	while (ft_strchr(aux, '\"') || ft_strchr(aux, '\''))
 	{
 		init = ft_istrchr(aux, '\'');
@@ -83,4 +85,5 @@ void	compress_quotes(void)
 		free(g_data.input);
 		g_data.input = aux;
 	}
+	return (TRUE);
 }

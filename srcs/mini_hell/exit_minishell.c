@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:20:35 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/24 16:03:52 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:31:18 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	exit_builtin(void)
 {
 	free_line();
 	free_envp();
-	free_redir();
+	free(g_data.redir);
 	free(g_data.tml_host);
 	rl_clear_history();
 	exit(0);
@@ -48,7 +48,7 @@ void	exit_terminal(void)
 	clear_fds();
 	free_line();
 	free_envp();
-	free_redir();
+	free(g_data.redir);
 	free(g_data.tml_host);
 	rl_clear_history();
 	ft_putstr_fd("\n\t\t=================================\n", STDOUT_FILENO);
