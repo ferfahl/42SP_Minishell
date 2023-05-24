@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:23:49 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/22 21:01:39 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:11:09 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	ft_cd_error(char *input, char *msg)
 {
 	g_data.exit_status = 1;
-	ft_putstr_fd("minishell: cd: ", 1);
+	ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
 	if (input)
 	{
-		ft_putstr_fd(input, 1);
-		ft_putstr_fd(": ", 1);
+		ft_putstr_fd(input, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
 	}
-	ft_putendl_fd(msg, 1);
+	ft_putendl_fd(msg, STDERR_FILENO);
 }
 
 void	update_pwd(char *oldpwd)
@@ -56,6 +56,7 @@ static void	ft_cd_oldpwd(void)
 {
 	char	*oldpwd;
 
+	g_data.exit_status = 1;
 	oldpwd = get_env("OLDPWD");
 	if (!oldpwd)
 		ft_cd_error(NULL, "OLDPWD not set");

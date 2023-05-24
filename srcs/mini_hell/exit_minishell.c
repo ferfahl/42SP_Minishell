@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:20:35 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/24 11:51:23 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:22:22 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	exit_terminal(void)
 	free_redir();
 	free(g_data.tml_host);
 	rl_clear_history();
-	ft_printf("\n\t\t=================================\n");
-	ft_printf("\t\t|\tGoodbye, cadet!\t\t|\n");
-	ft_printf("\t\t=================================\n\n");
+	ft_putstr_fd("\n\t\t=================================\n", STDOUT_FILENO);
+	ft_putstr_fd("\t\t|\tGoodbye, cadet!\t\t|\n", STDOUT_FILENO);
+	ft_putstr_fd("\t\t=================================\n\n", STDOUT_FILENO);
 }

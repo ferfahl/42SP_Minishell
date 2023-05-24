@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 22:55:09 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/24 11:54:47 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:25:04 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 void	run_cmd(t_cmd *cmd)
 {
-	int	i;
-
 	if (cmd->next)
 		run_pipe(cmd, 0);
-	i = redir_list(cmd->re_direct);
-	if (i == 0)
-		return ;
-	if (cmd->cmd[0])
-		exeggutor(cmd);
+	if (redir_list(cmd->re_direct))
+	{
+		if (cmd->cmd[0])
+			exeggutor(cmd);
+	}
 	if (cmd->next)
 		run_pipe(cmd, 1);
 }

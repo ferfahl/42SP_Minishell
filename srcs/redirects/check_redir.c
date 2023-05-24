@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:18:32 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/23 19:22:43 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:24:25 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	error_printing(char *input, int i)
 {
-	ft_putstr_fd("minishell: syntax error near unexpected token `", 2);
-	ft_putchar_fd(input[i], 2);
-	ft_putstr_fd("'\n", 2);
+	ft_putstr_fd("minishell: syntax error near ", STDERR_FILENO);
+	ft_putstr_fd("unexpected token `", STDERR_FILENO);
+	ft_putchar_fd(input[i], STDERR_FILENO);
+	ft_putstr_fd("'\n", STDERR_FILENO);
 }
 
 int	valid_input(char c)

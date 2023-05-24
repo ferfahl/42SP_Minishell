@@ -8,14 +8,13 @@
 (OK) cat | << eof
 (  ) << eof | cmd
 (OK) Erros de tokens inválidos nas aspas
+(OK) Exit codes builtin
+(OK) Saídas de erro no STDERR_FILENO
 
 
 										erros tester sheela
 ---------------------------------------------------------------------------------------------------------
 
-Test  85: ❌ echo <123 <456 hi | echo 42 
-mini exit code = 1
-bash exit code = 0
 Test 138: ❌ $PWD 
 mini output = (Error: execve failed)
 bash output = ()

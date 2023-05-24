@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:24:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/21 03:17:18 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:11:15 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 static void	ft_env_error(char *nextinline)
 {
 	g_data.exit_status = 127;
-	ft_putstr_fd("minishell: env: ‘", 1);
-	ft_putstr_fd(nextinline, 1);
-	ft_putstr_fd("’: invalid parameter", 1);
-	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("minishell: env: ‘", STDERR_FILENO);
+	ft_putstr_fd(nextinline, STDERR_FILENO);
+	ft_putstr_fd("’: invalid parameter\n", STDERR_FILENO);
 }
 
 void	ft_env_from_export(char **input)
