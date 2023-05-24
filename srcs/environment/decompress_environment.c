@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   decompress_environment.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:27:42 by joapedr2          #+#    #+#             */
-/*   Updated: 2023/05/23 19:43:43 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:56:49 by joapedr2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environment.h"
+
+static void	check_empty_cmd(t_cmd *cmd)
+{
+	char	**new;
+	int		index;
+	int		new_index;
+
+	new = malloc(sizeof(char *) * (check_str(cmd->cmd) + 1));
+	if (!new)
+		terminate(ERR_ENVP_ALLOC);
+	index = -1;
+	new_index = -1;
+	while (cmd->cmd[++index] != NULL)
+	{
+		if (*(cmd)->cmd[index])
+			new[++new_index] = ft_strdup(cmd->cmd[index]);
+	}
+	new[++new_index] = NULL;
+	ft_free_array(cmd->cmd);
+	cmd->cmd = new;
+}
 
 static int	real_decompress(char **input, int end, int control)
 {
@@ -91,7 +112,9 @@ int	decompress_environment(void)
 					"$", ft_strlen(aux->cmd[index])))
 				control = decompress_envp(&(aux)->cmd[index], control);
 		}
+		check_empty_cmd(aux);
 		aux = aux->next;
 	}
+	printf("cmd[%s]\n", *(g_data.cmd)->cmd);
 	return (TRUE);
 }
