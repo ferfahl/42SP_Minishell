@@ -6,7 +6,7 @@
 (OK) env - primeiro caractere pode ser _ 
 (OK) <">" dá erro e dá free invalido (tem que dar erro, porém não pode crashar o minishell)
 (OK) cat | << eof
-(  ) << eof | cmd
+(OK) << eof | cmd
 (OK) Erros de tokens inválidos nas aspas
 (OK) Exit codes builtin
 (OK) Saídas de erro no STDERR_FILENO
