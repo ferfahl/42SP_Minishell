@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joapedr2 < joapedr2@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 19:26:00 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/23 09:09:37 by joapedr2         ###   ########.fr       */
+/*   Updated: 2023/05/23 22:55:39 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	ft_exit(char **input)
 	{
 		while (input[i])
 		{
-			if (ft_isdigit_mod(input[i]))
-				ft_clean_exit(ft_atoi_mod(input[1]));
-			else if (input[2])
+			if (input[2])
 				ft_exit_invalid(input[1], 42, 1);
+			else if (ft_isdigit_mod(input[i]))
+				ft_clean_exit(ft_atoi_mod(input[1]));
 			else
 				ft_exit_invalid(input[1], 2, 0);
 			i++;
