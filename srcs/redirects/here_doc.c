@@ -6,7 +6,7 @@
 /*   By: feralves <feralves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 16:17:50 by feralves          #+#    #+#             */
-/*   Updated: 2023/05/24 13:37:21 by feralves         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:02:58 by feralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	clear_here_doc(void)
 	free_list_hd();
 	free_envp();
 	free_redir();
+	free(g_data.redir);
 	free(g_data.tml_host);
 	rl_clear_history();
 	exit(0);
